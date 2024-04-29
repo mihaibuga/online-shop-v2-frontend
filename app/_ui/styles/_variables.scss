@@ -1,5 +1,9 @@
-@use "color_schemes";
+$dark: #222831;
+$tunaDark: #31363F;
+$softPeach: #EEEEEE;
+$gainsboro: #DDDDDD;
+$pickledBluewood: #30475E;
+$moonstoneBlue: #76ABAE;
 
-:root {
-    @include color_schemes.light-color-scheme;
-}
+$green: #1A5D1A;
+$alert: #D80032;
