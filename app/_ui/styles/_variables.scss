@@ -1,0 +1,5 @@
+@use "color_schemes";
+
+:root {
+    @include color_schemes.light-color-scheme;
+}
