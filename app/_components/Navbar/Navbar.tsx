@@ -10,6 +10,7 @@ import { MdFavorite } from "react-icons/md";
 import { IoMdCart } from "react-icons/io";
 import SearchBar from "../SearchBar/SearchBar";
 import useGeneralStore from "@/app/_stores/generalStore";
+import useAuthStore from "@/app/_stores/authStore";
 import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
 
 type Props = {};
@@ -17,6 +18,7 @@ type Props = {};
 const Navbar = (props: Props) => {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
     const { toggleSidebarDisplay } = useGeneralStore();
+    const { userProfile, removeUser } = useAuthStore();
 
     const handleUserMenuDisplay = () => {
         setIsUserMenuOpen((prev) => !prev);
@@ -107,10 +109,21 @@ const Navbar = (props: Props) => {
                             id="user-dropdown"
                         >
                             <div className="px-4 py-3">
-                                <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                                <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                                    name@flowbite.com
-                                </span>
+                                {userProfile !== null && userProfile.id ? (
+                                    <>
+                                        <span className="block text-sm text-gray-900 dark:text-white">
+                                            Bonnie Green
+                                        </span>
+                                        <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
+                                            name@flowbite.com
+                                        </span>
+                                    </>
+                                ) : (
+                                    <div className="flex flex-col">
+                                        <Link href={URL_PATHS.LOGIN.path}>{URL_PATHS.LOGIN.label}</Link>
+                                        <Link href={URL_PATHS.SIGNUP.path}>{URL_PATHS.SIGNUP.label}</Link>
+                                    </div>
+                                )}
                             </div>
 
                             <ul className="py-2" aria-labelledby="user-menu-button">
@@ -149,6 +162,7 @@ const Navbar = (props: Props) => {
                                         {URL_PATHS.PROFILE.label}
                                     </Link>
                                 </li>
+                                {userProfile !== null && userProfile.id &&
                                 <li>
                                     <Link
                                         href="#"
@@ -157,6 +171,7 @@ const Navbar = (props: Props) => {
                                         Sign out
                                     </Link>
                                 </li>
+}
                             </ul>
                         </div>
                     </div>
