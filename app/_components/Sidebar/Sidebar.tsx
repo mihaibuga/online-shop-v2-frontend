@@ -14,7 +14,7 @@ const Sidebar = () => {
     return (
         <div>
             <div
-                className={`sidebar bg-white dark:bg-[#212933] z-[23] ${
+                className={`sidebar bg-white dark:bg-gray-700 z-[23] ${
                     isSidebarOpen ? "translate-x-0" : "-translate-x-80"
                 } h-full border-gray-100 fixed duration-300 top-0 rounded-r-3xl`}
             >
@@ -34,7 +34,7 @@ const Sidebar = () => {
                     {/* Logo */}
                     <div className="py-6  p-4 pl-6 border-b border-[#DDDDDD]">
                         <Link href={URL_PATHS.HOME.path} className="flex items-center space-x-3 rtl:space-x-reverse relative w-[85%]">
-                            <div className="w-full max-w-7 md:w-7 h-full md:h-7">
+                            <div className="w-full max-w-7 md:w-7 h-full md:h-7 dark:text-[#FFFFFF]">
                                 <BsShop size={"100%"} />
                             </div>
                             <span className="self-center text-xl md:text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -44,7 +44,7 @@ const Sidebar = () => {
                     </div>
 
                     <div className="categories pb-3 p-4 pl-6">
-                        <div>All categories</div>
+                        <div className="dark:text-[#FFFFFF]">All categories</div>
                         <div className="list-container flex flex-col w-full ">
                             <Link href={URL_PATHS.HOME.path}>
                                 <div className="flex items-center gap-3 hover:bg-primary p-3 xl:justify-start cursor-pointer font-semibold text-[#30475E] dark:text-[#EEEEEE] rounded-lg">
