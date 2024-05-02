@@ -12,6 +12,9 @@ import SearchBar from "../SearchBar/SearchBar";
 import useGeneralStore from "@/app/_stores/generalStore";
 import useAuthStore from "@/app/_stores/authStore";
 import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
+import { googleLogout } from "@react-oauth/google";
+import { AiOutlineLogout } from "react-icons/ai";
+import Image from "next/image";
 
 type Props = {};
 
@@ -66,17 +69,8 @@ const Navbar = (props: Props) => {
                     <ThemeToggle />
 
                     <Link
-                        className="hover:text-[#D80032] bg-slate-200 dark:bg-[#212933] p-2 rounded-md"
-                        href={URL_PATHS.WISHLIST.path}
-                    >
-                        <div className="w-6 h-6 hover:scale-110">
-                            <MdFavorite size={"100%"} />
-                        </div>
-                    </Link>
-
-                    <Link
                         className="flex items-center bg-slate-200 dark:bg-[#212933] p-2 rounded-md hover:text-blue-700"
-                        href={URL_PATHS.ORDERS.path}
+                        href={URL_PATHS.CHECKOUT.path}
                     >
                         <div className="w-6 h-6 hover:scale-110 duration-200">
                             <IoMdCart size={"100%"} />
@@ -99,23 +93,30 @@ const Navbar = (props: Props) => {
                             onClick={handleUserMenuDisplay}
                         >
                             <span className="sr-only">Open user menu</span>
-                            <CgProfile size={"100%"} />
+                            {userProfile ? (
+                                <Image
+                                    className="rounded-full cursor-pointer"
+                                    src={userProfile?.profileImage}
+                                    alt="user"
+                                    width={40}
+                                    height={40}
+                                />
+                            ) : (
+                                <CgProfile size={"100%"} />
+                            )}
                         </button>
 
                         <div
                             className={`z-15 ${
                                 isUserMenuOpen ? "" : "hidden"
-                            } my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute top-10 right-[-5px] md:right-0`}
+                            } my-4 w-max text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute top-10 right-[-5px] md:right-0`}
                             id="user-dropdown"
                         >
                             <div className="px-4 py-3">
                                 {userProfile !== null && userProfile.id ? (
                                     <>
                                         <span className="block text-sm text-gray-900 dark:text-white">
-                                            Bonnie Green
-                                        </span>
-                                        <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                                            name@flowbite.com
+                                            {userProfile.userName}
                                         </span>
                                     </>
                                 ) : (
@@ -138,40 +139,44 @@ const Navbar = (props: Props) => {
 
                                 <li>
                                     <Link
+                                        className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm gap-1"
                                         href={URL_PATHS.ORDERS.path}
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                     >
-                                        {URL_PATHS.ORDERS.label}
+                                        <div className="group-hover:text-blue-700 w-6 h-6 group-hover:scale-110">
+                                            <IoMdCart size={"100%"} />
+                                        </div>
+                                        <span>{URL_PATHS.ORDERS.label}</span>
                                     </Link>
                                 </li>
 
                                 <li>
                                     <Link
+                                        className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm gap-1"
                                         href={URL_PATHS.WISHLIST.path}
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                     >
-                                        {URL_PATHS.WISHLIST.label}
+                                        <div className="group-hover:text-[#D80032] w-6 h-6 group-hover:scale-110">
+                                            <MdFavorite size={"100%"} />
+                                        </div>
+                                        <span>{URL_PATHS.WISHLIST.label}</span>
                                     </Link>
                                 </li>
 
-                                <li>
-                                    <Link
-                                        href={URL_PATHS.PROFILE.path}
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                {userProfile !== null && userProfile.id && (
+                                    <button
+                                        type="button"
+                                        className="group flex items-center justify-center px-4 py-2 cursor-pointer outline-none text-sm gap-1"
+                                        onClick={() => {
+                                            googleLogout();
+                                            removeUser();
+                                        }}
                                     >
-                                        {URL_PATHS.PROFILE.label}
-                                    </Link>
-                                </li>
-                                {userProfile !== null && userProfile.id &&
-                                <li>
-                                    <Link
-                                        href="#"
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                    >
-                                        Sign out
-                                    </Link>
-                                </li>
-}
+                                        <div className="w-6 h-6 group-hover:scale-110">
+                                            {/* <MdFavorite size={"100%"} /> */}
+                                            <AiOutlineLogout size={"100%"} color="red" />
+                                        </div>
+                                        <span>Sign out</span>
+                                    </button>
+                                )}
                             </ul>
                         </div>
                     </div>
