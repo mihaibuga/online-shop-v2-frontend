@@ -1,27 +1,35 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import React, { useState } from "react";
-import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import { googleLogout } from "@react-oauth/google";
+import Image from "next/image";
+
+import { AiOutlineLogout } from "react-icons/ai";
 import { BsShop } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FiMenu } from "react-icons/fi";
-import { MdFavorite } from "react-icons/md";
 import { IoMdCart } from "react-icons/io";
+import { MdFavorite } from "react-icons/md";
+
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import SearchBar from "../SearchBar/SearchBar";
 import useGeneralStore from "@/app/_stores/generalStore";
 import useAuthStore from "@/app/_stores/authStore";
 import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
-import { googleLogout } from "@react-oauth/google";
-import { AiOutlineLogout } from "react-icons/ai";
-import Image from "next/image";
+import { IUser } from "@/app/_utils/interfaces";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
+    const [user, setUser] = useState<IUser | null | undefined>();
     const { toggleSidebarDisplay } = useGeneralStore();
     const { userProfile, removeUser } = useAuthStore();
+
+    useEffect(() => {
+        setUser(userProfile);
+    }, [userProfile]);
 
     const handleUserMenuDisplay = () => {
         setIsUserMenuOpen((prev) => !prev);
@@ -93,10 +101,10 @@ const Navbar = (props: Props) => {
                             onClick={handleUserMenuDisplay}
                         >
                             <span className="sr-only">Open user menu</span>
-                            {userProfile ? (
+                            {user !== null && user !== undefined ? (
                                 <Image
                                     className="rounded-full cursor-pointer"
-                                    src={userProfile?.profileImage}
+                                    src={user.profileImage}
                                     alt="user"
                                     width={40}
                                     height={40}
@@ -113,10 +121,10 @@ const Navbar = (props: Props) => {
                             id="user-dropdown"
                         >
                             <div className="px-4 py-3">
-                                {userProfile !== null && userProfile.id ? (
+                                {user !== null && user !== undefined ? (
                                     <>
                                         <span className="block text-sm text-gray-900 dark:text-white">
-                                            {userProfile.userName}
+                                            {user.userName}
                                         </span>
                                     </>
                                 ) : (
@@ -161,7 +169,7 @@ const Navbar = (props: Props) => {
                                     </Link>
                                 </li>
 
-                                {userProfile !== null && userProfile.id && (
+                                {user !== null && user !== undefined && (
                                     <button
                                         type="button"
                                         className="group flex items-center justify-center px-4 py-2 cursor-pointer outline-none text-sm gap-1"
@@ -171,7 +179,6 @@ const Navbar = (props: Props) => {
                                         }}
                                     >
                                         <div className="w-6 h-6 group-hover:scale-110">
-                                            {/* <MdFavorite size={"100%"} /> */}
                                             <AiOutlineLogout size={"100%"} color="red" />
                                         </div>
                                         <span>Sign out</span>
