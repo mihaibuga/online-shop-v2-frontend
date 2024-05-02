@@ -44,7 +44,7 @@ const Navbar = (props: Props) => {
                         href={URL_PATHS.HOME.path}
                         className="flex items-center w-fit justify-around gap-2 space-x-3 rtl:space-x-reverse relative flex-row-reverse md:flex-row"
                     >
-                        <div className="w-full max-w-7 md:w-7 h-full md:h-7 hidden md:block">
+                        <div className="w-full max-w-7 md:w-7 h-full md:h-7 hidden md:block dark:text-[#FFFFFF]">
                             <BsShop size={"100%"} />
                         </div>
                         <span className="self-center text-xl md:text-2xl font-semibold whitespace-nowrap dark:text-white !ml-0 md:ml-3">
@@ -77,7 +77,7 @@ const Navbar = (props: Props) => {
                     <ThemeToggle />
 
                     <Link
-                        className="flex items-center bg-slate-200 dark:bg-[#212933] p-2 rounded-md hover:text-blue-700"
+                        className="flex items-center bg-slate-200 dark:bg-[#212933] p-2 rounded-md dark:text-[#FFFFFF] hover:text-blue-700"
                         href={URL_PATHS.CHECKOUT.path}
                     >
                         <div className="w-6 h-6 hover:scale-110 duration-200">
@@ -93,7 +93,7 @@ const Navbar = (props: Props) => {
                     <div className="flex items-center justify-center bg-slate-200 dark:bg-[#212933] p-2 rounded-md relative">
                         <button
                             type="button"
-                            className="flex h-6 w-6 text-sm dark:bg-gray-800 bg-white rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 relative hover:scale-110 duration-200"
+                            className="flex h-6 w-6 text-sm dark:text-[#FFFFFF] dark:bg-gray-800 bg-white rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 relative hover:scale-110 duration-200"
                             id="user-menu-button"
                             aria-expanded="false"
                             data-dropdown-toggle="user-dropdown"
@@ -117,10 +117,10 @@ const Navbar = (props: Props) => {
                         <div
                             className={`z-15 ${
                                 isUserMenuOpen ? "" : "hidden"
-                            } my-4 w-max text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute top-10 right-[-5px] md:right-0`}
+                            } my-4 w-max text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute top-10 right-[-5px] md:right-0 overflow-hidden`}
                             id="user-dropdown"
                         >
-                            <div className="px-4 py-3">
+                            <div className="">
                                 {user !== null && user !== undefined ? (
                                     <>
                                         <span className="block text-sm text-gray-900 dark:text-white">
@@ -129,8 +129,18 @@ const Navbar = (props: Props) => {
                                     </>
                                 ) : (
                                     <div className="flex flex-col">
-                                        <Link href={URL_PATHS.LOGIN.path}>{URL_PATHS.LOGIN.label}</Link>
-                                        <Link href={URL_PATHS.SIGNUP.path}>{URL_PATHS.SIGNUP.label}</Link>
+                                        <Link
+                                            href={URL_PATHS.LOGIN.path}
+                                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
+                                        >
+                                            {URL_PATHS.LOGIN.label}
+                                        </Link>
+                                        <Link
+                                            href={URL_PATHS.SIGNUP.path}
+                                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
+                                        >
+                                            {URL_PATHS.SIGNUP.label}
+                                        </Link>
                                     </div>
                                 )}
                             </div>
@@ -139,7 +149,7 @@ const Navbar = (props: Props) => {
                                 <li>
                                     <Link
                                         href={URL_PATHS.MY_ACCOUNT.path}
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
                                     >
                                         {URL_PATHS.MY_ACCOUNT.label}
                                     </Link>
@@ -147,10 +157,10 @@ const Navbar = (props: Props) => {
 
                                 <li>
                                     <Link
-                                        className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm gap-1"
+                                        className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white gap-1 hover:bg-gray-100 dark:hover:bg-gray-600"
                                         href={URL_PATHS.ORDERS.path}
                                     >
-                                        <div className="group-hover:text-blue-700 w-6 h-6 group-hover:scale-110">
+                                        <div className="group-hover:text-blue-700 group-hover:dark:text-blue-500 w-6 h-6 group-hover:scale-110">
                                             <IoMdCart size={"100%"} />
                                         </div>
                                         <span>{URL_PATHS.ORDERS.label}</span>
@@ -159,10 +169,10 @@ const Navbar = (props: Props) => {
 
                                 <li>
                                     <Link
-                                        className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm gap-1"
+                                        className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white gap-1 hover:bg-gray-100 dark:hover:bg-gray-600"
                                         href={URL_PATHS.WISHLIST.path}
                                     >
-                                        <div className="group-hover:text-[#D80032] w-6 h-6 group-hover:scale-110">
+                                        <div className="group-hover:text-[#D80032] group-hover:dark:text-red-500 w-6 h-6 group-hover:scale-110">
                                             <MdFavorite size={"100%"} />
                                         </div>
                                         <span>{URL_PATHS.WISHLIST.label}</span>
