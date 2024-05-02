@@ -123,7 +123,7 @@ const Navbar = (props: Props) => {
                             <div className="">
                                 {user !== null && user !== undefined ? (
                                     <>
-                                        <span className="block text-sm text-gray-900 dark:text-white">
+                                        <span className="block px-4 py-2 text-sm text-gray-900 dark:text-white">
                                             {user.userName}
                                         </span>
                                     </>
