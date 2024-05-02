@@ -10,6 +10,7 @@ import { MdFavorite } from "react-icons/md";
 import { IoMdCart } from "react-icons/io";
 import SearchBar from "../SearchBar/SearchBar";
 import useGeneralStore from "@/app/_stores/generalStore";
+import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
 
 type Props = {};
 
@@ -26,12 +27,15 @@ const Navbar = (props: Props) => {
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 gap-4 md:gap-0">
                 <div className="flex flex-row-reverse md:flex-row items-center justify-between gap-4 w-full md:w-fit">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center w-fit justify-around gap-2 space-x-3 rtl:space-x-reverse relative flex-row-reverse md:flex-row">
+                    <Link
+                        href={URL_PATHS.HOME.path}
+                        className="flex items-center w-fit justify-around gap-2 space-x-3 rtl:space-x-reverse relative flex-row-reverse md:flex-row"
+                    >
                         <div className="w-full max-w-7 md:w-7 h-full md:h-7 hidden md:block">
                             <BsShop size={"100%"} />
                         </div>
                         <span className="self-center text-xl md:text-2xl font-semibold whitespace-nowrap dark:text-white !ml-0 md:ml-3">
-                            Storify
+                            {STORE_NAME}
                         </span>
                     </Link>
 
@@ -59,7 +63,10 @@ const Navbar = (props: Props) => {
                 <div className="flex items-center justify-center md:justify-between gap-4 w-full md:w-auto">
                     <ThemeToggle />
 
-                    <Link className="hover:text-[#D80032] bg-slate-200 dark:bg-[#212933] p-2 rounded-md" href="/myaccount/wishlist">
+                    <Link
+                        className="hover:text-[#D80032] bg-slate-200 dark:bg-[#212933] p-2 rounded-md"
+                        href={URL_PATHS.WISHLIST.path}
+                    >
                         <div className="w-6 h-6 hover:scale-110">
                             <MdFavorite size={"100%"} />
                         </div>
@@ -67,7 +74,7 @@ const Navbar = (props: Props) => {
 
                     <Link
                         className="flex items-center bg-slate-200 dark:bg-[#212933] p-2 rounded-md hover:text-blue-700"
-                        href="/myaccount/orders"
+                        href={URL_PATHS.ORDERS.path}
                     >
                         <div className="w-6 h-6 hover:scale-110 duration-200">
                             <IoMdCart size={"100%"} />
@@ -109,22 +116,39 @@ const Navbar = (props: Props) => {
                             <ul className="py-2" aria-labelledby="user-menu-button">
                                 <li>
                                     <Link
-                                        href="/myaccount"
+                                        href={URL_PATHS.MY_ACCOUNT.path}
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                     >
-                                        Dashboard
+                                        {URL_PATHS.MY_ACCOUNT.label}
                                     </Link>
                                 </li>
 
                                 <li>
                                     <Link
-                                        href="/myaccount/settings"
+                                        href={URL_PATHS.ORDERS.path}
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                     >
-                                        Settings
+                                        {URL_PATHS.ORDERS.label}
                                     </Link>
                                 </li>
 
+                                <li>
+                                    <Link
+                                        href={URL_PATHS.WISHLIST.path}
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                    >
+                                        {URL_PATHS.WISHLIST.label}
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link
+                                        href={URL_PATHS.PROFILE.path}
+                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                                    >
+                                        {URL_PATHS.PROFILE.label}
+                                    </Link>
+                                </li>
                                 <li>
                                     <Link
                                         href="#"
