@@ -8,15 +8,15 @@ import Sidebar from "../_components/Sidebar/Sidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Online shop",
-    description: "Designed by MB",
+    title: "Storify",
+    description: "Your new online shopping experience by Storify",
 };
 
-export default function RootLayout({
+const SiteLayout = ({
     children,
 }: Readonly<{
     children: React.ReactNode;
-}>) {
+}>) => {
     return (
         <html lang="en">
             <body className={`${inter.className} bg-[#EEEEEE] dark:bg-[#222831] text-[#222831] dark:text-[#EEEEEE]`}>
@@ -24,11 +24,12 @@ export default function RootLayout({
                     <Navbar />
                     <div className="h-full block xl:flex gap-0 md:gap-20 xl:gap-6 duration-100 relative">
                         <Sidebar />
-                        {/* <div className="flex flex-col gap-10 videos flex-1 p-3 ml-0 xl:ml-[400px]">{children}</div> */}
                         <main className="min-h-[calc(100vh-122px)] md:min-h-[calc(100vh-72px)] w-full">{children}</main>
                     </div>
                 </MainTheme>
             </body>
         </html>
     );
-}
+};
+
+export default SiteLayout;
