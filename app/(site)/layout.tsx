@@ -19,12 +19,12 @@ const SiteLayout = ({
 }>) => {
     return (
         <html lang="en">
-            <body className={`${inter.className} bg-[#EEEEEE] dark:bg-[#222831] text-[#222831] dark:text-[#EEEEEE]`}>
+            <body className={`${inter.className}`}>
                 <MainTheme>
                     <Navbar />
-                    <div className="h-full block xl:flex gap-0 md:gap-20 xl:gap-6 duration-100 relative">
+                    <div className="h-full block xl:flex duration-100 relative">
                         <Sidebar />
-                        <main className="min-h-[calc(100vh-122px)] md:min-h-[calc(100vh-72px)] w-full">{children}</main>
+                        <main className="min-h-[calc(100vh-122px)] md:min-h-[calc(100vh-72px)] w-full bg-[#EEEEEE] dark:bg-[#222831] text-[#222831] dark:text-[#EEEEEE]">{children}</main>
                     </div>
                 </MainTheme>
             </body>
