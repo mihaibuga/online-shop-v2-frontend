@@ -6,6 +6,7 @@ import { AiFillHome } from "react-icons/ai";
 import useGeneralStore from "@/app/_stores/generalStore";
 import { BsShop } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
+import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
 
 const Sidebar = () => {
     const { isSidebarOpen, toggleSidebarDisplay } = useGeneralStore();
@@ -32,12 +33,12 @@ const Sidebar = () => {
                 <div className="content xl:w-400 w-80 flex flex-col justify-start mb-10 overflow-hidden gap-2">
                     {/* Logo */}
                     <div className="py-6  p-4 pl-6 border-b border-[#DDDDDD]">
-                        <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse relative w-[85%]">
+                        <Link href={URL_PATHS.HOME.path} className="flex items-center space-x-3 rtl:space-x-reverse relative w-[85%]">
                             <div className="w-full max-w-7 md:w-7 h-full md:h-7">
                                 <BsShop size={"100%"} />
                             </div>
                             <span className="self-center text-xl md:text-2xl font-semibold whitespace-nowrap dark:text-white">
-                                Storify
+                                {STORE_NAME}
                             </span>
                         </Link>
                     </div>
@@ -45,7 +46,7 @@ const Sidebar = () => {
                     <div className="categories pb-3 p-4 pl-6">
                         <div>All categories</div>
                         <div className="list-container flex flex-col w-full ">
-                            <Link href="/">
+                            <Link href={URL_PATHS.HOME.path}>
                                 <div className="flex items-center gap-3 hover:bg-primary p-3 xl:justify-start cursor-pointer font-semibold text-[#30475E] dark:text-[#EEEEEE] rounded-lg">
                                     <p className="text-2xl">
                                         <AiFillHome />
