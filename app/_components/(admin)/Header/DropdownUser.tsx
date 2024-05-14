@@ -6,6 +6,7 @@ import Image from "next/image";
 import useAuthStore from "@/app/_stores/authStore";
 import { IUser } from "@/app/_utils/interfaces";
 import { CgProfile } from "react-icons/cg";
+import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_utils/useExpandedElementsHandlers";
 
 const DropdownUser = () => {
     const { userProfile, removeUser } = useAuthStore();
@@ -15,32 +16,17 @@ const DropdownUser = () => {
     const trigger = useRef<any>(null);
     const dropdown = useRef<any>(null);
 
-    const clickHandler = ({ target }: MouseEvent) => {
-        if (!dropdown.current) return;
-        if (!dropdownOpen || dropdown.current.contains(target) || trigger.current.contains(target)) return;
-        setDropdownOpen(false);
-    };
-
-    const keyHandler = ({ keyCode }: KeyboardEvent) => {
-        if (!dropdownOpen || keyCode !== 27) return;
-        setDropdownOpen(false);
-    };
-
     useEffect(() => {
         setUser(userProfile);
     }, [userProfile]);
 
-    // close on click outside
-    useEffect(() => {
-        document.addEventListener("click", clickHandler);
-        return () => document.removeEventListener("click", clickHandler);
+    useExpandedElementClickHandler({
+        expandedElementRef: dropdown,
+        triggerRef: trigger,
+        isTargetOpen: dropdownOpen,
+        setIsTargetOpen: setDropdownOpen,
     });
-
-    // close if the esc key is pressed
-    useEffect(() => {
-        document.addEventListener("keydown", keyHandler);
-        return () => document.removeEventListener("keydown", keyHandler);
-    });
+    useExpandedElementKeyHandler({ isTargetOpen: dropdownOpen, setIsTargetOpen: setDropdownOpen });
 
     return (
         <div className="relative">

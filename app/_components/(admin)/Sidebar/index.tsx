@@ -7,6 +7,7 @@ import SidebarLinkGroup from "./SidebarLinkGroup";
 import useGeneralStore from "@/app/_stores/generalStore";
 import { BsShop } from "react-icons/bs";
 import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
+import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_utils/useExpandedElementsHandlers";
 
 const Sidebar = () => {
     const { isAdminSidebarOpen, toggleAdminSidebarDisplay } = useGeneralStore();
@@ -22,26 +23,13 @@ const Sidebar = () => {
         storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
     );
 
-    // close on click outside
-    useEffect(() => {
-        const clickHandler = ({ target }: MouseEvent) => {
-            if (!sidebar.current || !trigger.current) return;
-            if (!isAdminSidebarOpen || sidebar.current.contains(target) || trigger.current.contains(target)) return;
-            toggleAdminSidebarDisplay();
-        };
-        document.addEventListener("click", clickHandler);
-        return () => document.removeEventListener("click", clickHandler);
+    useExpandedElementClickHandler({
+        expandedElementRef: sidebar,
+        triggerRef: trigger,
+        isTargetOpen: isAdminSidebarOpen,
+        setIsTargetOpen: toggleAdminSidebarDisplay,
     });
-
-    // close if the esc key is pressed
-    useEffect(() => {
-        const keyHandler = ({ key }: KeyboardEvent) => {
-            if (!isAdminSidebarOpen || key !== "Escape") return;
-            toggleAdminSidebarDisplay();
-        };
-        document.addEventListener("keydown", keyHandler);
-        return () => document.removeEventListener("keydown", keyHandler);
-    });
+    useExpandedElementKeyHandler({ isTargetOpen: isAdminSidebarOpen, setIsTargetOpen: toggleAdminSidebarDisplay });
 
     useEffect(() => {
         localStorage.setItem("sidebar-expanded", sidebarExpanded.toString());
