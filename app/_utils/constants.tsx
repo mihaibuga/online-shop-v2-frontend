@@ -39,5 +39,9 @@ export const URL_PATHS = {
     PRIVACY_POLICY: {
         path:  "/legal/privacy-policy",
         label:  "Privacy Policy",
+    },
+    ADMIN: {
+        path:  "/admin",
+        label:  "Admin",
     }
 };
