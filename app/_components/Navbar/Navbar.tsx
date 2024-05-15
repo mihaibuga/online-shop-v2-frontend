@@ -2,10 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { googleLogout } from "@react-oauth/google";
+
 import Image from "next/image";
 
-import { AiOutlineLogout } from "react-icons/ai";
 import { BsShop } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { FiMenu } from "react-icons/fi";
@@ -18,6 +17,7 @@ import useGeneralStore from "@/app/_stores/generalStore";
 import useAuthStore from "@/app/_stores/authStore";
 import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
 import { IUser } from "@/app/_utils/interfaces";
+import SignOutButton from "./SignOutButton";
 
 type Props = {};
 
@@ -25,7 +25,7 @@ const Navbar = (props: Props) => {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
     const [user, setUser] = useState<IUser | null | undefined>();
     const { toggleSidebarDisplay } = useGeneralStore();
-    const { userProfile, removeUser } = useAuthStore();
+    const { userProfile } = useAuthStore();
 
     useEffect(() => {
         setUser(userProfile);
@@ -179,21 +179,7 @@ const Navbar = (props: Props) => {
                                     </Link>
                                 </li>
 
-                                {user !== null && user !== undefined && (
-                                    <button
-                                        type="button"
-                                        className="group flex items-center justify-center px-4 py-2 cursor-pointer outline-none text-sm gap-1"
-                                        onClick={() => {
-                                            googleLogout();
-                                            removeUser();
-                                        }}
-                                    >
-                                        <div className="w-6 h-6 group-hover:scale-110">
-                                            <AiOutlineLogout size={"100%"} color="red" />
-                                        </div>
-                                        <span>Sign out</span>
-                                    </button>
-                                )}
+                                <li>{user !== null && user !== undefined && <SignOutButton />}</li>
                             </ul>
                         </div>
                     </div>
