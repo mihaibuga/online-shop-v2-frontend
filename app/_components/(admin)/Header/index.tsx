@@ -9,8 +9,8 @@ import useGeneralStore from "@/app/_stores/generalStore";
 import ThemeToggle from "../../ThemeToggle/ThemeToggle";
 import { STORE_NAME } from "@/app/_utils/constants";
 
-import DropdownMessage from "./DropdownMessage";
-import DropdownNotification from "./DropdownNotification";
+import DropdownMessage from "./DropdownMessages/DropdownMessage";
+import DropdownNotification from "./DropdownNotifications/DropdownNotification";
 import DropdownUser from "./DropdownUser";
 
 const Header = () => {
@@ -85,9 +85,13 @@ const Header = () => {
                     <ul className="flex items-center gap-2 2xsm:gap-4">
                         <ThemeToggle />
 
-                        <DropdownNotification />
+                        <li className="relative">
+                            <DropdownNotification />
+                        </li>
 
-                        <DropdownMessage />
+                        <li className="relative">
+                            <DropdownMessage />
+                        </li>
                     </ul>
 
                     <DropdownUser />
