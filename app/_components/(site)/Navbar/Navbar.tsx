@@ -11,7 +11,7 @@ import { FiMenu } from "react-icons/fi";
 import { IoMdCart } from "react-icons/io";
 import { MdFavorite } from "react-icons/md";
 
-import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import ThemeToggle from "../../(common)/ThemeToggle/ThemeToggle";
 import SearchBar from "../SearchBar/SearchBar";
 import useGeneralStore from "@/app/_stores/generalStore";
 import useAuthStore from "@/app/_stores/authStore";

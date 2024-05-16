@@ -6,12 +6,12 @@ import { FiMenu } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 
 import useGeneralStore from "@/app/_stores/generalStore";
-import ThemeToggle from "../../ThemeToggle/ThemeToggle";
+import ThemeToggle from "../../(common)/ThemeToggle/ThemeToggle";
 import { STORE_NAME } from "@/app/_utils/constants";
 
-import DropdownMessage from "./DropdownMessages/DropdownMessage";
-import DropdownNotification from "./DropdownNotifications/DropdownNotification";
-import DropdownUser from "./DropdownUser";
+import DropdownMessage from "../../(common)/HeaderDropdowns/DropdownMessages/DropdownMessage";
+import DropdownNotification from "../../(common)/HeaderDropdowns/DropdownNotifications/DropdownNotification";
+import DropdownUser from "../../(common)/HeaderDropdowns/DropdownUser";
 
 const Header = () => {
     const { isAdminSidebarOpen, toggleAdminSidebarDisplay } = useGeneralStore();

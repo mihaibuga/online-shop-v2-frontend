@@ -9,8 +9,8 @@ import { CiSettings } from "react-icons/ci";
 import { MdOutlinePersonOutline } from "react-icons/md";
 
 import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_utils/useExpandedElementsHandlers";
-import ProfileImage from "../../(common)/ProfileImage";
-import SignOutButton from "../../Navbar/SignOutButton";
+import ProfileImage from "../ProfileImage";
+import SignOutButton from "../../(site)/Navbar/SignOutButton";
 
 const DropdownUser = () => {
     const { userProfile, removeUser } = useAuthStore();
