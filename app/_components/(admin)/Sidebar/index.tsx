@@ -11,17 +11,16 @@ import { RxDashboard } from "react-icons/rx";
 import useGeneralStore from "@/app/_stores/generalStore";
 import { URL_PATHS } from "@/app/_utils/constants";
 import Logo from "../../(common)/Logo/Logo";
-import CloseButton from "../../(common)/Buttons/CloseButton";
+import SidebarCloseButton from "../../(common)/Buttons/SidebarCloseButton";
 import SimpleMainNavLink from "./LinkTypes/SimpleMainNavLink";
 import NavGroupSubLink from "./LinkTypes/NavGroupSubLink";
 import ExpandableMainNavLink from "./LinkTypes/ExpandableMainNavLink";
 import MainLinksCategoryGroup from "./MainLinksCategoryGroup";
 
 const Sidebar = () => {
-    const { isAdminSidebarOpen } = useGeneralStore();
+    const { isAdminSidebarOpen, toggleAdminSidebarDisplay } = useGeneralStore();
 
     const pathname = usePathname();
-    console.log(pathname);
     const sidebar = useRef<any>(null);
 
     return (
@@ -36,7 +35,12 @@ const Sidebar = () => {
                     <Logo linkPath={URL_PATHS.ADMIN.path} />
                 </div>
 
-                <CloseButton sidebar={sidebar} />
+                <SidebarCloseButton
+                    sidebar={sidebar}
+                    isSidebarExpanded={isAdminSidebarOpen}
+                    toggleSidebarDisplay={toggleAdminSidebarDisplay}
+                    additionalClasses={"block lg:hidden"}
+                />
             </div>
 
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">

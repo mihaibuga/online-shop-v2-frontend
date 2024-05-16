@@ -1,15 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
 import useGeneralStore from "@/app/_stores/generalStore";
-import { BsShop } from "react-icons/bs";
-import { IoMdClose } from "react-icons/io";
-import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
+import { URL_PATHS } from "@/app/_utils/constants";
+import SidebarCloseButton from "../../(common)/Buttons/SidebarCloseButton";
+import Logo from "../../(common)/Logo/Logo";
 
 const Sidebar = () => {
     const { isSidebarOpen, toggleSidebarDisplay } = useGeneralStore();
+
+    const sidebar = useRef<any>(null);
 
     return (
         <div>
@@ -18,29 +20,15 @@ const Sidebar = () => {
                     isSidebarOpen ? "translate-x-0" : "-translate-x-80"
                 } h-full border-gray-100 fixed duration-300 top-0 rounded-r-3xl`}
             >
-                {/* Main Menu Toggle */}
-                <button
-                    type="button"
-                    className="absolute top-2 right-2 text-[#222831] dark:text-[#EEEEEE] bg-transparent hover:bg-gray-200 hover:text-gray-900 dark:hover:text-[#222831] rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center z-25"
-                    data-modal-hide="default-modal"
-                    onClick={toggleSidebarDisplay}
-                >
-                    <div className="w-8 h-8">
-                        <IoMdClose size={"100%"} />
-                    </div>
-                </button>
+                <SidebarCloseButton
+                    sidebar={sidebar}
+                    isSidebarExpanded={isSidebarOpen}
+                    toggleSidebarDisplay={toggleSidebarDisplay}
+                />
 
                 <div className="content xl:w-400 w-80 flex flex-col justify-start mb-10 overflow-hidden gap-2">
-                    {/* Logo */}
                     <div className="py-6  p-4 pl-6 border-b border-[#DDDDDD]">
-                        <Link href={URL_PATHS.HOME.path} className="flex items-center space-x-3 rtl:space-x-reverse relative w-[85%]">
-                            <div className="w-full max-w-7 md:w-7 h-full md:h-7 dark:text-[#FFFFFF]">
-                                <BsShop size={"100%"} />
-                            </div>
-                            <span className="self-center text-xl md:text-2xl font-semibold whitespace-nowrap dark:text-white">
-                                {STORE_NAME}
-                            </span>
-                        </Link>
+                        <Logo linkPath={URL_PATHS.HOME.path} />
                     </div>
 
                     <div className="categories pb-3 p-4 pl-6">
@@ -58,7 +46,9 @@ const Sidebar = () => {
                     </div>
                 </div>
             </div>
-            {isSidebarOpen && <div className="bg-[#222831] bg-opacity-75 w-full h-[100vh] absolute -top-[182px] md:-top-[72px] z-[21]"></div>}
+            {isSidebarOpen && (
+                <div className="bg-[#222831] bg-opacity-75 w-full h-[100vh] absolute -top-[182px] md:-top-[72px] z-[21]"></div>
+            )}
         </div>
     );
 };
