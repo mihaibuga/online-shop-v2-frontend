@@ -29,7 +29,7 @@ const ButtonWithDropdown = ({ icon, children }: IButtonWithDropdown) => {
                 ref={dropdown}
                 onFocus={() => setDropdownOpen(true)}
                 onBlur={() => setDropdownOpen(false)}
-                className={`absolute -right-16 mt-2.5 flex h-90 w-75 flex-col rounded-md border border-stroke dark:border-strokedark bg-white dark:bg-gray-700 shadow-default sm:right-0 sm:w-80 ${
+                className={`fixed md:absolute right-0 md:-right-16 left-[60vw] md:left-[unset] mt-2.5 flex h-90 w-[90vw] md:w-80 -translate-x-[55vw] md:translate-x-0 flex-col rounded-md border border-stroke dark:border-strokedark bg-white dark:bg-gray-700 shadow-default ${
                     dropdownOpen === true ? "block" : "hidden"
                 }`}
             >

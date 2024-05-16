@@ -12,7 +12,7 @@ const DropdownMessage = () => {
             <>
                 <DropdownTitle title={"Messages"} />
 
-                <ul className="flex h-auto flex-col overflow-y-auto">
+                <ul className="flex max-h-80 h-auto flex-col overflow-y-auto">
                     {messages.map((message, index) => (
                         <li key={index}>
                             <DropdownMessageLink

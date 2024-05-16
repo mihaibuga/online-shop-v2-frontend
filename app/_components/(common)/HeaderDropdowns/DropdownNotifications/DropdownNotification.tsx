@@ -12,7 +12,7 @@ const DropdownNotification = () => {
             <>
                 <DropdownTitle title={"Notifications"} />
 
-                <ul className="flex h-auto flex-col overflow-y-auto">
+                <ul className="flex max-h-80 h-auto flex-col overflow-y-auto">
                     {notifications.map((notification, index) => (
                         <li key={index}>
                             <DropdownNotificationLink

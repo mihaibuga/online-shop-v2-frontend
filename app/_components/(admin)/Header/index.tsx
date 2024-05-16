@@ -16,8 +16,9 @@ const Header = () => {
 
     return (
         <header className="sticky top-0 z-[25] flex w-full bg-white dark:bg-gray-900 drop-shadow-1 dark:drop-shadow-none">
-            <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">
-                <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
+            <div className="flex flex-wrap md:flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11 gap-4 md:gap-0">
+                {/* Logo & Sidebar Toggle */}
+                <div className="flex items-center w-full md:w-fit gap-2 sm:gap-4 lg:hidden">
                     <SidebarToggle
                         isSidebarExpanded={isAdminSidebarOpen}
                         toggleSidebarDisplay={toggleAdminSidebarDisplay}
@@ -25,11 +26,13 @@ const Header = () => {
                     <Logo linkPath={URL_PATHS.ADMIN.path} />
                 </div>
 
-                <div className="hidden sm:block">
+                {/* Search Box */}
+                <div className="flex items-center w-full md:w-auto order-3 md:order-none justify-between">
                     <SearchBar />
                 </div>
 
-                <div className="flex items-center gap-3 2xsm:gap-7">
+                {/* Action buttons */}
+                <div className="flex items-center w-full md:w-auto gap-3 2xsm:gap-7 justify-center md:justify-normal">
                     <ul className="flex items-center gap-2 2xsm:gap-4">
                         <li className="relative">
                             <ThemeToggle />
