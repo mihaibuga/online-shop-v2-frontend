@@ -180,7 +180,7 @@ const Sidebar = () => {
                             />
                             <NavGroupSubLink
                                 title={"Profile"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/users/profile`}
+                                linkPath={`${URL_PATHS.ADMIN.path}/profile`}
                                 pathname={pathname}
                             />
                         </ExpandableMainNavLink>
