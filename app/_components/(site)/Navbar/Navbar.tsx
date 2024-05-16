@@ -5,9 +5,7 @@ import Link from "next/link";
 
 import Image from "next/image";
 
-import { BsShop } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
-import { FiMenu } from "react-icons/fi";
 import { IoMdCart } from "react-icons/io";
 import { MdFavorite } from "react-icons/md";
 
@@ -15,16 +13,18 @@ import ThemeToggle from "../../(common)/Toggles/ThemeToggle/ThemeToggle";
 import SearchBar from "../../(common)/SearchBar/SearchBar";
 import useGeneralStore from "@/app/_stores/generalStore";
 import useAuthStore from "@/app/_stores/authStore";
-import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
+import { URL_PATHS } from "@/app/_utils/constants";
 import { IUser } from "@/app/_utils/interfaces";
 import SignOutButton from "../../(common)/Buttons/SignOutButton";
+import Logo from "../../(common)/Logo/Logo";
+import SidebarToggle from "../../(common)/Toggles/SidebarToggle/SidebarToggle";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
     const [user, setUser] = useState<IUser | null | undefined>();
-    const { toggleSidebarDisplay } = useGeneralStore();
+    const { isSidebarOpen, toggleSidebarDisplay } = useGeneralStore();
     const { userProfile } = useAuthStore();
 
     useEffect(() => {
@@ -39,36 +39,10 @@ const Navbar = (props: Props) => {
         <nav className="sticky z-10 top-0 start-0 bg-white border-gray-200 dark:bg-gray-900">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 gap-4 md:gap-0">
                 <div className="flex flex-row-reverse md:flex-row items-center justify-between gap-4 w-full md:w-fit">
-                    {/* Logo */}
-                    <Link
-                        href={URL_PATHS.HOME.path}
-                        className="flex items-center w-fit justify-around gap-2 space-x-3 rtl:space-x-reverse relative flex-row-reverse md:flex-row"
-                    >
-                        <div className="w-full max-w-7 md:w-7 h-full md:h-7 hidden md:block dark:text-[#FFFFFF]">
-                            <BsShop size={"100%"} />
-                        </div>
-                        <span className="self-center text-xl md:text-2xl font-semibold whitespace-nowrap dark:text-white !ml-0 md:ml-3">
-                            {STORE_NAME}
-                        </span>
-                    </Link>
-
-                    {/* Main Menu Toggle */}
-                    <button
-                        data-collapse-toggle="navbar-user"
-                        type="button"
-                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                        aria-controls="navbar-user"
-                        aria-expanded="false"
-                        onClick={toggleSidebarDisplay}
-                    >
-                        <span className="sr-only">Open main menu</span>
-                        <div className="w-5 h-5">
-                            <FiMenu size={"100%"} />
-                        </div>
-                    </button>
+                    <Logo linkPath={URL_PATHS.HOME.path} />
+                    <SidebarToggle isSidebarExpanded={isSidebarOpen} toggleSidebarDisplay={toggleSidebarDisplay} />
                 </div>
 
-                {/* Menu Links */}
                 <div className="flex md:flex-[0.5] items-center justify-between flex w-full md:w-auto order-3 md:order-none">
                     <SearchBar />
                 </div>
