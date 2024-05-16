@@ -32,7 +32,7 @@ export interface IKeyEvent {
 // Header elements
 export interface IButtonWithDropdown {
     icon: React.ReactNode;
-    children: React.JSX.Element;
+    children?: React.JSX.Element;
 }
 export interface IHeaderDropdownLink {
     triggerRef: MutableRefObject<any>;

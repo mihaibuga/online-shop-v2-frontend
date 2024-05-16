@@ -13,17 +13,17 @@ const HeaderExpandingLink = ({ triggerRef, setIsTargetOpen, icon }: IHeaderDropd
                 setIsTargetOpen((prev: boolean) => !prev);
             }}
             href="#"
-            className="relative flex h-10 w-10 items-center justify-center rounded-full border-[0.5px] border-stroke bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
+            className="relative flex h-full w-full items-center justify-center"
         >
             <span
-                className={`absolute -top-0.5 right-0 z-1 h-2 w-2 rounded-full bg-meta-1 ${
+                className={`absolute -top-0.5 right-0 z-10 h-2 w-2 rounded-full bg-red-500 ${
                     notifying === false ? "hidden" : "inline"
                 }`}
             >
-                <span className="absolute -z-1 inline-flex h-full w-full animate-ping rounded-full bg-meta-1 opacity-75"></span>
+                <span className="absolute z-10 inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-100"></span>
             </span>
 
-            <div className="w-10 p-2 fill-current duration-300 ease-in-out">{icon}</div>
+            <div className="w-full h-full fill-current duration-300 ease-in-out hover:scale-110">{icon}</div>
         </Link>
     );
 };

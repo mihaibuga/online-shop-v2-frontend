@@ -18,6 +18,11 @@ import { IUser } from "@/app/_utils/interfaces";
 import SignOutButton from "../../(common)/Buttons/SignOutButton";
 import Logo from "../../(common)/Logo/Logo";
 import SidebarToggle from "../../(common)/Toggles/SidebarToggle/SidebarToggle";
+import HeaderActionButtonWrapper from "../../(common)/HeaderActionButtonWrapper/HeaderActionButtonWrapper";
+import ProfileImage from "../../(common)/ProfileImage";
+import ButtonWithDropdown from "../../(common)/HeaderDropdowns/ButtonWithDropdown";
+import DropdownTitle from "../../(common)/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";
+import { wishlistProducts } from "@/app/_utils/MockingData";
 
 type Props = {};
 
@@ -51,115 +56,110 @@ const Navbar = (props: Props) => {
 
                 {/* Action buttons */}
                 <div className="flex items-center justify-center md:justify-between gap-4 w-full md:w-auto">
-                    <ThemeToggle />
+                    <HeaderActionButtonWrapper>
+                        <ThemeToggle />
+                    </HeaderActionButtonWrapper>
 
-                    <Link
-                        className="flex items-center bg-slate-200 dark:bg-[#212933] p-2 rounded-md dark:text-[#FFFFFF] hover:text-blue-700"
-                        href={URL_PATHS.CHECKOUT.path}
-                    >
-                        <div className="w-6 h-6 hover:scale-110 duration-200">
-                            <IoMdCart size={"100%"} />
-                        </div>
-                        <span className="flex absolute -mt-5 ml-4">
-                            <span className="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                        </span>
-                    </Link>
+                    <HeaderActionButtonWrapper>
+                        <ButtonWithDropdown icon={<IoMdCart size={"100%"} />}>
+                            <>
+                                <DropdownTitle title={"Wishlist"} />
+
+                                <ul className="flex max-h-80 h-auto flex-col overflow-y-auto">
+                                    {wishlistProducts.map((product, index) => (
+                                        <li key={index}></li>
+                                    ))}
+                                </ul>
+                            </>
+                        </ButtonWithDropdown>
+                    </HeaderActionButtonWrapper>
 
                     {/* User profile */}
-                    <div className="flex items-center justify-center bg-slate-200 dark:bg-[#212933] p-2 rounded-md relative">
-                        <button
-                            type="button"
-                            className="flex h-6 w-6 text-sm dark:text-[#FFFFFF] dark:bg-gray-800 bg-white rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 relative hover:scale-110 duration-200"
-                            id="user-menu-button"
-                            aria-expanded="false"
-                            data-dropdown-toggle="user-dropdown"
-                            data-dropdown-placement="bottom"
-                            onClick={handleUserMenuDisplay}
-                        >
-                            <span className="sr-only">Open user menu</span>
-                            {user !== null && user !== undefined ? (
-                                <Image
-                                    className="rounded-full cursor-pointer"
-                                    src={user.profileImage}
-                                    alt="user"
-                                    width={40}
-                                    height={40}
-                                />
-                            ) : (
-                                <CgProfile size={"100%"} />
-                            )}
-                        </button>
+                    <HeaderActionButtonWrapper>
+                        <div className="flex items-center justify-center">
+                            <button
+                                type="button"
+                                className="flex h-6 w-6 text-sm dark:text-[#FFFFFF] dark:bg-gray-800 bg-white rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 relative hover:scale-110 duration-200"
+                                id="user-menu-button"
+                                aria-expanded="false"
+                                data-dropdown-toggle="user-dropdown"
+                                data-dropdown-placement="bottom"
+                                onClick={handleUserMenuDisplay}
+                            >
+                                <span className="sr-only">Open user menu</span>
+                                <ProfileImage user={user} />
+                            </button>
 
-                        <div
-                            className={`z-15 ${
-                                isUserMenuOpen ? "" : "hidden"
-                            } my-4 w-max text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute top-10 right-[-5px] md:right-0 overflow-hidden`}
-                            id="user-dropdown"
-                        >
-                            <div className="">
-                                {user !== null && user !== undefined ? (
-                                    <>
-                                        <span className="block px-4 py-2 text-sm text-gray-900 dark:text-white">
-                                            {user.userName}
-                                        </span>
-                                    </>
-                                ) : (
-                                    <div className="flex flex-col">
+                            <div
+                                className={`z-15 ${
+                                    isUserMenuOpen ? "" : "hidden"
+                                } my-4 w-max text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute top-10 right-[-5px] md:right-0 overflow-hidden`}
+                                id="user-dropdown"
+                            >
+                                <div className="">
+                                    {user !== null && user !== undefined ? (
+                                        <>
+                                            <span className="block px-4 py-2 text-sm text-gray-900 dark:text-white">
+                                                {user.userName}
+                                            </span>
+                                        </>
+                                    ) : (
+                                        <div className="flex flex-col">
+                                            <Link
+                                                href={URL_PATHS.LOGIN.path}
+                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
+                                            >
+                                                {URL_PATHS.LOGIN.label}
+                                            </Link>
+                                            <Link
+                                                href={URL_PATHS.SIGNUP.path}
+                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
+                                            >
+                                                {URL_PATHS.SIGNUP.label}
+                                            </Link>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <ul className="py-2" aria-labelledby="user-menu-button">
+                                    <li>
                                         <Link
-                                            href={URL_PATHS.LOGIN.path}
+                                            href={URL_PATHS.MY_ACCOUNT.path}
                                             className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
                                         >
-                                            {URL_PATHS.LOGIN.label}
+                                            {URL_PATHS.MY_ACCOUNT.label}
                                         </Link>
+                                    </li>
+
+                                    <li>
                                         <Link
-                                            href={URL_PATHS.SIGNUP.path}
-                                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
+                                            className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white gap-1 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                            href={URL_PATHS.ORDERS.path}
                                         >
-                                            {URL_PATHS.SIGNUP.label}
+                                            <div className="group-hover:text-blue-700 group-hover:dark:text-blue-500 w-6 h-6 group-hover:scale-110">
+                                                <IoMdCart size={"100%"} />
+                                            </div>
+                                            <span>{URL_PATHS.ORDERS.label}</span>
                                         </Link>
-                                    </div>
-                                )}
+                                    </li>
+
+                                    <li>
+                                        <Link
+                                            className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white gap-1 hover:bg-gray-100 dark:hover:bg-gray-600"
+                                            href={URL_PATHS.WISHLIST.path}
+                                        >
+                                            <div className="group-hover:text-[#D80032] group-hover:dark:text-red-500 w-6 h-6 group-hover:scale-110">
+                                                <MdFavorite size={"100%"} />
+                                            </div>
+                                            <span>{URL_PATHS.WISHLIST.label}</span>
+                                        </Link>
+                                    </li>
+
+                                    <li>{user !== null && user !== undefined && <SignOutButton />}</li>
+                                </ul>
                             </div>
-
-                            <ul className="py-2" aria-labelledby="user-menu-button">
-                                <li>
-                                    <Link
-                                        href={URL_PATHS.MY_ACCOUNT.path}
-                                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
-                                    >
-                                        {URL_PATHS.MY_ACCOUNT.label}
-                                    </Link>
-                                </li>
-
-                                <li>
-                                    <Link
-                                        className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white gap-1 hover:bg-gray-100 dark:hover:bg-gray-600"
-                                        href={URL_PATHS.ORDERS.path}
-                                    >
-                                        <div className="group-hover:text-blue-700 group-hover:dark:text-blue-500 w-6 h-6 group-hover:scale-110">
-                                            <IoMdCart size={"100%"} />
-                                        </div>
-                                        <span>{URL_PATHS.ORDERS.label}</span>
-                                    </Link>
-                                </li>
-
-                                <li>
-                                    <Link
-                                        className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white gap-1 hover:bg-gray-100 dark:hover:bg-gray-600"
-                                        href={URL_PATHS.WISHLIST.path}
-                                    >
-                                        <div className="group-hover:text-[#D80032] group-hover:dark:text-red-500 w-6 h-6 group-hover:scale-110">
-                                            <MdFavorite size={"100%"} />
-                                        </div>
-                                        <span>{URL_PATHS.WISHLIST.label}</span>
-                                    </Link>
-                                </li>
-
-                                <li>{user !== null && user !== undefined && <SignOutButton />}</li>
-                            </ul>
                         </div>
-                    </div>
+                    </HeaderActionButtonWrapper>
                 </div>
             </div>
         </nav>

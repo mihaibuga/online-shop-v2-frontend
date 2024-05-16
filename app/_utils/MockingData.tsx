@@ -69,3 +69,5 @@ export const notifications = [
         time: "01 Dec, 2024",
     },
 ];
+
+export const wishlistProducts = [];

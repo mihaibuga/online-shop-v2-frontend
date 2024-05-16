@@ -10,6 +10,7 @@ import SearchBar from "../../(common)/SearchBar/SearchBar";
 import Logo from "../../(common)/Logo/Logo";
 import { URL_PATHS } from "@/app/_utils/constants";
 import useGeneralStore from "@/app/_stores/generalStore";
+import HeaderActionButtonWrapper from "../../(common)/HeaderActionButtonWrapper/HeaderActionButtonWrapper";
 
 const Header = () => {
     const { isAdminSidebarOpen, toggleAdminSidebarDisplay } = useGeneralStore();
@@ -35,15 +36,21 @@ const Header = () => {
                 <div className="flex items-center w-full md:w-auto gap-3 2xsm:gap-7 justify-center md:justify-normal">
                     <ul className="flex items-center gap-2 2xsm:gap-4">
                         <li className="relative">
-                            <ThemeToggle />
+                            <HeaderActionButtonWrapper>
+                                <ThemeToggle />
+                            </HeaderActionButtonWrapper>
                         </li>
 
                         <li className="relative">
-                            <DropdownNotification />
+                            <HeaderActionButtonWrapper>
+                                <DropdownNotification />
+                            </HeaderActionButtonWrapper>
                         </li>
 
                         <li className="relative">
-                            <DropdownMessage />
+                            <HeaderActionButtonWrapper>
+                                <DropdownMessage />
+                            </HeaderActionButtonWrapper>
                         </li>
                     </ul>
 
