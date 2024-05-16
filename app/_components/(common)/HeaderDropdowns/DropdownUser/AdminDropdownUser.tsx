@@ -75,9 +75,6 @@ const AdminDropdownUser = () => {
                             icon={<MdOutlinePersonOutline size={"100%"} />}
                         />
                     </li>
-                    <li>
-                        <SimpleLink path={"/settings"} label={"Account Settings"} icon={<CiSettings size={"100%"} />} />
-                    </li>
                 </ul>
 
                 {user !== null && user !== undefined && <SignOutButton />}
