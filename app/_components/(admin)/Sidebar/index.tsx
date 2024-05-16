@@ -9,11 +9,12 @@ import { MdOutlinePersonOutline } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
 
 import useGeneralStore from "@/app/_stores/generalStore";
-import Logo from "./Logo";
-import CloseButton from "./CloseButton";
-import SimpleMainNavLink from "./SimpleMainNavLink";
-import NavGroupSubLink from "./NavGroupSubLink";
-import ExpandableMainNavLink from "./ExpandableMainNavLink";
+import { URL_PATHS } from "@/app/_utils/constants";
+import Logo from "../../(common)/Logo/Logo";
+import CloseButton from "../../(common)/Buttons/CloseButton";
+import SimpleMainNavLink from "./LinkTypes/SimpleMainNavLink";
+import NavGroupSubLink from "./LinkTypes/NavGroupSubLink";
+import ExpandableMainNavLink from "./LinkTypes/ExpandableMainNavLink";
 import MainLinksCategoryGroup from "./MainLinksCategoryGroup";
 
 const Sidebar = () => {
@@ -31,7 +32,10 @@ const Sidebar = () => {
             }`}
         >
             <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-                <Logo />
+                <div className="p-4 py-6 pl-6 border-b border-[#DDDDDD]">
+                    <Logo linkPath={URL_PATHS.ADMIN.path} />
+                </div>
+
                 <CloseButton sidebar={sidebar} />
             </div>
 

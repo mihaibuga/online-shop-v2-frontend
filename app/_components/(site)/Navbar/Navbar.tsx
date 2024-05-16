@@ -11,13 +11,13 @@ import { FiMenu } from "react-icons/fi";
 import { IoMdCart } from "react-icons/io";
 import { MdFavorite } from "react-icons/md";
 
-import ThemeToggle from "../../(common)/ThemeToggle/ThemeToggle";
+import ThemeToggle from "../../(common)/Toggles/ThemeToggle/ThemeToggle";
 import SearchBar from "../../(common)/SearchBar/SearchBar";
 import useGeneralStore from "@/app/_stores/generalStore";
 import useAuthStore from "@/app/_stores/authStore";
 import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
 import { IUser } from "@/app/_utils/interfaces";
-import SignOutButton from "./SignOutButton";
+import SignOutButton from "../../(common)/Buttons/SignOutButton";
 
 type Props = {};
 

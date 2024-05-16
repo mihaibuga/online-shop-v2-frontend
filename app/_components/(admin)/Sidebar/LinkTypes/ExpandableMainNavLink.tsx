@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import SidebarLinkGroup from "./SidebarLinkGroup";
-import ExpandedArrow from "../../(common)/ExpandedArrow/ExpandedArrow";
+import SidebarLinkGroup from "../SidebarLinkGroup";
+import ExpandedArrow from "../../../(common)/ExpandedArrow/ExpandedArrow";
 import useGeneralStore from "@/app/_stores/generalStore";
 import { IExpandableMainNavLinkProps } from "@/app/_utils/interfaces";
 
@@ -12,7 +12,7 @@ const ExpandableMainNavLink = ({
     pathname,
     pathnameToCompare,
     pathnameIncludes,
-    children
+    children,
 }: IExpandableMainNavLinkProps) => {
     const { isAdminSidebarOpen, toggleAdminSidebarDisplay } = useGeneralStore();
 

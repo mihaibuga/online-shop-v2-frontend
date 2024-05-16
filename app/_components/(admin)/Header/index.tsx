@@ -1,13 +1,14 @@
 "use client";
 
-import SidebarToggle from "./SidebarToggle";
-import Logo from "./Logo";
+import SidebarToggle from "../../(common)/Toggles/SidebarToggle/SidebarToggle";
 
-import ThemeToggle from "../../(common)/ThemeToggle/ThemeToggle";
+import ThemeToggle from "../../(common)/Toggles/ThemeToggle/ThemeToggle";
 import DropdownMessage from "../../(common)/HeaderDropdowns/DropdownMessages/DropdownMessage";
 import DropdownNotification from "../../(common)/HeaderDropdowns/DropdownNotifications/DropdownNotification";
 import DropdownUser from "../../(common)/HeaderDropdowns/DropdownUser";
 import SearchBar from "../../(common)/SearchBar/SearchBar";
+import Logo from "../../(common)/Logo/Logo";
+import { URL_PATHS } from "@/app/_utils/constants";
 
 const Header = () => {
     return (
@@ -15,7 +16,7 @@ const Header = () => {
             <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">
                 <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
                     <SidebarToggle />
-                    <Logo />
+                    <Logo linkPath={URL_PATHS.ADMIN.path} />
                 </div>
 
                 <div className="hidden sm:block">
