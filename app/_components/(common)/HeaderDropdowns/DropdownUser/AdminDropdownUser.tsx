@@ -14,15 +14,15 @@ import SignOutButton from "../../Buttons/SignOutButton";
 import ExpandedArrow from "../../ExpandedArrow/ExpandedArrow";
 import SimpleLink from "./LinkTypes/SimpleLink";
 
-const DropdownUser = () => {
-    const { userProfile, removeUser } = useAuthStore();
+const AdminDropdownUser = () => {
+    const { userProfile } = useAuthStore();
     const [user, setUser] = useState<IUser | null | undefined>();
 
     useEffect(() => {
         setUser(userProfile);
     }, [userProfile]);
 
-    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
     const trigger = useRef<any>(null);
     const dropdown = useRef<any>(null);
 
@@ -87,4 +87,4 @@ const DropdownUser = () => {
     );
 };
 
-export default DropdownUser;
+export default AdminDropdownUser;

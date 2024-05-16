@@ -1,42 +1,25 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 
 import { IoMdCart } from "react-icons/io";
-import { MdFavorite, MdOutlinePersonOutline } from "react-icons/md";
 
 import useGeneralStore from "@/app/_stores/generalStore";
-import useAuthStore from "@/app/_stores/authStore";
 import { URL_PATHS } from "@/app/_utils/constants";
-import { IUser } from "@/app/_utils/interfaces";
 import { wishlistProducts } from "@/app/_utils/MockingData";
 import ThemeToggle from "../../(common)/Toggles/ThemeToggle/ThemeToggle";
 import SearchBar from "../../(common)/SearchBar/SearchBar";
-import SignOutButton from "../../(common)/Buttons/SignOutButton";
 import Logo from "../../(common)/Logo/Logo";
 import SidebarToggle from "../../(common)/Toggles/SidebarToggle/SidebarToggle";
 import HeaderActionButtonWrapper from "../../(common)/HeaderActionButtonWrapper/HeaderActionButtonWrapper";
-import ProfileImage from "../../(common)/ProfileImage";
 import ButtonWithDropdown from "../../(common)/HeaderDropdowns/ButtonWithDropdown";
 import DropdownTitle from "../../(common)/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";
-import SimpleLink from "../../(common)/HeaderDropdowns/DropdownUser/LinkTypes/SimpleLink";
+import SiteDropdownUser from "../../(common)/HeaderDropdowns/DropdownUser/SiteDropdownUser";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
-    const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
-    const [user, setUser] = useState<IUser | null | undefined>();
     const { isSidebarOpen, toggleSidebarDisplay } = useGeneralStore();
-    const { userProfile } = useAuthStore();
-
-    useEffect(() => {
-        setUser(userProfile);
-    }, [userProfile]);
-
-    const handleUserMenuDisplay = () => {
-        setIsUserMenuOpen((prev) => !prev);
-    };
 
     return (
         <nav className="sticky z-10 top-0 start-0 bg-white border-gray-200 dark:bg-gray-900">
@@ -75,80 +58,7 @@ const Navbar = (props: Props) => {
                     {/* User profile */}
                     <HeaderActionButtonWrapper>
                         <div className="flex items-center justify-center">
-                            <button
-                                type="button"
-                                className="flex h-6 w-6 text-sm dark:text-[#FFFFFF] dark:bg-gray-800 bg-white rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 relative hover:scale-110 duration-200"
-                                id="user-menu-button"
-                                aria-expanded="false"
-                                data-dropdown-toggle="user-dropdown"
-                                data-dropdown-placement="bottom"
-                                onClick={handleUserMenuDisplay}
-                            >
-                                <span className="sr-only">Open user menu</span>
-                                <ProfileImage user={user} />
-                            </button>
-
-                            <div
-                                className={`z-15 ${
-                                    isUserMenuOpen ? "" : "hidden"
-                                } my-4 w-max text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute top-10 right-[-5px] md:right-0 overflow-hidden`}
-                                id="user-dropdown"
-                            >
-                                <div className="">
-                                    {user !== null && user !== undefined ? (
-                                        <>
-                                            <span className="block px-4 py-2 text-sm text-gray-900 dark:text-white">
-                                                {user.userName}
-                                            </span>
-                                        </>
-                                    ) : (
-                                        <div className="flex flex-col">
-                                            <Link
-                                                href={URL_PATHS.LOGIN.path}
-                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
-                                            >
-                                                {URL_PATHS.LOGIN.label}
-                                            </Link>
-                                            <Link
-                                                href={URL_PATHS.SIGNUP.path}
-                                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
-                                            >
-                                                {URL_PATHS.SIGNUP.label}
-                                            </Link>
-                                        </div>
-                                    )}
-                                </div>
-
-                                <ul className="py-2" aria-labelledby="user-menu-button">
-                                    <li>
-                                        <SimpleLink
-                                            path={URL_PATHS.MY_ACCOUNT.path}
-                                            label={URL_PATHS.MY_ACCOUNT.label}
-                                            icon={<MdOutlinePersonOutline size={"100%"} />}
-                                        />
-                                    </li>
-
-                                    <li>
-                                        <SimpleLink
-                                            path={URL_PATHS.ORDERS.path}
-                                            label={URL_PATHS.ORDERS.label}
-                                            hoverColorName={"blue"}
-                                            icon={<IoMdCart size={"100%"} />}
-                                        />
-                                    </li>
-
-                                    <li>
-                                        <SimpleLink
-                                            path={URL_PATHS.WISHLIST.path}
-                                            label={URL_PATHS.WISHLIST.label}
-                                            hoverColorName={"red"}
-                                            icon={<MdFavorite size={"100%"} />}
-                                        />
-                                    </li>
-
-                                    <li>{user !== null && user !== undefined && <SignOutButton />}</li>
-                                </ul>
-                            </div>
+                            <SiteDropdownUser />
                         </div>
                     </HeaderActionButtonWrapper>
                 </div>
