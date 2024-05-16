@@ -3,18 +3,16 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-import Image from "next/image";
-
-import { CgProfile } from "react-icons/cg";
 import { IoMdCart } from "react-icons/io";
-import { MdFavorite } from "react-icons/md";
+import { MdFavorite, MdOutlinePersonOutline } from "react-icons/md";
 
-import ThemeToggle from "../../(common)/Toggles/ThemeToggle/ThemeToggle";
-import SearchBar from "../../(common)/SearchBar/SearchBar";
 import useGeneralStore from "@/app/_stores/generalStore";
 import useAuthStore from "@/app/_stores/authStore";
 import { URL_PATHS } from "@/app/_utils/constants";
 import { IUser } from "@/app/_utils/interfaces";
+import { wishlistProducts } from "@/app/_utils/MockingData";
+import ThemeToggle from "../../(common)/Toggles/ThemeToggle/ThemeToggle";
+import SearchBar from "../../(common)/SearchBar/SearchBar";
 import SignOutButton from "../../(common)/Buttons/SignOutButton";
 import Logo from "../../(common)/Logo/Logo";
 import SidebarToggle from "../../(common)/Toggles/SidebarToggle/SidebarToggle";
@@ -22,7 +20,7 @@ import HeaderActionButtonWrapper from "../../(common)/HeaderActionButtonWrapper/
 import ProfileImage from "../../(common)/ProfileImage";
 import ButtonWithDropdown from "../../(common)/HeaderDropdowns/ButtonWithDropdown";
 import DropdownTitle from "../../(common)/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";
-import { wishlistProducts } from "@/app/_utils/MockingData";
+import SimpleLink from "../../(common)/HeaderDropdowns/DropdownUser/LinkTypes/SimpleLink";
 
 type Props = {};
 
@@ -123,36 +121,29 @@ const Navbar = (props: Props) => {
 
                                 <ul className="py-2" aria-labelledby="user-menu-button">
                                     <li>
-                                        <Link
-                                            href={URL_PATHS.MY_ACCOUNT.path}
-                                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
-                                        >
-                                            {URL_PATHS.MY_ACCOUNT.label}
-                                        </Link>
+                                        <SimpleLink
+                                            path={URL_PATHS.MY_ACCOUNT.path}
+                                            label={URL_PATHS.MY_ACCOUNT.label}
+                                            icon={<MdOutlinePersonOutline size={"100%"} />}
+                                        />
                                     </li>
 
                                     <li>
-                                        <Link
-                                            className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white gap-1 hover:bg-gray-100 dark:hover:bg-gray-600"
-                                            href={URL_PATHS.ORDERS.path}
-                                        >
-                                            <div className="group-hover:text-blue-700 group-hover:dark:text-blue-500 w-6 h-6 group-hover:scale-110">
-                                                <IoMdCart size={"100%"} />
-                                            </div>
-                                            <span>{URL_PATHS.ORDERS.label}</span>
-                                        </Link>
+                                        <SimpleLink
+                                            path={URL_PATHS.ORDERS.path}
+                                            label={URL_PATHS.ORDERS.label}
+                                            hoverColorName={"blue"}
+                                            icon={<IoMdCart size={"100%"} />}
+                                        />
                                     </li>
 
                                     <li>
-                                        <Link
-                                            className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white gap-1 hover:bg-gray-100 dark:hover:bg-gray-600"
-                                            href={URL_PATHS.WISHLIST.path}
-                                        >
-                                            <div className="group-hover:text-[#D80032] group-hover:dark:text-red-500 w-6 h-6 group-hover:scale-110">
-                                                <MdFavorite size={"100%"} />
-                                            </div>
-                                            <span>{URL_PATHS.WISHLIST.label}</span>
-                                        </Link>
+                                        <SimpleLink
+                                            path={URL_PATHS.WISHLIST.path}
+                                            label={URL_PATHS.WISHLIST.label}
+                                            hoverColorName={"red"}
+                                            icon={<MdFavorite size={"100%"} />}
+                                        />
                                     </li>
 
                                     <li>{user !== null && user !== undefined && <SignOutButton />}</li>

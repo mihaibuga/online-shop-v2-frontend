@@ -40,6 +40,13 @@ export interface IHeaderDropdownLink {
     icon: React.ReactNode;
 }
 
+export interface IHeaderUserDropdownLink {
+    path: string;
+    label: string;
+    hoverColorName?: string;
+    icon: React.ReactNode;
+}
+
 // Sidebar elements
 export interface IMainLinksCategoryGroupProps {
     groupTitle: string;

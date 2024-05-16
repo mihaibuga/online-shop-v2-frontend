@@ -12,6 +12,7 @@ import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/
 import ProfileImage from "../../ProfileImage";
 import SignOutButton from "../../Buttons/SignOutButton";
 import ExpandedArrow from "../../ExpandedArrow/ExpandedArrow";
+import SimpleLink from "./LinkTypes/SimpleLink";
 
 const DropdownUser = () => {
     const { userProfile, removeUser } = useAuthStore();
@@ -66,28 +67,16 @@ const DropdownUser = () => {
                     dropdownOpen === true ? "block" : "hidden"
                 }`}
             >
-                <ul className="flex flex-col gap-2 border-b border-stroke px-3 py-4 dark:border-strokedark">
+                <ul className="flex flex-col border-b border-stroke dark:border-strokedark">
                     <li>
-                        <Link
-                            href="/profile"
-                            className="flex items-center gap-4 text-sm text-black dark:text-white font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
-                        >
-                            <div className="w-5">
-                                <MdOutlinePersonOutline size={"100%"} />
-                            </div>
-                            <span>My Profile</span>
-                        </Link>
+                        <SimpleLink
+                            path={"/profile"}
+                            label={"My Profile"}
+                            icon={<MdOutlinePersonOutline size={"100%"} />}
+                        />
                     </li>
                     <li>
-                        <Link
-                            href="/settings"
-                            className="flex items-center gap-3.5 text-sm text-black dark:text-white font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
-                        >
-                            <div className="w-5">
-                                <CiSettings size={"100%"} />
-                            </div>
-                            <span>Account Settings</span>
-                        </Link>
+                        <SimpleLink path={"/settings"} label={"Account Settings"} icon={<CiSettings size={"100%"} />} />
                     </li>
                 </ul>
 
