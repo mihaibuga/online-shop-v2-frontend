@@ -11,7 +11,7 @@ const SignOutButton = (props: Props) => {
     return (
         <button
             type="button"
-            className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm gap-1"
+            className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-black dark:text-white gap-1"
             onClick={() => {
                 googleLogout();
                 removeUser();

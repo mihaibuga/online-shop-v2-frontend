@@ -36,7 +36,7 @@ const Sidebar = () => {
             </div>
 
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-                <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
+                <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-6 text-[#222831] dark:text-[#EEEEEE]">
                     <MainLinksCategoryGroup groupTitle={"MENU"}>
                         <ExpandableMainNavLink
                             title={"Dashboard"}

@@ -6,7 +6,7 @@ interface Props {
 }
 
 const ExpandedArrow = ({ isOpen }: Props) => {
-    return isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />;
+    return <span className="text-[#222831] dark:text-[#EEEEEE]">{isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>;
 };
 
 export default ExpandedArrow;

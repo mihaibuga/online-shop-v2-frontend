@@ -62,7 +62,7 @@ const DropdownUser = () => {
                 ref={dropdown}
                 onFocus={() => setDropdownOpen(true)}
                 onBlur={() => setDropdownOpen(false)}
-                className={`absolute right-0 mt-4 flex w-62 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ${
+                className={`absolute right-0 mt-4 flex w-62 flex-col rounded-md border border-stroke bg-white dark:bg-gray-700 shadow-default dark:border-strokedark dark:bg-boxdark ${
                     dropdownOpen === true ? "block" : "hidden"
                 }`}
             >
@@ -70,7 +70,7 @@ const DropdownUser = () => {
                     <li>
                         <Link
                             href="/profile"
-                            className="flex items-center gap-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+                            className="flex items-center gap-4 text-sm text-black dark:text-white font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
                         >
                             <div className="w-5">
                                 <MdOutlinePersonOutline size={"100%"} />
@@ -81,7 +81,7 @@ const DropdownUser = () => {
                     <li>
                         <Link
                             href="/settings"
-                            className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+                            className="flex items-center gap-3.5 text-sm text-black dark:text-white font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
                         >
                             <div className="w-5">
                                 <CiSettings size={"100%"} />
