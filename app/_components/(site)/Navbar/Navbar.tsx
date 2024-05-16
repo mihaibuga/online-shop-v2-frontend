@@ -12,7 +12,7 @@ import { IoMdCart } from "react-icons/io";
 import { MdFavorite } from "react-icons/md";
 
 import ThemeToggle from "../../(common)/ThemeToggle/ThemeToggle";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "../../(common)/SearchBar/SearchBar";
 import useGeneralStore from "@/app/_stores/generalStore";
 import useAuthStore from "@/app/_stores/authStore";
 import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
