@@ -5,7 +5,7 @@ import SidebarToggle from "../../(common)/Toggles/SidebarToggle/SidebarToggle";
 import ThemeToggle from "../../(common)/Toggles/ThemeToggle/ThemeToggle";
 import DropdownMessage from "../../(common)/HeaderDropdowns/DropdownMessages/DropdownMessage";
 import DropdownNotification from "../../(common)/HeaderDropdowns/DropdownNotifications/DropdownNotification";
-import DropdownUser from "../../(common)/HeaderDropdowns/DropdownUser";
+import DropdownUser from "../../(common)/HeaderDropdowns/DropdownUser/DropdownUser";
 import SearchBar from "../../(common)/SearchBar/SearchBar";
 import Logo from "../../(common)/Logo/Logo";
 import { URL_PATHS } from "@/app/_utils/constants";
