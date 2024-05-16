@@ -39,3 +39,33 @@ export interface IHeaderDropdownLink {
     setIsTargetOpen: SetStateAction<boolean>;
     icon: React.ReactNode;
 }
+
+// Sidebar elements
+export interface IMainLinksCategoryGroupProps {
+    groupTitle: string;
+    children: React.JSX.Element | React.JSX.Element[];
+}
+
+export interface ISimpleMainNavLinkProps {
+    title: string;
+    linkPath: string;
+    pathname: string;
+    icon: React.ReactNode;
+    pathnameIncludes: string;
+}
+
+export interface IExpandableMainNavLinkProps {
+    title: string;
+    icon: React.ReactNode;
+    mainHref: string;
+    pathname: string;
+    pathnameToCompare: string;
+    pathnameIncludes: string;
+    children: React.JSX.Element | React.JSX.Element[];
+}
+
+export interface INavGroupSubLinkProps {
+    title: string;
+    linkPath: string;
+    pathname: string;
+}
