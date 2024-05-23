@@ -6,16 +6,13 @@ import { usePathname } from "next/navigation";
 import { CiSettings } from "react-icons/ci";
 import { MdOutlinePermMedia, MdOutlinePersonOutline } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
-import { IoMdAdd } from "react-icons/io";
-import { AiOutlineMessage } from "react-icons/ai";
-import { PiBellLight } from "react-icons/pi";
+import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FaBox } from "react-icons/fa6";
 
 import useGeneralStore from "@/app/_stores/generalStore";
 import { URL_PATHS } from "@/app/_utils/constants";
 import Logo from "../../(common)/Logo/Logo";
 import SidebarCloseButton from "../../(common)/Buttons/SidebarCloseButton";
-import SimpleMainNavLink from "./LinkTypes/SimpleMainNavLink";
 import NavGroupSubLink from "./LinkTypes/NavGroupSubLink";
 import ExpandableMainNavLink from "./LinkTypes/ExpandableMainNavLink";
 import MainLinksCategoryGroup from "./MainLinksCategoryGroup";
@@ -48,7 +45,7 @@ const Sidebar = () => {
 
             <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
                 <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-6 text-[#222831] dark:text-[#EEEEEE]">
-                    <MainLinksCategoryGroup groupTitle={"MENU"}>
+                    <MainLinksCategoryGroup>
                         <ExpandableMainNavLink
                             title={"Dashboard"}
                             icon={<RxDashboard size={"100%"} />}
@@ -58,70 +55,75 @@ const Sidebar = () => {
                             pathnameIncludes={"dashboard"}
                         >
                             <NavGroupSubLink title={"Home"} linkPath={URL_PATHS.ADMIN.path} pathname={pathname} />
+
                             <NavGroupSubLink
                                 title={"Updates"}
                                 linkPath={`${URL_PATHS.ADMIN.path}/updates`}
                                 pathname={pathname}
                             />
-                        </ExpandableMainNavLink>
-                    </MainLinksCategoryGroup>
 
-                    <MainLinksCategoryGroup groupTitle={"ENTITY TYPES"}>
-                        <ExpandableMainNavLink
-                            title={"New"}
-                            icon={<IoMdAdd size={"100%"} />}
-                            mainHref={"#"}
-                            pathname={pathname}
-                            pathnameToCompare={"/create"}
-                            pathnameIncludes={"create"}
-                        >
                             <NavGroupSubLink
-                                title={"User"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/users/new`}
+                                title={"Messages"}
+                                linkPath={`${URL_PATHS.ADMIN.path}/messages`}
                                 pathname={pathname}
                             />
+
                             <NavGroupSubLink
-                                title={"Page"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/pages/new`}
-                                pathname={pathname}
-                            />
-                            <NavGroupSubLink
-                                title={"Media"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/media/new`}
-                                pathname={pathname}
-                            />
-                            <NavGroupSubLink
-                                title={"Product"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/products/new`}
+                                title={"Notifications"}
+                                linkPath={`${URL_PATHS.ADMIN.path}/notifications`}
                                 pathname={pathname}
                             />
                         </ExpandableMainNavLink>
 
                         <ExpandableMainNavLink
-                            title={"Products"}
-                            icon={<FaBox size={"100%"} />}
+                            title={"Store"}
+                            icon={<HiOutlineShoppingBag size={"100%"} />}
                             mainHref={"#"}
                             pathname={pathname}
-                            pathnameToCompare={`${URL_PATHS.ADMIN.path}/products`}
-                            pathnameIncludes={"products"}
+                            pathnameToCompare={`${URL_PATHS.ADMIN.path}/store`}
+                            pathnameIncludes={"store"}
                         >
-                            <NavGroupSubLink
-                                title={"All Products"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/products`}
+                            <ExpandableMainNavLink
+                                title={"Products"}
+                                icon={<FaBox size={"100%"} />}
+                                mainHref={"#"}
                                 pathname={pathname}
-                            />
-                            <NavGroupSubLink
-                                title={"Add New Product"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/products/new`}
-                                pathname={pathname}
-                            />
+                                pathnameToCompare={`${URL_PATHS.ADMIN.path}/products`}
+                                pathnameIncludes={"products"}
+                            >
+                                <NavGroupSubLink
+                                    title={"All Products"}
+                                    linkPath={`${URL_PATHS.ADMIN.path}/products`}
+                                    pathname={pathname}
+                                />
+                                <NavGroupSubLink
+                                    title={"Add New Product"}
+                                    linkPath={`${URL_PATHS.ADMIN.path}/products/new`}
+                                    pathname={pathname}
+                                />
+                            </ExpandableMainNavLink>
+
                             <NavGroupSubLink
                                 title={"Categories"}
                                 linkPath={`${URL_PATHS.ADMIN.path}/taxonomies/categories`}
                                 pathname={pathname}
                             />
-                        </ExpandableMainNavLink>
 
+                            <NavGroupSubLink
+                                title={"Orders"}
+                                linkPath={`${URL_PATHS.ADMIN.path}/orders`}
+                                pathname={pathname}
+                            />
+
+                            <NavGroupSubLink
+                                title={"Reviews"}
+                                linkPath={`${URL_PATHS.ADMIN.path}/reviews`}
+                                pathname={pathname}
+                            />
+                        </ExpandableMainNavLink>
+                    </MainLinksCategoryGroup>
+
+                    <MainLinksCategoryGroup groupTitle={"CONTENT"}>
                         <ExpandableMainNavLink
                             title={"Media"}
                             icon={<MdOutlinePermMedia size={"100%"} />}
@@ -141,46 +143,35 @@ const Sidebar = () => {
                                 pathname={pathname}
                             />
                         </ExpandableMainNavLink>
-
-                        <SimpleMainNavLink
-                            title={"Messages"}
-                            linkPath={`${URL_PATHS.ADMIN.path}/messages`}
-                            pathname={pathname}
-                            icon={<AiOutlineMessage size={"100%"} />}
-                            pathnameIncludes={"messages"}
-                        />
-
-                        <SimpleMainNavLink
-                            title={"Notifications"}
-                            linkPath={`${URL_PATHS.ADMIN.path}/notifications`}
-                            pathname={pathname}
-                            icon={<PiBellLight size={"100%"} />}
-                            pathnameIncludes={"notifications"}
-                        />
                     </MainLinksCategoryGroup>
 
                     <MainLinksCategoryGroup groupTitle={"CONFIGURATION"}>
                         <ExpandableMainNavLink
-                            title={"Users"}
+                            title={"People"}
                             icon={<MdOutlinePersonOutline size={"100%"} />}
                             mainHref={"#"}
                             pathname={pathname}
-                            pathnameToCompare={`${URL_PATHS.ADMIN.path}/users`}
-                            pathnameIncludes={"users"}
+                            pathnameToCompare={`${URL_PATHS.ADMIN.path}/people`}
+                            pathnameIncludes={"people"}
                         >
                             <NavGroupSubLink
-                                title={"All Users"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/users`}
+                                title={"All people"}
+                                linkPath={`${URL_PATHS.ADMIN.path}/people`}
                                 pathname={pathname}
                             />
                             <NavGroupSubLink
-                                title={"Add New User"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/users/new`}
+                                title={"Add User"}
+                                linkPath={`${URL_PATHS.ADMIN.path}/people/new`}
                                 pathname={pathname}
                             />
                             <NavGroupSubLink
-                                title={"Profile"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/profile`}
+                                title={"Permissions"}
+                                linkPath={`${URL_PATHS.ADMIN.path}/people/permissions`}
+                                pathname={pathname}
+                            />
+                            <NavGroupSubLink
+                                title={"Roles"}
+                                linkPath={`${URL_PATHS.ADMIN.path}/people/roles`}
                                 pathname={pathname}
                             />
                         </ExpandableMainNavLink>

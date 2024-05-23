@@ -49,7 +49,7 @@ export interface IHeaderUserDropdownLink {
 
 // Sidebar elements
 export interface IMainLinksCategoryGroupProps {
-    groupTitle: string;
+    groupTitle?: string;
     children: React.JSX.Element | React.JSX.Element[];
 }
 
