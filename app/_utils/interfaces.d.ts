@@ -8,7 +8,7 @@ export interface IUser {
 }
 
 export interface IRegisterUser {
-    email: string;
+    email?: string;
     userName: string;
     password: string;
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 import "@/app/_ui/styles/globals.scss";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { googleClientId } from "../../_utils/env";
@@ -21,6 +22,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
             ) : (
                 <body className={inter.className}>{children}</body>
             )}
+            <ToastContainer />
         </html>
     );
 };
