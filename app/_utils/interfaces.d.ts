@@ -2,7 +2,20 @@
 export interface IUser {
     id: string;
     userName: string;
-    profileImage: string;
+    profileImage?: string;
+    email?: string;
+    token?: string;
+}
+
+export interface IRegisterUser {
+    email: string;
+    userName: string;
+    password: string;
+}
+
+export interface ILoginUser {
+    userName: string;
+    password: string;
 }
 
 interface IMessage {
