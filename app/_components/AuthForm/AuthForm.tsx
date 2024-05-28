@@ -9,11 +9,10 @@ import { FcGoogle } from "react-icons/fc";
 
 
 import useAuthStore from "@/app/_stores/authStore";
-import { createOrGetUser } from "@/app/_utils/api";
 import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
-import { loginUser } from "@/app/_services/AuthService";
 import AuthAgreement from "./AuthAgreement";
 import EmailAuthForm from "./EmailAuthForm";
+import { createOrGetUser } from "@/app/_services/AuthService";
 
 type Props = {
     isLogIn?: boolean;
