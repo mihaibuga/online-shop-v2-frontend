@@ -15,12 +15,12 @@ import ExpandedArrow from "../../ExpandedArrow/ExpandedArrow";
 import SimpleLink from "./LinkTypes/SimpleLink";
 
 const AdminDropdownUser = () => {
-    const { userProfile } = useAuthStore();
+    const { loggedInUserProfile } = useAuthStore();
     const [user, setUser] = useState<IUser | null | undefined>();
 
     useEffect(() => {
-        setUser(userProfile);
-    }, [userProfile]);
+        setUser(loggedInUserProfile);
+    }, [loggedInUserProfile]);
 
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
     const trigger = useRef<any>(null);

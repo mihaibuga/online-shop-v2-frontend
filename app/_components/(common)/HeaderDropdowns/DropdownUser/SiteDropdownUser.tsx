@@ -13,12 +13,12 @@ import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/
 type Props = {};
 
 const SiteDropdownUser = ({}: Props) => {
-    const { userProfile } = useAuthStore();
+    const { loggedInUserProfile } = useAuthStore();
     const [user, setUser] = useState<IUser | null | undefined>();
     
     useEffect(() => {
-        setUser(userProfile);
-    }, [userProfile]);
+        setUser(loggedInUserProfile);
+    }, [loggedInUserProfile]);
     
     const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
     const trigger = useRef<any>(null);

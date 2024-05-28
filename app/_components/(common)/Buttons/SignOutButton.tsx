@@ -6,7 +6,7 @@ import useAuthStore from "@/app/_stores/authStore";
 type Props = {};
 
 const SignOutButton = (props: Props) => {
-    const { removeUser } = useAuthStore();
+    const { removeLoggedInUserSession } = useAuthStore();
 
     return (
         <button
@@ -14,7 +14,7 @@ const SignOutButton = (props: Props) => {
             className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-black dark:text-white gap-1"
             onClick={() => {
                 googleLogout();
-                removeUser();
+                removeLoggedInUserSession();
             }}
         >
             <div className="w-6 h-6 group-hover:scale-110">

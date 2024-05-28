@@ -17,22 +17,22 @@ type Props = {
 const AuthForm = ({ isLogIn }: Props) => {
     const router = useRouter();
 
-    const { userProfile, addUser } = useAuthStore();
+    const { loggedInUserProfile, setLoggedInUser } = useAuthStore();
 
     const handleGoogleLogin = useGoogleLogin({
         onSuccess: async (response) => {
-            createOrGetUser(response, addUser);
             // router.push(closeHref);
+            createOrGetUser(response, setLoggedInUser);
         },
         onError: () => console.log("Login Failed"),
         flow: "implicit",
     });
 
     useEffect(() => {
-        if (userProfile) {
+        if (loggedInUserProfile) {
             router.push("/");
         }
-    }, [router, userProfile]);
+    }, [router, loggedInUserProfile]);
 
     return (
         <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
@@ -54,7 +54,9 @@ const AuthForm = ({ isLogIn }: Props) => {
                             <div className="left min-w-[30px]">
                                 <FcGoogle size={"1.5rem"} />
                             </div>
-                            <div className="right flex w-full justify-center text-md lg:text-lg whitespace-nowrap text-gray-600 font-bold">Continue with Google</div>
+                            <div className="right flex w-full justify-center text-md lg:text-lg whitespace-nowrap text-gray-600 font-bold">
+                                Continue with Google
+                            </div>
                         </button>
                     </div>
 

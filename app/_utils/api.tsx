@@ -15,7 +15,7 @@ export const fetchData = async <T,>(endpoint: string): Promise<T | any> => {
 };
 
 // Users
-export const createOrGetUser = async (response: any, addUser: any) => {
+export const createOrGetUser = async (response: any, setLoggedInUser: any) => {
     let authToken, userInfo;
 
     if (response.access_token) {
@@ -40,5 +40,5 @@ export const createOrGetUser = async (response: any, addUser: any) => {
         profileImage: picture,
     };
 
-    addUser(user);
+    setLoggedInUser(user);
 };
