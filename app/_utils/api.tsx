@@ -14,6 +14,15 @@ export const fetchData = async <T,>(endpoint: string): Promise<T | any> => {
     }
 };
 
+export const postData = async <T,>(endpoint: string, payload: any): Promise<T | any> => {
+    try {
+        const data = await axios.post<T>(endpoint, payload);
+        return data;
+    } catch (error: any) {
+        handleError(error);
+    }
+};
+
 // Users
 export const createOrGetUser = async (response: any, setLoggedInUser: any) => {
     let authToken, userInfo;
