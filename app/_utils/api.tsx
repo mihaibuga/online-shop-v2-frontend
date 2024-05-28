@@ -1,25 +1,16 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { apiDomain } from "@/app/_utils/env";
+import { handleError } from "../_helpers/ErrorHandler";
 
 export const apiBaseURL = `${apiDomain}/api`;
-
-const getErrorMessage = (error: any) => {
-    if (axios.isAxiosError(error)) {
-        console.log("Error message: ", error.message);
-        return error.message;
-    } else {
-        console.log("Unexpected error: ", error);
-        return "An unexpected error has occurred.";
-    }
-};
 
 export const fetchData = async <T,>(endpoint: string): Promise<T | any> => {
     try {
         const response = await axios.get<T>(endpoint);
         return response;
     } catch (error: any) {
-        getErrorMessage(error);
+        handleError(error);
     }
 };
 
