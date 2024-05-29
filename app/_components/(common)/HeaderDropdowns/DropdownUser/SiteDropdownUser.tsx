@@ -45,7 +45,7 @@ const SiteDropdownUser = ({}: Props) => {
                 onClick={() => setIsUserMenuOpen((prev) => !prev)}
             >
                 <span className="sr-only">Open user menu</span>
-                <ProfileImage user={user} />
+                <ProfileImage imgSrc={user?.profileImage} />
             </button>
 
             {/* <!-- Dropdown Start --> */}

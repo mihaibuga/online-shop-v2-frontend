@@ -50,7 +50,7 @@ const AdminDropdownUser = () => {
                 </span>
 
                 <span className="h-10 w-10 rounded-full">
-                    <ProfileImage user={user} />
+                    <ProfileImage imgSrc={user?.profileImage} />
                 </span>
 
                 <div className="hidden sm:block h-4 w-4">

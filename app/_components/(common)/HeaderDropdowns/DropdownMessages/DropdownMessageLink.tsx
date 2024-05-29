@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IMessage } from "@/app/_utils/interfaces";
+import ProfileImage from "../../ProfileImage";
 
 const DropdownMessageLink = ({ authorName, authorImgSrc, messageContent, time }: IMessage) => {
     return (
@@ -10,16 +11,7 @@ const DropdownMessageLink = ({ authorName, authorImgSrc, messageContent, time }:
             href="/messages"
         >
             <div className="h-12 w-12 rounded-full">
-                <Image
-                    width={112}
-                    height={112}
-                    src={authorImgSrc}
-                    alt="User"
-                    style={{
-                        width: "auto",
-                        height: "auto",
-                    }}
-                />
+                <ProfileImage imgSrc={authorImgSrc} />
             </div>
 
             <div>

@@ -1,27 +1,33 @@
-import { IUser } from "@/app/_utils/interfaces";
+import { useClient } from "@/app/_hooks/useClient";
 import Image from "next/image";
 import React from "react";
 import { CgProfile } from "react-icons/cg";
 
 type Props = {
-    user: IUser | null | undefined;
+    imgSrc?: string;
+    width?: number;
+    height?: number;
 };
 
-const ProfileImage = ({user}: Props) => {
-    return user !== null && user !== undefined ? (
+const ProfileImage = ({ width = 112, height = 112, imgSrc }: Props) => {
+    const isClient = useClient();
+
+    return isClient && imgSrc ? (
         <Image
             className="rounded-full cursor-pointer"
-            src={user.profileImage}
+            src={imgSrc}
             alt="user"
-            width={112}
-            height={112}
+            width={width}
+            height={height}
             style={{
                 width: "auto",
                 height: "auto",
             }}
         />
     ) : (
-        <CgProfile size={"100%"} />
+        <div className={`w-${width} h-${width}`}>
+            <CgProfile size={"100%"} />
+        </div>
     );
 };
 
