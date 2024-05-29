@@ -147,31 +147,31 @@ const Sidebar = () => {
 
                     <MainLinksCategoryGroup groupTitle={"CONFIGURATION"}>
                         <ExpandableMainNavLink
-                            title={"People"}
+                            title={"Users"}
                             icon={<MdOutlinePersonOutline size={"100%"} />}
                             mainHref={"#"}
                             pathname={pathname}
-                            pathnameToCompare={`${URL_PATHS.ADMIN.path}/people`}
-                            pathnameIncludes={"people"}
+                            pathnameToCompare={`${URL_PATHS.ADMIN.path}/users`}
+                            pathnameIncludes={"users"}
                         >
                             <NavGroupSubLink
-                                title={"All people"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/people`}
+                                title={"All users"}
+                                linkPath={`${URL_PATHS.ADMIN.path}/users`}
                                 pathname={pathname}
                             />
                             <NavGroupSubLink
                                 title={"Add User"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/people/new`}
+                                linkPath={`${URL_PATHS.ADMIN.path}/users/new`}
                                 pathname={pathname}
                             />
                             <NavGroupSubLink
                                 title={"Permissions"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/people/permissions`}
+                                linkPath={`${URL_PATHS.ADMIN.path}/users/permissions`}
                                 pathname={pathname}
                             />
                             <NavGroupSubLink
                                 title={"Roles"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/people/roles`}
+                                linkPath={`${URL_PATHS.ADMIN.path}/users/roles`}
                                 pathname={pathname}
                             />
                         </ExpandableMainNavLink>
