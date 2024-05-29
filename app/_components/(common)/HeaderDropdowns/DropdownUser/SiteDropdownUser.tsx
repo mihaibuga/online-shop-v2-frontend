@@ -9,17 +9,13 @@ import { MdFavorite, MdOutlinePersonOutline } from "react-icons/md";
 import { IoMdCart } from "react-icons/io";
 import SignOutButton from "../../Buttons/SignOutButton";
 import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_hooks/useExpandedElementsHandlers";
+import { useStoredUser } from "@/app/_hooks/useStoredUser";
 
 type Props = {};
 
 const SiteDropdownUser = ({}: Props) => {
-    const { loggedInUserProfile } = useAuthStore();
-    const [user, setUser] = useState<IUser | null | undefined>();
-    
-    useEffect(() => {
-        setUser(loggedInUserProfile);
-    }, [loggedInUserProfile]);
-    
+    const user = useStoredUser();
+
     const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
     const trigger = useRef<any>(null);
     const dropdown = useRef<any>(null);

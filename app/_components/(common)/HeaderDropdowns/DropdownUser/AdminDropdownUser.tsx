@@ -1,26 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
-import useAuthStore from "@/app/_stores/authStore";
-import { IUser } from "@/app/_utils/interfaces";
 
-import { CiSettings } from "react-icons/ci";
 import { MdOutlinePersonOutline } from "react-icons/md";
 
 import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_hooks/useExpandedElementsHandlers";
+import { useStoredUser } from "@/app/_hooks/useStoredUser";
+
 import ProfileImage from "../../ProfileImage";
 import SignOutButton from "../../Buttons/SignOutButton";
 import ExpandedArrow from "../../ExpandedArrow/ExpandedArrow";
 import SimpleLink from "./LinkTypes/SimpleLink";
 
 const AdminDropdownUser = () => {
-    const { loggedInUserProfile } = useAuthStore();
-    const [user, setUser] = useState<IUser | null | undefined>();
-
-    useEffect(() => {
-        setUser(loggedInUserProfile);
-    }, [loggedInUserProfile]);
+    const user = useStoredUser();
 
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
     const trigger = useRef<any>(null);
