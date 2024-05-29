@@ -1,15 +1,15 @@
 "use client";
 
-import SidebarToggle from "../../(common)/Toggles/SidebarToggle/SidebarToggle";
+import { URL_PATHS } from "@/app/_utils/constants";
+import useGeneralStore from "@/app/_stores/generalStore";
 
+import SidebarToggle from "../../(common)/Toggles/SidebarToggle/SidebarToggle";
 import ThemeToggle from "../../(common)/Toggles/ThemeToggle/ThemeToggle";
 import DropdownMessage from "../../(common)/HeaderDropdowns/DropdownMessages/DropdownMessage";
 import DropdownNotification from "../../(common)/HeaderDropdowns/DropdownNotifications/DropdownNotification";
 import DropdownUser from "../../(common)/HeaderDropdowns/DropdownUser/AdminDropdownUser";
 import SearchBar from "../../(common)/SearchBar/SearchBar";
 import Logo from "../../(common)/Logo/Logo";
-import { URL_PATHS } from "@/app/_utils/constants";
-import useGeneralStore from "@/app/_stores/generalStore";
 import HeaderActionButtonWrapper from "../../(common)/HeaderActionButtonWrapper/HeaderActionButtonWrapper";
 
 const Header = () => {
