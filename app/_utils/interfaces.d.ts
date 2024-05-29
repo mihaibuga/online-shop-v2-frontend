@@ -1,16 +1,25 @@
 // Entities
 export interface IUser {
-    id: string;
+    id?: string;
+    googleId?: string;
     userName: string;
     profileImage?: string;
     email?: string;
     token?: string;
+    lastName?: string;
+    firstName?: string;
+    fullName?: string;
 }
 
 export interface IRegisterUser {
-    email?: string;
+    email: string;
     userName: string;
     password: string;
+}
+
+export interface IGoogleUserAuth {
+    email: string;
+    userName: string;
 }
 
 export interface ILoginUser {

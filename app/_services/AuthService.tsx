@@ -4,67 +4,58 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
+interface IDecoded {
+    sub: string;
+    name: string;
+    family_name: string;
+    given_name: string;
+    picture: string;
+    email: string;
+}
+
 // Email Auth
-export const registerAPI = async (username: string, password: string, email?: string) => {
-    const payload = {
-        email: email,
-        username: username,
-        password: password,
-    };
-
-    return await postData<IUser>(apiBaseURL + "/auth/register", payload);
+export const registerAPI = async (registeringUserDetails: IRegisterUser) => {
+    return await postData<IUser>(apiBaseURL + "/auth/register", registeringUserDetails);
 };
 
-export const loginAPI = async (username: string, password: string) => {
-    const payload = {
-        username: username,
-        password: password,
-    };
-
-    return await postData<IUser>(apiBaseURL + "/auth/login", payload);
+export const loginAPI = async (loginUserDetails: ILoginUser) => {
+    return await postData<IUser>(apiBaseURL + "/auth/login", loginUserDetails);
 };
 
-export const registerUser = async (
-    registeringUserDetails: IRegisterUser,
-    setLoggedInUser: any
-) => {
-    const { email, userName, password } = registeringUserDetails;
-
-    await registerAPI(userName, password, email)
-        .then((result: any) => {
-            if (result) {
-                console.log(result.data);
-                const user: IUser = {
-                    id: result?.data.id,
-                    userName: result?.data.userName,
-                    email: result?.data.email,
-                    token: result?.data.token!,
-                };
-                setLoggedInUser(user);
-                toast.success("Login Success!");
-            }
-        })
-        .catch((e: any) => toast.warning("Server error occured"));
+export const registerUser = async (registeringUserDetails: IRegisterUser, setLoggedInUser: any) => {
+    try {
+        let result = await registerAPI(registeringUserDetails);
+        if (result) {
+            const user: IUser = {
+                id: result?.data.id,
+                userName: result?.data.userName,
+                email: result?.data.email,
+                token: result?.data.token!,
+            };
+            setLoggedInUser(user);
+            toast.success("Registered and logged in successfully!");
+        }
+    } catch (e: any) {
+        toast.warning("Server error occured");
+    }
 };
 
 export const loginUser = async (loginUserDetails: ILoginUser, setLoggedInUser: any) => {
-    const { userName, password } = loginUserDetails;
-
-    await loginAPI(userName, password)
-        .then((result: any) => {
-            if (result) {
-                console.log(result.data);
-                const user: IUser = {
-                    id: result?.data.id,
-                    userName: result?.data.userName,
-                    email: result?.data.email,
-                    token: result?.data.token!,
-                };
-                setLoggedInUser(user);
-                toast.success("Login Success!");
-            }
-        })
-        .catch((e: any) => toast.warning("Server error occured"));
+    try {
+        let result = await loginAPI(loginUserDetails);
+        if (result) {
+            const user: IUser = {
+                id: result?.data.id,
+                userName: result?.data.userName,
+                email: result?.data.email,
+                token: result?.data.token!,
+            };
+            setLoggedInUser(user);
+            toast.success("Login Success!");
+        }
+    } catch (e: any) {
+        toast.warning("Server error occured");
+    }
 };
 
 // Google Auth
@@ -81,17 +72,29 @@ export const createOrGetUser = async (response: any, setLoggedInUser: any) => {
             .then((res) => res.data);
     } else {
         authToken = response.credential;
-        const decoded: { name: string; picture: string; sub: string } = jwtDecode(authToken);
+        const decoded: IDecoded = jwtDecode(authToken);
         userInfo = decoded;
     }
 
-    const { name, picture, sub } = userInfo;
+    const { name, picture, sub, family_name, given_name, email } = userInfo;
 
-    const user = {
-        id: sub,
-        userName: name,
+    const user: IUser = {
+        googleId: sub,
+        userName: email,
+        email: email,
         profileImage: picture,
+        lastName: family_name,
+        firstName: given_name,
+        fullName: name,
     };
 
-    setLoggedInUser(user);
+    const registeredUserWithGoogle = await postData<IUser>(apiBaseURL + "/auth/google", user);
+
+    if (registeredUserWithGoogle.data) {
+        user.token = registeredUserWithGoogle.data.token;
+        setLoggedInUser(user);
+        toast.success("Logged in with Google successfully!");
+    } else {
+        toast.warning("Google authentication failed! Please try again later.");
+    }
 };
