@@ -10,10 +10,10 @@ export const handleError = (error: any) => {
             var data: any = err.data;
 
             if (data) {
-                toast.warning(data);
+                console.log(data);
             } else if (Array.isArray(data.errors)) {
                 for (let val of data.errors) {
-                    toast.warning(val.description);
+                    console.log(val.description);
                 }
             } else if (typeof data.errors === "object") {
                 for (let e in data.errors) {
