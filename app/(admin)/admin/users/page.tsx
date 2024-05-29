@@ -1,9 +1,67 @@
-import React from "react";
+"use client";
+
+import React, { Suspense, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
+import UsersTable from "@/app/_components/(admin)/UsersTable/UsersTable";
+import NoResults from "@/app/_components/(common)/NoResults/NoResults";
+import Spinner from "@/app/_components/(common)/Spinner/Spinner";
+
+import { IUser } from "@/app/_utils/interfaces";
+import { getUsers } from "@/app/_services/UserService";
+
+import { MdOutlinePersonOff } from "react-icons/md";
+import { useStoredUser } from "@/app/_hooks/useStoredUser";
 
 type Props = {};
 
 const UsersPage = (props: Props) => {
-    return <div>Users</div>;
+    const user = useStoredUser();
+
+    const [users, setUsers] = useState<IUser[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        const getVideosInit = async () => {
+            if (user){
+                if (user.token){
+                    const result: any = await getUsers(user.token);
+                    
+                    if(result.data) {
+                        setUsers(result.data);
+                    }
+                    if (typeof result === "string") {
+                        console.log(result);
+                        toast.warning("Unable to connect to API");
+                    } else if (Array.isArray(result.data)) {
+                        setUsers(result?.data);
+                        setIsLoading(false);
+                    }
+                }
+                else {
+                    toast.warning("A server error has occured!");
+                    setIsLoading(false);
+                }
+            }
+
+        };
+        getVideosInit();
+    }, [user]);
+
+    return (
+        <div>
+            <h1>Users</h1>
+            <Suspense fallback={<p>Loading users...</p>}>
+                {isLoading ? (
+                    <Spinner />
+                ) : users?.length ? (
+                    <UsersTable users={users} />
+                ) : (
+                    <NoResults text={`No Users`} icon={<MdOutlinePersonOff />} />
+                )}
+            </Suspense>
+        </div>
+    );
 };
 
 export default UsersPage;
