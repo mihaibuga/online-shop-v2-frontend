@@ -4,38 +4,38 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useGoogleLogin } from "@react-oauth/google";
-import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-
 
 import useAuthStore from "@/app/_stores/authStore";
 import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
+import { createOrGetUser } from "@/app/_services/AuthService";
+
 import AuthAgreement from "./AuthAgreement";
 import EmailAuthForm from "./EmailAuthForm";
-import { createOrGetUser } from "@/app/_services/AuthService";
+import { toast } from "react-toastify";
 
 type Props = {
     isLogIn?: boolean;
 };
 
 const AuthForm = ({ isLogIn }: Props) => {
-    const router = useRouter();
-
     const { loggedInUserProfile, setLoggedInUser } = useAuthStore();
-
-    const handleGoogleLogin = useGoogleLogin({
-        onSuccess: async (response) => {
-            createOrGetUser(response, setLoggedInUser);
-        },
-        onError: () => console.log("Login Failed"),
-        flow: "implicit",
-    });
+    const router = useRouter();
 
     useEffect(() => {
         if (loggedInUserProfile) {
             router.push("/");
         }
     }, [router, loggedInUserProfile]);
+    
+
+    const handleGoogleLogin = useGoogleLogin({
+        onSuccess: async (response) => {
+            createOrGetUser(response, setLoggedInUser);
+        },
+        onError: () => toast.warning("Google login failed"),
+        flow: "implicit",
+    });
 
     return (
         <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
