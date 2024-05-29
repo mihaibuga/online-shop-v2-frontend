@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
-import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_utils/useExpandedElementsHandlers";
+import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_hooks/useExpandedElementsHandlers";
 import { IoMdClose } from "react-icons/io";
 
 interface Props {

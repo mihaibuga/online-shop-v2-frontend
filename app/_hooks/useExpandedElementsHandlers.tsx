@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { IClickEvent, IKeyEvent } from "./interfaces";
+import { IClickEvent, IKeyEvent } from "../_utils/interfaces";
 
 // close on click outside
 export const useExpandedElementClickHandler = ({

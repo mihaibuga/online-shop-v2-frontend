@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_utils/useExpandedElementsHandlers";
+import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_hooks/useExpandedElementsHandlers";
 import HeaderExpandingLink from "./HeaderExpandingLink";
 import { IButtonWithDropdown } from "@/app/_utils/interfaces";
 
@@ -18,11 +18,7 @@ const ButtonWithDropdown = ({ icon, children }: IButtonWithDropdown) => {
 
     return (
         <>
-            <HeaderExpandingLink
-                triggerRef={trigger}
-                setIsTargetOpen={setDropdownOpen}
-                icon={icon}
-            />
+            <HeaderExpandingLink triggerRef={trigger} setIsTargetOpen={setDropdownOpen} icon={icon} />
 
             {/* <!-- Dropdown Start --> */}
             <div

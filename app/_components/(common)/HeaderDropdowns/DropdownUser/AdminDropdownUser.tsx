@@ -8,7 +8,7 @@ import { IUser } from "@/app/_utils/interfaces";
 import { CiSettings } from "react-icons/ci";
 import { MdOutlinePersonOutline } from "react-icons/md";
 
-import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_utils/useExpandedElementsHandlers";
+import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_hooks/useExpandedElementsHandlers";
 import ProfileImage from "../../ProfileImage";
 import SignOutButton from "../../Buttons/SignOutButton";
 import ExpandedArrow from "../../ExpandedArrow/ExpandedArrow";

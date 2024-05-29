@@ -8,7 +8,7 @@ import SimpleLink from "./LinkTypes/SimpleLink";
 import { MdFavorite, MdOutlinePersonOutline } from "react-icons/md";
 import { IoMdCart } from "react-icons/io";
 import SignOutButton from "../../Buttons/SignOutButton";
-import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_utils/useExpandedElementsHandlers";
+import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/_hooks/useExpandedElementsHandlers";
 
 type Props = {};
 
