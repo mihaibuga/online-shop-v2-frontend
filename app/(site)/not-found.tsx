@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { IoMdSend } from "react-icons/io";
-import { URL_PATHS } from "./_utils/constants";
+import { URL_PATHS } from "../_utils/constants";
+import "@/app/_ui/styles/globals.scss";
 
 const NotFound = async () => {
     return (
@@ -10,7 +11,8 @@ const NotFound = async () => {
                 <p className="mb-4 text-lg text-gray-600">Oops! Looks like you&apos;re lost.</p>
                 <div className="animate-bounce">
                     <div className="mx-auto h-16 w-16 text-red-500">
-                        <IoMdSend size={"100%"} style={{ transform: "rotate(-90deg)" }} />
+                        {/* <IoMdSend size={"100%"} style={{ transform: "rotate(-90deg)" }} /> */}
+                        <IoMdSend size={"100%"} className="-rotate-90" />
                     </div>
                 </div>
                 <p className="mt-4 text-gray-600">
