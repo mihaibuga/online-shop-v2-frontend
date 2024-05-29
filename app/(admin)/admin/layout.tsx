@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+
 import { Inter } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 import "../../_ui/styles/globals.scss";
 import MainTheme from "../../_themes/MainTheme/MainTheme";
 import Sidebar from "@/app/_components/(admin)/Sidebar";
@@ -28,6 +32,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
                             </main>
                         </div>
                     </div>
+                    <ToastContainer />
                 </MainTheme>
             </body>
         </html>

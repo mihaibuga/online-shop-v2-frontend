@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 import "../_ui/styles/globals.scss";
 import MainTheme from "../_themes/MainTheme/MainTheme";
+
 import Navbar from "../_components/(site)/Navbar/Navbar";
 import Sidebar from "../_components/(site)/Sidebar/Sidebar";
 
@@ -28,6 +32,7 @@ const SiteLayout = ({
                             {children}
                         </main>
                     </div>
+                    <ToastContainer />
                 </MainTheme>
             </body>
         </html>
