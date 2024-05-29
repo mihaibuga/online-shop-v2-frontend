@@ -1,20 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
-import Spinner from "../../Spinner/Spinner";
+import { useClient } from "@/app/_hooks/useClient";
 
 const ThemeToggle = () => {
-    const [mounted, setMounted] = useState(false);
+    const isMounted = useClient();
     const { theme, setTheme } = useTheme();
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    if (!mounted) {
+    
+    if (isMounted === false) {
         return null;
     }
 
