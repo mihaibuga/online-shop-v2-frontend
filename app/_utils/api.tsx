@@ -1,13 +1,12 @@
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 import { apiDomain } from "@/app/_utils/env";
 import { handleError } from "../_helpers/ErrorHandler";
 
 export const apiBaseURL = `${apiDomain}/api`;
 
-export const fetchData = async <T,>(endpoint: string): Promise<T | any> => {
+export const fetchData = async <T,>(endpoint: string, headers: any): Promise<T | any> => {
     try {
-        const response = await axios.get<T>(endpoint);
+        const response = await axios.get<T>(endpoint, headers);
         return response;
     } catch (error: any) {
         handleError(error);
