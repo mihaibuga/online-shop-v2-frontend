@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { IoMdCart } from "react-icons/io";
 
 import useGeneralStore from "@/app/_stores/generalStore";
 import { URL_PATHS } from "@/app/_utils/constants";
 import { wishlistProducts } from "@/app/_utils/MockingData";
+
 import ThemeToggle from "../../(common)/Toggles/ThemeToggle/ThemeToggle";
 import SearchBar from "../../(common)/SearchBar/SearchBar";
 import Logo from "../../(common)/Logo/Logo";
