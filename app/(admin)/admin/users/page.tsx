@@ -21,13 +21,23 @@ const UsersPage = (props: Props) => {
     const [users, setUsers] = useState<IUser[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
+    const onUserDelete = (id: string) => {
+        const removed = users.filter((user) => {
+            return user.id !== id;
+        });
+        setUsers(removed);
+    };
+
+    useEffect(() => {
+    }, [users]);
+
     useEffect(() => {
         const getVideosInit = async () => {
-            if (user){
-                if (user.token){
+            if (user) {
+                if (user.token) {
                     const result: any = await getUsers(user.token);
-                    
-                    if(result.data) {
+
+                    if (result.data) {
                         setUsers(result.data);
                     }
                     if (typeof result === "string") {
@@ -37,13 +47,11 @@ const UsersPage = (props: Props) => {
                         setUsers(result?.data);
                         setIsLoading(false);
                     }
-                }
-                else {
+                } else {
                     toast.warning("A server error has occured!");
                     setIsLoading(false);
                 }
             }
-
         };
         getVideosInit();
     }, [user]);
@@ -55,7 +63,7 @@ const UsersPage = (props: Props) => {
                 {isLoading ? (
                     <Spinner />
                 ) : users?.length ? (
-                    <UsersTable users={users} />
+                    <UsersTable users={users} onUserDelete={onUserDelete} />
                 ) : (
                     <NoResults text={`No Users`} icon={<MdOutlinePersonOff />} />
                 )}

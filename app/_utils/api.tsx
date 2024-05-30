@@ -21,3 +21,12 @@ export const postData = async <T,>(endpoint: string, payload: any): Promise<T | 
         handleError(error);
     }
 };
+
+export const deleteData = async <T,>(endpoint: string, headers: any): Promise<T | any> => {
+    try {
+        const data = await axios.delete<T>(endpoint, headers);
+        return data;
+    } catch (error: any) {
+        handleError(error);
+    }
+};
