@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import useAuthStore from "@/app/_stores/authStore";
 import { loginUser, registerUser } from "@/app/_services/AuthService";
+import { toast } from "react-toastify";
 
 interface Props {
     isLogIn?: boolean;
@@ -40,9 +41,19 @@ const EmailAuthForm = ({ isLogIn }: Props) => {
 
     const handleFormSubmit = (form: FormInputs) => {
         if (isLogIn) {
-            loginUser(form, setLoggedInUser);
+            loginUser(
+                {
+                    userName: form.userName,
+                    password: form.password,
+                },
+                setLoggedInUser
+            );
         } else {
-            registerUser(form, setLoggedInUser);
+            if (form.email !== undefined) {
+                registerUser({ email: form.email, userName: form.userName, password: form.password }, setLoggedInUser);
+            } else {
+                toast.error("There has been an error registering!");
+            }
         }
     };
 
