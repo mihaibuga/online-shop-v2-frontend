@@ -28,8 +28,7 @@ const UsersPage = (props: Props) => {
         setUsers(removed);
     };
 
-    useEffect(() => {
-    }, [users]);
+    useEffect(() => {}, [users]);
 
     useEffect(() => {
         const getVideosInit = async () => {
@@ -58,7 +57,10 @@ const UsersPage = (props: Props) => {
 
     return (
         <div>
-            <h1>Users</h1>
+            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
+                Users
+            </h2>
+
             <Suspense fallback={<p>Loading users...</p>}>
                 {isLoading ? (
                     <Spinner />
