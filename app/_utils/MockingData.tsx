@@ -42,20 +42,12 @@ export const notifications = [
         time: "12 May, 2025",
     },
     {
-        notificationContent: (
-            <>
-                It is a long established fact that a reader will be
-                distracted by the readable.
-            </>
-        ),
+        notificationContent: <>It is a long established fact that a reader will be distracted by the readable.</>,
         time: "24 Feb, 2025",
     },
     {
         notificationContent: (
-            <>
-                There are many variations of passages of Lorem Ipsum
-                available, but the majority have suffered
-            </>
+            <>There are many variations of passages of Lorem Ipsum available, but the majority have suffered</>
         ),
         time: "04 Jan, 2025",
     },
@@ -71,3 +63,5 @@ export const notifications = [
 ];
 
 export const wishlistProducts = [];
+
+export const userRoles = ["Admin", "User"];
