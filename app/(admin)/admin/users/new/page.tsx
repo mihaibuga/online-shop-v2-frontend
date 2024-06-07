@@ -1,40 +1,22 @@
 import React from "react";
 
+import CreateUserForm from "@/app/_components/AuthForm/CreateUserForm";
+
 type Props = {};
 
 const NewUserPage = (props: Props) => {
     return (
         <div>
-            <h1>Add New User</h1>
-            <p>Create a brand new user and add them to this site.</p>
-            <hr />
-            <div>
-                <label>Username</label><br />
-                <input type="text" />
-            </div>
-            <div>
-                <label>Password</label><br />
-                <input type="text" />
-            </div>
-            <div>
-                <label>Email</label><br />
-                <input type="text" />
-            </div>
-            <div>
-                <label>Role</label><br />
-                <input type="text" />
+            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
+                Add New User
+            </h2>
+            <div className="mb-4">
+                <p>Create a brand new user and add them to this site.</p>
             </div>
 
-            <div>
-                <label>First Name</label><br />
-                <input type="text" />
+            <div className="max-w-full sm:max-w-sm space-y-2 md:space-y-4">
+                <CreateUserForm />
             </div>
-            <div>
-                <label>Last Name</label><br />
-                <input type="text" />
-            </div>
-            <hr />
-            <button type="submit">Add New User</button>
         </div>
     );
 };
