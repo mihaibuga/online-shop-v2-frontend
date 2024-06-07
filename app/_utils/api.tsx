@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { apiDomain } from "@/app/_utils/env";
 import { handleError } from "../_helpers/ErrorHandler";
 
@@ -13,9 +13,16 @@ export const fetchData = async <T,>(endpoint: string, headers: any): Promise<T |
     }
 };
 
-export const postData = async <T,>(endpoint: string, payload: any): Promise<T | any> => {
+export const postData = async <T,>(
+    endpoint: string,
+    payload: any,
+    config?: AxiosRequestConfig<any> | undefined
+): Promise<T | any> => {
     try {
-        const data = await axios.post<T>(endpoint, payload);
+        const data =
+            config !== undefined
+                ? await axios.post<T>(endpoint, payload, config)
+                : await axios.post<T>(endpoint, payload);
         return data;
     } catch (error: any) {
         handleError(error);
