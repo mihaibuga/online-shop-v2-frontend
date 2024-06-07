@@ -1,11 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-
+import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+
 import useAuthStore from "@/app/_stores/authStore";
 import { loginUser, registerUser } from "@/app/_services/AuthService";
-import { toast } from "react-toastify";
+
+import UsernameInput from "./FormFields/UsernameInput";
+import EmailInput from "./FormFields/EmailInput";
+import PasswordInput from "./FormFields/PasswordInput";
 
 interface Props {
     isLogIn?: boolean;
@@ -60,49 +64,11 @@ const EmailAuthForm = ({ isLogIn }: Props) => {
     return (
         <div className="px-6 space-y-2 md:space-y-4 sm:px-8">
             <form className="space-y-2 md:space-y-4" onSubmit={handleSubmit(handleFormSubmit)}>
-                <div>
-                    <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Username
-                    </label>
-                    <input
-                        type="text"
-                        id="username"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Username"
-                        {...register("userName")}
-                    />
-                    {errors.userName ? <p className="text-red-500">{errors.userName.message}</p> : ""}
-                </div>
+                <UsernameInput register={register} errors={errors} />
 
-                {isLogIn !== true && (
-                    <div>
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Email
-                        </label>
-                        <input
-                            type="text"
-                            id="email"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Email"
-                            {...register("email")}
-                        />
-                        {errors.email ? <p className="text-red-500">{errors.email.message}</p> : ""}
-                    </div>
-                )}
+                {isLogIn !== true && <EmailInput register={register} errors={errors} />}
 
-                <div>
-                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="••••••••"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        {...register("password")}
-                    />
-                    {errors.password ? <p className="text-red-500">{errors.password.message}</p> : ""}
-                </div>
+                <PasswordInput register={register} errors={errors} />
 
                 <button
                     type="submit"
