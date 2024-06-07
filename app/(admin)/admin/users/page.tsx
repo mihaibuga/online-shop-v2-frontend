@@ -40,7 +40,6 @@ const UsersPage = (props: Props) => {
                         setUsers(result.data);
                     }
                     if (typeof result === "string") {
-                        console.log(result);
                         toast.warning("Unable to connect to API");
                     } else if (Array.isArray(result.data)) {
                         setUsers(result?.data);

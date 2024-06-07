@@ -10,18 +10,19 @@ export const handleError = (error: any) => {
             var data: any = err.data;
 
             if (data) {
-                console.log(data);
-            } else if (Array.isArray(data.errors)) {
-                for (let val of data.errors) {
-                    console.log(val.description);
+                if (Array.isArray(data)) {
+                    for (let error of data) {
+                        toast.error(error.description);
+                    }
+                    return data;
+                } else if (typeof data.errors === "object") {
+                    for (let e in data.errors) {
+                        toast.warning(data.errors[e][0]);
+                    }
+                } else if (err?.status == 401) {
+                    toast.warning("Please login");
+                    window.history.pushState({}, "LoginPage", URL_PATHS.LOGIN.path);
                 }
-            } else if (typeof data.errors === "object") {
-                for (let e in data.errors) {
-                    toast.warning(data.errors[e][0]);
-                }
-            } else if (err?.status == 401) {
-                toast.warning("Please login");
-                window.history.pushState({}, "LoginPage", URL_PATHS.LOGIN.path);
             }
         }
     }
