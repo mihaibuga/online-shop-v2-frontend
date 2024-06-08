@@ -8,8 +8,18 @@ export const headers = (token: string) => {
     return { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } };
 };
 
-export const getUsers = async (token: string) => {
-    return await fetchData<IUser[]>(`${apiBaseURL}/users`, headers(token));
+export const getUsers = async (
+    token: string,
+    query: { isAscending: boolean; sortBy: string | undefined; currentPage: number; itemsOnPage: number }
+) => {
+    return await fetchData<IUser[]>(
+        `${apiBaseURL}/users?IsAscending=${query.isAscending}${
+            query.sortBy !== undefined ? `&SortBy=${query.sortBy}` : ""
+        }${query.currentPage !== undefined ? `&PageNumber=${query.currentPage}` : ""}${
+            query.itemsOnPage !== undefined ? `&PageSize=${query.itemsOnPage}` : ""
+        }`,
+        headers(token)
+    );
 };
 
 export const deleteUser = async (id: string, token: string) => {
