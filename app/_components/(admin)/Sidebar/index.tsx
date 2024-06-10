@@ -8,6 +8,7 @@ import { MdOutlinePermMedia, MdOutlinePersonOutline } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FaBox } from "react-icons/fa6";
+import { IoBagCheckOutline } from "react-icons/io5";
 
 import useGeneralStore from "@/app/_stores/generalStore";
 import { URL_PATHS } from "@/app/_utils/constants";
@@ -103,15 +104,24 @@ const Sidebar = () => {
                                 />
                             </ExpandableMainNavLink>
 
+                            <ExpandableMainNavLink
+                                title={"Orders"}
+                                icon={<IoBagCheckOutline size={"100%"} />}
+                                mainHref={"#"}
+                                pathname={pathname}
+                                pathnameToCompare={`${URL_PATHS.ADMIN.path}/orders`}
+                                pathnameIncludes={"orders"}
+                            >
+                                <NavGroupSubLink
+                                    title={"All Orders"}
+                                    linkPath={`${URL_PATHS.ADMIN.path}/orders`}
+                                    pathname={pathname}
+                                />
+                            </ExpandableMainNavLink>
+
                             <NavGroupSubLink
                                 title={"Categories"}
                                 linkPath={`${URL_PATHS.ADMIN.path}/taxonomies/categories`}
-                                pathname={pathname}
-                            />
-
-                            <NavGroupSubLink
-                                title={"Orders"}
-                                linkPath={`${URL_PATHS.ADMIN.path}/orders`}
                                 pathname={pathname}
                             />
 
