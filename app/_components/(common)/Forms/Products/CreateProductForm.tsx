@@ -6,35 +6,34 @@ import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-import { createUser, headers } from "@/app/_services/UserService";
 import { useStoredUser } from "@/app/_hooks/useStoredUser";
-import { userRoles } from "@/app/_utils/MockingData";
+import { headers } from "@/app/_services/UserService";
+import { createProduct } from "@/app/_services/ProductService";
 
-import SuccessAlert from "../(common)/Alerts/SuccessAlert/SuccessAlert";
-
-import UsernameInput from "./FormFields/UsernameInput";
-import EmailInput from "./FormFields/EmailInput";
-import PasswordInput from "./FormFields/PasswordInput";
-import SelectInput from "./FormFields/SelectInput";
-import TextInput from "./FormFields/TextInput";
+import SuccessAlert from "../../Alerts/SuccessAlert/SuccessAlert";
+import SelectInput from "@/app/_components/AuthForm/FormFields/SelectInput";
+import TextInput from "@/app/_components/AuthForm/FormFields/TextInput";
 
 type Props = {};
 
 type FormInputs = {
-    email: string;
-    userName: string;
-    password: string;
+    name: string;
+    description?: string | undefined;
+    price: number;
+    isEnabled?: boolean | undefined;
 };
 
 const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email format").required("Email is required"),
-    userName: Yup.string().required("Username is required"),
-    password: Yup.string().required("Password is required"),
+    name: Yup.string().required("The product's name is required"),
+    description: Yup.string(),
+    price: Yup.number().required("The price is required"),
+    isEnabled: Yup.boolean(),
 });
 
-const CreateUserForm = (props: Props) => {
+const CreateProductForm = (props: Props) => {
     const user = useStoredUser();
     const [isSubmitSuccessful, setIsSubmitSuccessful] = useState<boolean>(false);
+    const [isEnabled, setIsEnabled] = useState<boolean>(true);
 
     const {
         register,
@@ -47,13 +46,13 @@ const CreateUserForm = (props: Props) => {
 
     const handleFormSubmit = async (form: FormInputs) => {
         if (user?.token) {
-            const newUser = await createUser(
-                { email: form.email, userName: form.userName, password: form.password },
+            const newProduct = await createProduct(
+                { name: form.name, description: form.description, price: form.price, isEnabled: form.isEnabled },
                 headers(user?.token)
             );
 
-            if (newUser !== undefined) {
-                toast.success(`The user with username '${newUser.userName}' has been created successfuly!`);
+            if (newProduct !== undefined) {
+                toast.success(`The product has been created successfuly!`);
                 setIsSubmitSuccessful(true);
                 reset();
             } else {
@@ -70,39 +69,65 @@ const CreateUserForm = (props: Props) => {
                 {isSubmitSuccessful === true && (
                     <SuccessAlert
                         alertLabelText={"Success!"}
-                        alertBodyText={<>The new user has been created successfuly!</>}
+                        alertBodyText={<>The new product has been created successfuly!</>}
                     />
                 )}
             </div>
             <form onSubmit={handleSubmit(handleFormSubmit)}>
-                <UsernameInput register={register} errors={errors} />
-                <EmailInput register={register} errors={errors} />
-                <PasswordInput register={register} errors={errors} />
+                <TextInput
+                    id={"name"}
+                    labelText={"Name"}
+                    placeholder={"Type the Name here"}
+                    register={register}
+                    errors={errors}
+                />
 
-                <hr className="mb-4" />
+                <TextInput
+                    id={"description"}
+                    labelText={"Description"}
+                    placeholder={"Type the Description here"}
+                    register={register}
+                    errors={errors}
+                />
 
-                <SelectInput id={"roles"} labelText={"Select a role"} options={userRoles} register={register} errors={errors} />
-
-                <TextInput id={"firstName"} labelText={"First Name"} placeholder={"Type the First Name here"} register={register} errors={errors} />
-                <TextInput id={"lastName"} labelText={"Last Name"} placeholder={"Type the Last Name here"} register={register} errors={errors} />
-
-                <div className="mb-4">
-                    <label
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                        htmlFor="userAvatar"
-                    >
-                        Profile picture
+                <div>
+                    <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Price
                     </label>
                     <input
-                        className="block w-full p-2 text-sm text-gray-900 dark:text-gray-400 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 focus:outline-none dark:placeholder-gray-400"
-                        aria-describedby="user_avatar_help"
-                        id="userAvatar"
-                        type="file"
+                        type="number"
+                        id="price"
+                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        placeholder="Type the Price here"
+                        {...register("price")}
                     />
-                    <div className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">
-                        A profile picture is useful to confirm your are logged into your account
-                    </div>
+                    {errors.price ? <p className="text-red-500">{errors.price.message}</p> : ""}
                 </div>
+
+                {/* <SelectInput
+                    id={"isEnabled"}
+                    labelText={"Is the product enabled?"}
+                    options={["Yes", "No"]}
+                    register={register}
+                    errors={errors}
+                /> */}
+
+                <div>
+                    <label htmlFor="isEnabled" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        Is the product enabled?
+                    </label>
+                    <input
+                        type="checkbox"
+                        id="isEnabled"
+                        className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                        checked={isEnabled}
+                        onClick={() => setIsEnabled(prev => !prev)}
+                        {...register("isEnabled")}
+                    />
+                    {errors.price ? <p className="text-red-500">{errors.price.message}</p> : ""}
+                </div>
+
+                <hr className="mb-4" />
 
                 <button
                     type="submit"
@@ -130,11 +155,11 @@ const CreateUserForm = (props: Props) => {
                             ></path>
                         </svg>
                     )}
-                    Add New User
+                    Add New Product
                 </button>
             </form>
         </>
     );
 };
 
-export default CreateUserForm;
+export default CreateProductForm;

@@ -98,3 +98,16 @@ export interface INavGroupSubLinkProps {
     linkPath: string;
     pathname: string;
 }
+
+export interface IProduct {
+    name: string;
+    description: string;
+    price: number;
+    isEnabled: boolean;
+}
+export interface ICreateProduct {
+    name: string;
+    description?: string;
+    price: number;
+    isEnabled?: boolean;
+}
