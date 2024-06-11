@@ -23,7 +23,7 @@ const Navbar = (props: Props) => {
     const { isSidebarOpen, toggleSidebarDisplay } = useGeneralStore();
 
     return (
-        <nav className="sticky z-10 top-0 start-0 bg-white border-gray-200 dark:bg-gray-900">
+        <nav className="sticky z-20 top-0 start-0 bg-white border-gray-200 dark:bg-gray-900">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 gap-4 md:gap-0">
                 {/* Logo & Sidebar Toggle */}
                 <div className="flex flex-row-reverse md:flex-row items-center justify-between gap-4 w-full md:w-fit">

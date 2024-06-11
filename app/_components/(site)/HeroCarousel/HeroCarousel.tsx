@@ -19,7 +19,7 @@ interface IProps {
 const HeroCarousel = ({ slides }: IProps) => {
     return (
         <TECarousel
-        className="w-full h-full"
+            className="w-full h-full"
             showControls
             showIndicators
             crossfade
