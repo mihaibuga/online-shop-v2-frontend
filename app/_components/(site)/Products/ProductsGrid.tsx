@@ -2,10 +2,10 @@ import Image from "next/image";
 import React from "react";
 
 type ProductType = {
-    src: string;
+    src?: string;
     name: string;
     description: string;
-    price: string;
+    price: number;
 };
 
 interface IProps {
@@ -41,24 +41,26 @@ const ProductsGrid = ({ sectionTitle, products }: IProps) => {
                                 </div>
 
                                 <div className="relative w-5/6 h-[210px] overflow-hidden mx-auto aspect-w-16 aspect-h-8 md:mb-2 mb-4">
-                                    <Image
-                                        src={product.src}
-                                        alt={`Product ${index + 1}`}
-                                        className="h-full w-full object-contain"
-                                        quality={100}
-                                        fill
-                                        priority
-                                        sizes="100%"
-                                        style={{
-                                            width: "100%",
-                                            height: "100%",
-                                        }}
-                                    />
+                                    {product.src && (
+                                        <Image
+                                            src={product.src}
+                                            alt={`Product ${index + 1}`}
+                                            className="h-full w-full object-contain"
+                                            quality={100}
+                                            fill
+                                            priority
+                                            sizes="100%"
+                                            style={{
+                                                width: "100%",
+                                                height: "100%",
+                                            }}
+                                        />
+                                    )}
                                 </div>
 
                                 <div>
                                     <h3 className="text-lg font-extrabold text-gray-800">{product.name}</h3>
-                                    <p className="text-gray-600 text-sm mt-2">{product.description}</p>
+                                    <p className="text-gray-600 text-sm mt-2 line-clamp-2">{product.description}</p>
                                     <h4 className="text-lg text-gray-800 font-bold mt-4">${product.price}</h4>
                                 </div>
                             </div>
