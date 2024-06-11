@@ -23,6 +23,7 @@
         "react-toastify": "^10.0.5",
         "sharp": "^0.33.2",
         "styled-components": "^6.1.8",
+        "tw-elements-react": "^1.0.0-alpha-end",
         "uuidv4": "^6.2.13",
         "yup": "^1.4.0",
         "zustand": "^4.0.0-rc.1"
