@@ -64,4 +64,31 @@ export const notifications = [
 
 export const wishlistProducts = [];
 
+export const heroSlides = [
+    {
+        src: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        alt: "Mike Petrucci",
+        labelText: "First slide label",
+        slideText: "Some representative placeholder content for the first slide."
+    },
+    {
+        src: "https://images.unsplash.com/photo-1556740714-a8395b3bf30f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        alt: "Blake Wisz",
+        labelText: "Second slide label",
+        slideText: "Some representative placeholder content for the second slide."
+    },
+    {
+        src: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        alt: "Marvin Meyer",
+        labelText: "Third slide label",
+        slideText: "Some representative placeholder content for the third slide."
+    },
+    {
+        src: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        alt: "rupixen",
+        labelText: "Third slide label",
+        slideText: "Some representative placeholder content for the third slide."
+    }
+];
+
 export const userRoles = ["Admin", "User"];
