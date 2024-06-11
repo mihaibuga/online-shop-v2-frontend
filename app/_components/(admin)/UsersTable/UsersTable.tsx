@@ -64,7 +64,7 @@ const UsersTable = (props: Props) => {
                         setIsLoading(false);
                     }
                 } else {
-                    toast.warning("A server error has occured!");
+                    toast.warning("A server error has occurred!");
                     setIsLoading(false);
                 }
             }

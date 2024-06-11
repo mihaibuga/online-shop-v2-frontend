@@ -32,7 +32,7 @@ export const deleteUser = async (id: string, token: string) => {
         }
         return result;
     } catch (e: any) {
-        toast.error("Server error occured");
+        toast.error("Server error occurred");
     }
 };
 
@@ -54,6 +54,6 @@ export const createUser = async (
         }
         return result;
     } catch (e: any) {
-        toast.warning("Server error occured");
+        toast.warning("Server error occurred");
     }
 };

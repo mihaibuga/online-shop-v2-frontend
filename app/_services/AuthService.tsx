@@ -36,7 +36,7 @@ export const registerUser = async (registeringUserDetails: IRegisterUser, setLog
             toast.success("Registered and logged in successfully!");
         }
     } catch (e: any) {
-        toast.warning("Server error occured");
+        toast.warning("Server error occurred");
     }
 };
 
@@ -54,7 +54,7 @@ export const loginUser = async (loginUserDetails: ILoginUser, setLoggedInUser: a
             toast.success("Login Success!");
         }
     } catch (e: any) {
-        toast.warning("Server error occured");
+        toast.warning("Server error occurred");
     }
 };
 
