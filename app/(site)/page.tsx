@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 import { useStoredUser } from "../_hooks/useStoredUser";
@@ -11,7 +11,7 @@ import { heroSlides, sneakers } from "../_utils/MockingData";
 import HeroCarousel from "../_components/(site)/HeroCarousel/HeroCarousel";
 import ProductsGrid from "../_components/(site)/Products/ProductsGrid";
 
-export default function Home() {
+const Home = () => {
     const user = useStoredUser();
 
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -33,16 +33,22 @@ export default function Home() {
                     const result: any = await getProducts(user.token, query);
 
                     if (result.data) {
-                        console.log(result.data.data);
-                    }
-                    if (typeof result === "string") {
+                        if (Array.isArray(result.data.data)) {
+                            setProducts(result?.data.data);
+                            setIsLoading(false);
+                        } else {
+                            toast.warning("A server error has occurred!");
+                            setIsLoading(false);
+                        }
+                    } else if (typeof result === "string") {
                         toast.warning("Unable to connect to API");
-                    } else if (result.data && Array.isArray(result.data.data)) {
-                        setProducts(result?.data.data);
+                        setIsLoading(false);
+                    } else {
+                        toast.warning("A server error has occurred!");
                         setIsLoading(false);
                     }
                 } else {
-                    toast.warning("A server error has occured!");
+                    toast.warning("A server error has occurred!");
                     setIsLoading(false);
                 }
             }
@@ -58,7 +64,9 @@ export default function Home() {
 
             <ProductsGrid sectionTitle={"Premium Sneakers"} products={sneakers} />
 
-            {products && <ProductsGrid sectionTitle={"Other products"} products={products} />}
+            <ProductsGrid sectionTitle={"Other products"} products={products} />
         </div>
     );
-}
+};
+
+export default Home;
