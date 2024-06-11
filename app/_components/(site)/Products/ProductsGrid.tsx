@@ -24,7 +24,7 @@ const ProductsGrid = ({ sectionTitle, products }: IProps) => {
                         products.map((product, index) => (
                             <div
                                 key={index}
-                                className="bg-white rounded-2xl p-5 cursor-pointer hover:-translate-y-2 transition-all relative"
+                                className="group bg-white border rounded-2xl p-5 cursor-pointer hover:border-blue-600 transition-all relative duration-200"
                             >
                                 <div className="bg-gray-100 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer absolute top-4 right-4">
                                     <svg
@@ -45,7 +45,7 @@ const ProductsGrid = ({ sectionTitle, products }: IProps) => {
                                         <Image
                                             src={product.src}
                                             alt={`Product ${index + 1}`}
-                                            className="h-full w-full object-contain"
+                                            className="h-full w-full object-contain group-hover:scale-[1.03] duration-200"
                                             quality={100}
                                             fill
                                             priority
@@ -63,6 +63,13 @@ const ProductsGrid = ({ sectionTitle, products }: IProps) => {
                                     <p className="text-gray-600 text-sm mt-2 line-clamp-2">{product.description}</p>
                                     <h4 className="text-lg text-gray-800 font-bold mt-4">${product.price}</h4>
                                 </div>
+
+                                <button
+                                    type="button"
+                                    className="w-full px-5 py-2.5 bg-blue-600 hover:bg-blue-700 font-bold text-white rounded-lg duration-200"
+                                >
+                                    Add to cart
+                                </button>
                             </div>
                         ))}
                 </div>
