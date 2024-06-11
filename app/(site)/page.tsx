@@ -1,17 +1,18 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
 import { useStoredUser } from "../_hooks/useStoredUser";
+import { getProductsInit } from "../_hooks/initializers";
 import { IProduct } from "../_utils/interfaces";
-import { getProducts } from "../_services/ProductService";
 import { heroSlides, sneakers } from "../_utils/MockingData";
 
 import HeroCarousel from "../_components/(site)/HeroCarousel/HeroCarousel";
 import ProductsGrid from "../_components/(site)/Products/ProductsGrid";
 
-const Home = () => {
+type Props = {};
+
+const Home = (props: Props) => {
     const user = useStoredUser();
 
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -25,35 +26,14 @@ const Home = () => {
     useEffect(() => {}, [products]);
 
     useEffect(() => {
-        const getProductsInit = async () => {
-            if (user) {
-                if (user.token) {
-                    const query = { sortBy, isAscending, currentPage, itemsOnPage };
-
-                    const result: any = await getProducts(user.token, query);
-
-                    if (result.data) {
-                        if (Array.isArray(result.data.data)) {
-                            setProducts(result?.data.data);
-                            setIsLoading(false);
-                        } else {
-                            toast.warning("A server error has occurred!");
-                            setIsLoading(false);
-                        }
-                    } else if (typeof result === "string") {
-                        toast.warning("Unable to connect to API");
-                        setIsLoading(false);
-                    } else {
-                        toast.warning("A server error has occurred!");
-                        setIsLoading(false);
-                    }
-                } else {
-                    toast.warning("A server error has occurred!");
-                    setIsLoading(false);
-                }
+        const query = { sortBy, isAscending, currentPage, itemsOnPage };
+        
+        getProductsInit(user, query).then((fetchedProducts) => {
+            if (fetchedProducts !== undefined) {
+                setProducts(fetchedProducts.data);
+                setIsLoading(false);
             }
-        };
-        getProductsInit();
+        });
     }, [user, isAscending, sortBy, currentPage, itemsOnPage]);
 
     return (

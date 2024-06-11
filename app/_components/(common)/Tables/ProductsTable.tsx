@@ -6,12 +6,12 @@ import { toast } from "react-toastify";
 import { MdOutlinePersonOff } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
 
-import { deleteProduct, getProducts } from "@/app/_services/ProductService";
+import { deleteProduct } from "@/app/_services/ProductService";
 import { useStoredUser } from "@/app/_hooks/useStoredUser";
+import { getProductsInit } from "@/app/_hooks/initializers";
 import { IProduct } from "@/app/_utils/interfaces";
 
 import PaginationSection from "../../(admin)/UsersTable/PaginationSection";
-import TableActions from "../../(admin)/UsersTable/TableActions";
 
 import NoResults from "../NoResults/NoResults";
 import Spinner from "../Spinner/Spinner";
@@ -44,33 +44,18 @@ const ProductsTable = (props: Props) => {
     useEffect(() => {}, [products]);
 
     useEffect(() => {
-        const getProductsInit = async () => {
-            if (user) {
-                if (user.token) {
-                    const query = { sortBy, isAscending, currentPage, itemsOnPage };
-
-                    const result: any = await getProducts(user.token, query);
-
-                    if (result.data) {
-                        setProducts(result.data.data);
-                        setIsNextPageAvailable(result.data.isNextPage);
-                        setIsPreviousPageAvailable(result.data.isPreviousPage);
-                        setPagesNumber(result.data.totalPages);
-                        setTotalProductsNumber(result.data.totalRecords);
-                    }
-                    if (typeof result === "string") {
-                        toast.warning("Unable to connect to API");
-                    } else if (result.data && Array.isArray(result.data.data)) {
-                        setProducts(result?.data.data);
-                        setIsLoading(false);
-                    }
-                } else {
-                    toast.warning("A server error has occurred!");
-                    setIsLoading(false);
-                }
+        const query = { sortBy, isAscending, currentPage, itemsOnPage };
+        
+        getProductsInit(user, query).then((fetchedProductsData) => {
+            if (fetchedProductsData !== undefined) {
+                setProducts(fetchedProductsData.data);
+                setIsNextPageAvailable(fetchedProductsData.isNextPage);
+                setIsPreviousPageAvailable(fetchedProductsData.isPreviousPage);
+                setPagesNumber(fetchedProductsData.totalPages);
+                setTotalProductsNumber(fetchedProductsData.totalRecords);
+                setIsLoading(false);
             }
-        };
-        getProductsInit();
+        });
     }, [user, isAscending, sortBy, currentPage, itemsOnPage]);
 
     const handleProductDelete = async (id: string | undefined) => {
