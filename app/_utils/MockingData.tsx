@@ -62,7 +62,7 @@ export const notifications = [
     },
 ];
 
-export const wishlistProducts = [];
+export const checkedOutProducts = [];
 
 export const sneakers = [
     {

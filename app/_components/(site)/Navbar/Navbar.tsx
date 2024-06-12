@@ -6,7 +6,7 @@ import { IoMdCart } from "react-icons/io";
 
 import useGeneralStore from "@/app/_stores/generalStore";
 import { URL_PATHS } from "@/app/_utils/constants";
-import { wishlistProducts } from "@/app/_utils/MockingData";
+import { checkedOutProducts } from "@/app/_utils/MockingData";
 
 import ThemeToggle from "../../(common)/Toggles/ThemeToggle/ThemeToggle";
 import SearchBar from "../../(common)/SearchBar/SearchBar";
@@ -45,10 +45,10 @@ const Navbar = (props: Props) => {
                     <HeaderActionButtonWrapper>
                         <ButtonWithDropdown icon={<IoMdCart size={"100%"} />}>
                             <>
-                                <DropdownTitle title={"Wishlist"} />
+                                <DropdownTitle title={"Checkout cart"} />
 
                                 <ul className="flex max-h-80 h-auto flex-col overflow-y-auto">
-                                    {wishlistProducts.map((product, index) => (
+                                    {checkedOutProducts.map((product, index) => (
                                         <li key={index}></li>
                                     ))}
                                 </ul>
