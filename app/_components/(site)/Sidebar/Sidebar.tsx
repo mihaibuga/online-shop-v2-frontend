@@ -18,7 +18,8 @@ const Sidebar = () => {
     return (
         <div>
             <div
-                className={`sidebar bg-white dark:bg-gray-700 z-[23] ${
+                data-sidebar-expanded={isSidebarOpen}
+                className={`sidebar bg-white dark:bg-gray-700 z-[37] ${
                     isSidebarOpen ? "translate-x-0" : "-translate-x-80"
                 } h-full border-gray-100 fixed duration-300 top-0 rounded-r-3xl`}
             >
@@ -49,7 +50,7 @@ const Sidebar = () => {
                 </div>
             </div>
             {isSidebarOpen && (
-                <div className="bg-[#222831] bg-opacity-75 w-full h-[100vh] absolute -top-[182px] md:-top-[72px] z-[21]"></div>
+                <div className="bg-[#222831] bg-opacity-75 w-full h-[calc(100%_+_182px)] md:h-[calc(100%_+_72px)] absolute -top-[182px] md:-top-[72px] z-[36]"></div>
             )}
         </div>
     );

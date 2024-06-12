@@ -24,7 +24,7 @@ const SiteLayout = ({
 }>) => {
     return (
         <html lang="en">
-            <body className={`${inter.className}`}>
+            <body className={`${inter.className} non-scrollable`}>
                 <MainTheme>
                     <Navbar />
                     <div className="h-full block xl:flex duration-100 relative">

@@ -19,12 +19,12 @@ export const metadata: Metadata = {
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="en">
-            <body className={`${inter.className}`}>
+            <body className={`${inter.className} non-scrollable`}>
                 <MainTheme>
                     <div className="flex h-screen overflow-hidden bg-[#EEEEEE] dark:bg-[#222831]">
                         <Sidebar />
 
-                        <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+                        <div className="non-scrollable relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
                             <Header />
 
                             <main className="min-h-[calc(100vh-182px)] md:min-h-[calc(100vh-72px)] w-full text-[#222831] dark:text-[#EEEEEE]">
