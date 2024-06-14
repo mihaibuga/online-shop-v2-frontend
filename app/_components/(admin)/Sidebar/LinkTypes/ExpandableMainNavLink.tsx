@@ -14,8 +14,6 @@ const ExpandableMainNavLink = ({
     pathnameIncludes,
     children,
 }: IExpandableMainNavLinkProps) => {
-    const { isAdminSidebarOpen, toggleAdminSidebarDisplay } = useGeneralStore();
-
     return (
         <SidebarLinkGroup activeCondition={pathname === pathnameToCompare || pathname.includes(pathnameIncludes)}>
             {(handleClick, open) => {
@@ -29,7 +27,7 @@ const ExpandableMainNavLink = ({
                             }`}
                             onClick={(e) => {
                                 e.preventDefault();
-                                isAdminSidebarOpen ? handleClick() : toggleAdminSidebarDisplay();
+                                handleClick();
                             }}
                         >
                             <div className="w-5 h-5">{icon}</div>

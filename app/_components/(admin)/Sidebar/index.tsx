@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 import { CiSettings } from "react-icons/ci";
@@ -19,10 +19,15 @@ import ExpandableMainNavLink from "./LinkTypes/ExpandableMainNavLink";
 import MainLinksCategoryGroup from "./MainLinksCategoryGroup";
 
 const Sidebar = () => {
-    const { isAdminSidebarOpen, toggleAdminSidebarDisplay } = useGeneralStore();
+    const { isAdminSidebarOpen, toggleAdminSidebarDisplay, closeAdminSidebar } = useGeneralStore();
 
     const pathname = usePathname();
     const sidebar = useRef<any>(null);
+
+    useEffect(() => {
+        closeAdminSidebar();
+        window.addEventListener("resize", closeAdminSidebar);
+    }, []);
 
     return (
         <>

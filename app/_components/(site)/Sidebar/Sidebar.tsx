@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
 
@@ -11,9 +11,14 @@ import SidebarCloseButton from "../../(common)/Buttons/SidebarCloseButton";
 import Logo from "../../(common)/Logo/Logo";
 
 const Sidebar = () => {
-    const { isSidebarOpen, toggleSidebarDisplay } = useGeneralStore();
+    const { isSidebarOpen, toggleSidebarDisplay, closeSiteSidebar } = useGeneralStore();
 
     const sidebar = useRef<any>(null);
+
+    useEffect(() => {
+        closeSiteSidebar();
+        window.addEventListener("resize", closeSiteSidebar);
+    }, []);
 
     return (
         <div>
