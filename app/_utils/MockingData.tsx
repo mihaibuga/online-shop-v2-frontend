@@ -97,6 +97,21 @@ export const brands = [
     },
 ];
 
+export const categories = [
+    {
+        id: 1,
+        name: "Tablet",
+        description:
+            "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.",
+    },
+    {
+        id: 2,
+        name: "Phone",
+        description:
+            "A mobile phone, cellular phone, cell phone, cellphone, handphone, or hand phone, sometimes shortened to simply mobile, cell or just phone.",
+    },
+];
+
 export const sneakers = [
     {
         src: "https://readymadeui.com/images/product15.webp",
