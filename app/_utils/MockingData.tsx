@@ -64,6 +64,39 @@ export const notifications = [
 
 export const checkedOutProducts = [];
 
+export const brands = [
+    {
+        id: 1,
+        name: "Amazon",
+        description: "Digital content and services",
+    },
+    {
+        id: 2,
+        name: "Lenovo",
+        description: "Computers",
+    },
+    {
+        id: 3,
+        name: "Apple",
+        description: "Consumer electronics, computer software, and online services.",
+    },
+    {
+        id: 4,
+        name: "Xiaomi",
+        description: "Consumer electronics, computer software, and online services.",
+    },
+    {
+        id: 5,
+        name: "Samsung",
+        description: "Consumer electronics, computer software, and online services.",
+    },
+    {
+        id: 6,
+        name: "Motorola",
+        description: "Consumer electronics.",
+    },
+];
+
 export const sneakers = [
     {
         src: "https://readymadeui.com/images/product15.webp",
