@@ -3,6 +3,8 @@
 import React, { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
+import { BiCategory } from "react-icons/bi";
+import { CgNametag } from "react-icons/cg";
 import { CiSettings } from "react-icons/ci";
 import { MdOutlinePermMedia, MdOutlinePersonOutline } from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
@@ -126,21 +128,47 @@ const Sidebar = () => {
                                     />
                                 </ExpandableMainNavLink>
 
-                                <NavGroupSubLink
+                                <ExpandableMainNavLink
                                     title={"Categories"}
-                                    linkPath={`${URL_PATHS.ADMIN.path}/taxonomies/categories`}
+                                    icon={<BiCategory size={"100%"} />}
+                                    mainHref={"#"}
                                     pathname={pathname}
-                                />
+                                    pathnameToCompare={`${URL_PATHS.ADMIN.path}/categories`}
+                                    pathnameIncludes={"categories"}
+                                >
+                                    <NavGroupSubLink
+                                        title={"All Categories"}
+                                        linkPath={`${URL_PATHS.ADMIN.path}/categories`}
+                                        pathname={pathname}
+                                    />
+                                    <NavGroupSubLink
+                                        title={"Add New"}
+                                        linkPath={`${URL_PATHS.ADMIN.path}/categories/new`}
+                                        pathname={pathname}
+                                    />
+                                </ExpandableMainNavLink>
 
-                                <NavGroupSubLink
-                                    title={"Reviews"}
-                                    linkPath={`${URL_PATHS.ADMIN.path}/reviews`}
+                                <ExpandableMainNavLink
+                                    title={"Brands"}
+                                    icon={<CgNametag size={"100%"} />}
+                                    mainHref={"#"}
                                     pathname={pathname}
-                                />
+                                    pathnameToCompare={`${URL_PATHS.ADMIN.path}/brands`}
+                                    pathnameIncludes={"brands"}
+                                >
+                                    <NavGroupSubLink
+                                        title={"All Brands"}
+                                        linkPath={`${URL_PATHS.ADMIN.path}/brands`}
+                                        pathname={pathname}
+                                    />
+                                    <NavGroupSubLink
+                                        title={"Add New"}
+                                        linkPath={`${URL_PATHS.ADMIN.path}/brands/new`}
+                                        pathname={pathname}
+                                    />
+                                </ExpandableMainNavLink>
                             </ExpandableMainNavLink>
-                        </MainLinksCategoryGroup>
 
-                        <MainLinksCategoryGroup groupTitle={"CONTENT"}>
                             <ExpandableMainNavLink
                                 title={"Media"}
                                 icon={<MdOutlinePermMedia size={"100%"} />}
@@ -160,9 +188,7 @@ const Sidebar = () => {
                                     pathname={pathname}
                                 />
                             </ExpandableMainNavLink>
-                        </MainLinksCategoryGroup>
 
-                        <MainLinksCategoryGroup groupTitle={"CONFIGURATION"}>
                             <ExpandableMainNavLink
                                 title={"Users"}
                                 icon={<MdOutlinePersonOutline size={"100%"} />}
