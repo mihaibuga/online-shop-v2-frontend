@@ -6,7 +6,9 @@ type Props = {};
 const MessagesPage = (props: Props) => {
     return (
         <div>
-            <h1>Messages</h1>
+            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
+                Messages
+            </h2>
             <hr />
             <table>
                 <thead>

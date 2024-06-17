@@ -6,7 +6,9 @@ type Props = {};
 const NotificationsPage = (props: Props) => {
     return (
         <div>
-            <h1>Notifications</h1>
+            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
+                Notifications
+            </h2>
             <hr />
             <table>
                 <thead>
@@ -17,7 +19,7 @@ const NotificationsPage = (props: Props) => {
                     </tr>
                 </thead>
                 <tbody>
-                {notifications.map((notification, index) => (
+                    {notifications.map((notification, index) => (
                         <tr key={index}>
                             <td>[]</td>
                             <td>{notification.notificationContent}</td>

@@ -5,18 +5,19 @@ type Props = {};
 const GeneralSettingsPage = (props: Props) => {
     return (
         <div>
-            <h1>General Settings</h1>
-            <hr />
+            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
+                General Settings
+            </h2>
             <div>
-                <label>Site Title</label><br />
+                <label>Site Title</label>
+                <br />
                 <input type="text" />
             </div>
             <div>
-                <label>Administration Email Address</label><br />
+                <label>Administration Email Address</label>
+                <br />
                 <input type="text" />
             </div>
-
-            <hr />
 
             <button type="submit">Save Changes</button>
         </div>
