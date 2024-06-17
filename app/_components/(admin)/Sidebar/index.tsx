@@ -105,7 +105,7 @@ const Sidebar = () => {
                                         pathname={pathname}
                                     />
                                     <NavGroupSubLink
-                                        title={"Add New Product"}
+                                        title={"Add New"}
                                         linkPath={`${URL_PATHS.ADMIN.path}/products/new`}
                                         pathname={pathname}
                                     />
@@ -151,11 +151,11 @@ const Sidebar = () => {
                             >
                                 <NavGroupSubLink
                                     title={"Library"}
-                                    linkPath={`${URL_PATHS.ADMIN.path}/media`}
+                                    linkPath={`${URL_PATHS.ADMIN.path}/media/library`}
                                     pathname={pathname}
                                 />
                                 <NavGroupSubLink
-                                    title={"Add New Media File"}
+                                    title={"Add New"}
                                     linkPath={`${URL_PATHS.ADMIN.path}/media/new`}
                                     pathname={pathname}
                                 />
