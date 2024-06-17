@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { useStoredUser } from "../_hooks/useStoredUser";
 import { getProductsInit } from "../_hooks/initializers";
 import { IProduct } from "../_utils/interfaces";
-import { heroSlides, sneakers } from "../_utils/MockingData";
+import { devices, heroSlides, sneakers } from "../_utils/MockingData";
 
 import ProductsGrid from "../_components/(site)/Products/ProductsGrid";
 const HeroCarousel = dynamic(() => import("../_components/(site)/HeroCarousel/HeroCarousel"), { ssr: false });
@@ -44,6 +44,8 @@ const Home = (props: Props) => {
             </div>
 
             <ProductsGrid sectionTitle={"Premium Sneakers"} products={sneakers} />
+
+            <ProductsGrid sectionTitle={"Devices"} products={devices} />
 
             <ProductsGrid sectionTitle={"Other products"} products={products} />
         </div>
