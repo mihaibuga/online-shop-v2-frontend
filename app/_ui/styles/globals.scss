@@ -27,3 +27,16 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+.loading-icon {
+    animation: animate 2s infinite;
+}
+
+@keyframes animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(720deg);
+    }
+}

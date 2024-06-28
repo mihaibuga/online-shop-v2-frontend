@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { IRegisterUser, IUser } from "../_utils/interfaces";
 import { apiBaseURL, deleteData, fetchData, postData } from "../_utils/api";
 
-export const headers = (token: string) => {
+export const headers = (token: string | undefined) => {
     return { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } };
 };
 
