@@ -10,8 +10,9 @@ import ExpandedArrow from "../../(common)/ExpandedArrow/ExpandedArrow";
 import NoResults from "../../(common)/NoResults/NoResults";
 
 import { IUser } from "@/app/_utils/interfaces";
-import { deleteUser, getUsers } from "@/app/_services/UserService";
+import { deleteUser } from "@/app/_services/UserService";
 import { useStoredUser } from "@/app/_hooks/useStoredUser";
+import { getUsersInit } from "@/app/_hooks/initializers";
 
 import TableActions from "./TableActions";
 import PaginationSection from "./PaginationSection";
@@ -43,33 +44,18 @@ const UsersTable = (props: Props) => {
     useEffect(() => {}, [users]);
 
     useEffect(() => {
-        const getUsersInit = async () => {
-            if (user) {
-                if (user.token) {
-                    const query = { sortBy, isAscending, currentPage, itemsOnPage };
+        const query = { sortBy, isAscending, currentPage, itemsOnPage };
 
-                    const result: any = await getUsers(user.token, query);
-
-                    if (result.data) {
-                        setUsers(result.data.data);
-                        setIsNextPageAvailable(result.data.isNextPage);
-                        setIsPreviousPageAvailable(result.data.isPreviousPage);
-                        setPagesNumber(result.data.totalPages);
-                        setTotalUsersNumber(result.data.totalRecords);
-                    }
-                    if (typeof result === "string") {
-                        toast.warning("Unable to connect to API");
-                    } else if (result.data && Array.isArray(result.data.data)) {
-                        setUsers(result?.data.data);
-                        setIsLoading(false);
-                    }
-                } else {
-                    toast.warning("A server error has occurred!");
-                    setIsLoading(false);
-                }
+        getUsersInit(user, query).then((fetchedUsersData) => {
+            if (fetchedUsersData !== undefined) {
+                setUsers(fetchedUsersData.data);
+                setIsNextPageAvailable(fetchedUsersData.isNextPage);
+                setIsPreviousPageAvailable(fetchedUsersData.isPreviousPage);
+                setPagesNumber(fetchedUsersData.totalPages);
+                setTotalUsersNumber(fetchedUsersData.totalRecords);
+                setIsLoading(false);
             }
-        };
-        getUsersInit();
+        });
     }, [user, isAscending, sortBy, currentPage, itemsOnPage]);
 
     const handleUserDelete = async (id: string | undefined) => {

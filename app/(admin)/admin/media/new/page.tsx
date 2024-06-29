@@ -63,7 +63,6 @@ const NewMediaPage = (props: Props) => {
             : undefined;
         setFileAsset(newFile);
         setCustomFileName(getFileNameWithoutExtension(selectedFile.name));
-        console.log(newFile);
     };
 
     const handleFileSelection = async (event: any) => {
@@ -88,12 +87,6 @@ const NewMediaPage = (props: Props) => {
                     }
                 }
             });
-        } else {
-            let files = Array.from(e.dataTransfer.files);
-
-            files.forEach((file, i) => {
-                console.log(`… file[${i}].name = ${file.name}`);
-            });
         }
     };
 
@@ -107,7 +100,6 @@ const NewMediaPage = (props: Props) => {
                 formData.append("file", fileAsset.file);
                 formData.append("fileName", fileAsset.fileName);
                 const uploadFileResponse = await uploadFile(formData, headers(user.token));
-                console.log(uploadFileResponse);
             } else {
             }
         }
