@@ -24,12 +24,14 @@ type FormInputs = {
     email: string;
     userName: string;
     password: string;
+    role: string;
 };
 
 const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email format").required("Email is required"),
     userName: Yup.string().required("Username is required"),
     password: Yup.string().required("Password is required"),
+    role: Yup.string().required("Role is required"),
 });
 
 const CreateUserForm = (props: Props) => {
@@ -48,7 +50,7 @@ const CreateUserForm = (props: Props) => {
     const handleFormSubmit = async (form: FormInputs) => {
         if (user?.token) {
             const newUser = await createUser(
-                { email: form.email, userName: form.userName, password: form.password },
+                { email: form.email, userName: form.userName, password: form.password, role: form.role },
                 headers(user?.token)
             );
 
@@ -81,10 +83,28 @@ const CreateUserForm = (props: Props) => {
 
                 <hr className="mb-4" />
 
-                <SelectInput id={"roles"} labelText={"Select a role"} options={userRoles} register={register} errors={errors} />
+                <SelectInput
+                    id={"role"}
+                    labelText={"Select a role"}
+                    options={userRoles}
+                    register={register}
+                    errors={errors}
+                />
 
-                <TextInput id={"firstName"} labelText={"First Name"} placeholder={"Type the First Name here"} register={register} errors={errors} />
-                <TextInput id={"lastName"} labelText={"Last Name"} placeholder={"Type the Last Name here"} register={register} errors={errors} />
+                <TextInput
+                    id={"firstName"}
+                    labelText={"First Name"}
+                    placeholder={"Type the First Name here"}
+                    register={register}
+                    errors={errors}
+                />
+                <TextInput
+                    id={"lastName"}
+                    labelText={"Last Name"}
+                    placeholder={"Type the Last Name here"}
+                    register={register}
+                    errors={errors}
+                />
 
                 <div className="mb-4">
                     <label

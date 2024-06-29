@@ -15,6 +15,7 @@ export interface IRegisterUser {
     email: string;
     userName: string;
     password: string;
+    role: string;
 }
 
 export interface IGoogleUserAuth {

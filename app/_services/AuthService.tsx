@@ -90,7 +90,7 @@ export const createOrGetUser = async (response: any, setLoggedInUser: any) => {
 
     const registeredUserWithGoogle = await postData<IUser>(apiBaseURL + "/auth/google", user);
 
-    if (registeredUserWithGoogle.data) {
+    if (typeof registeredUserWithGoogle === "object" && registeredUserWithGoogle.data) {
         user.token = registeredUserWithGoogle.data.token;
         setLoggedInUser(user);
         toast.success("Logged in with Google successfully!");
