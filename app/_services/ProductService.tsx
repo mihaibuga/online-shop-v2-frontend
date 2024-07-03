@@ -1,11 +1,11 @@
 import { AxiosRequestConfig } from "axios";
 import { toast } from "react-toastify";
 import { apiBaseURL, deleteData, fetchData, postData } from "../_utils/api";
-import { ICreateProduct, IProduct } from "../_utils/interfaces";
+import { IProduct } from "../_utils/interfaces";
 import { headers } from "./UserService";
 
 export const createProduct = async (
-    newProductDetails: ICreateProduct,
+    newProductDetails: FormData,
     fetchConfigs?: AxiosRequestConfig<any> | undefined
 ) => {
     try {

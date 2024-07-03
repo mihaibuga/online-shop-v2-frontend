@@ -107,9 +107,3 @@ export interface IProduct {
     price: number;
     isEnabled: boolean;
 }
-export interface ICreateProduct {
-    name: string;
-    description?: string;
-    price: number;
-    isEnabled?: boolean;
-}

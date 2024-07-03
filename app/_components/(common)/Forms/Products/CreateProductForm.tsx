@@ -11,7 +11,6 @@ import { headers } from "@/app/_services/UserService";
 import { createProduct } from "@/app/_services/ProductService";
 
 import SuccessAlert from "../../Alerts/SuccessAlert/SuccessAlert";
-import SelectInput from "@/app/_components/AuthForm/FormFields/SelectInput";
 import TextInput from "@/app/_components/AuthForm/FormFields/TextInput";
 
 type Props = {};
@@ -21,6 +20,7 @@ type FormInputs = {
     description?: string | undefined;
     price: number;
     isEnabled?: boolean | undefined;
+    productImages?: any | undefined;
 };
 
 const validationSchema = Yup.object().shape({
@@ -28,6 +28,27 @@ const validationSchema = Yup.object().shape({
     description: Yup.string(),
     price: Yup.number().required("The price is required"),
     isEnabled: Yup.boolean(),
+    productImages: Yup.mixed()
+        .test("fileType", "Not a valid image type", (value: any) => {
+            if (value && value.length > 0) {
+                for (let i = 0; i < value.length; i++) {
+                    if (value[i].type != "image/png" && value[i].type != "image/jpg" && value[i].type != "image/jpeg") {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        })
+        .test("fileSize", "Max allowed size is 2GB", (value: any) => {
+            if (value && value?.length > 0) {
+                for (let i = 0; i < value.length; i++) {
+                    if (value[i].size > 2147483648) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }),
 });
 
 const CreateProductForm = (props: Props) => {
@@ -46,8 +67,21 @@ const CreateProductForm = (props: Props) => {
 
     const handleFormSubmit = async (form: FormInputs) => {
         if (user?.token) {
+            const formData = new FormData();
+
+            formData.append("name", form.name);
+            if (form.description) {
+                formData.append("description", form.description);
+            }
+            formData.append("isEnabled", JSON.stringify(form.isEnabled));
+            formData.append("price", JSON.stringify(form.price));
+
+            for (var i = 0; i != form.productImages.length; i++) {
+                formData.append("productImages", form.productImages[i]);
+            }
+
             const newProduct = await createProduct(
-                { name: form.name, description: form.description, price: form.price, isEnabled: form.isEnabled },
+                formData,
                 headers(user?.token)
             );
 
@@ -121,10 +155,30 @@ const CreateProductForm = (props: Props) => {
                         id="isEnabled"
                         className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                         checked={isEnabled}
-                        onClick={() => setIsEnabled(prev => !prev)}
+                        onClick={() => setIsEnabled((prev) => !prev)}
                         {...register("isEnabled")}
                     />
                     {errors.price ? <p className="text-red-500">{errors.price.message}</p> : ""}
+                </div>
+
+                <div className="mb-4">
+                    <label
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        htmlFor="productImages"
+                    >
+                        Product image(s)
+                    </label>
+                    <input
+                        className="block w-full p-2 text-sm text-gray-900 dark:text-gray-400 border border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 focus:outline-none dark:placeholder-gray-400"
+                        aria-describedby="product_images_help"
+                        id="productImages"
+                        type="file"
+                        multiple
+                        {...register("productImages")}
+                    />
+                    <div className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="product_images_help">
+                        A collection of images is useful to display the physical features of the product.
+                    </div>
                 </div>
 
                 <hr className="mb-4" />

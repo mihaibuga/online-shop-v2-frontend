@@ -5,15 +5,18 @@ import { IRegisterUser, IUser } from "../_utils/interfaces";
 import { apiBaseURL, deleteData, fetchData, postData } from "../_utils/api";
 
 export const headers = (token: string | undefined) => {
-    return { headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Expose-Headers": "Authorization",
-    } };
+    return {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+            "Access-Control-Allow-Headers":
+                "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+            "Access-Control-Allow-Credentials": "true",
+            "Access-Control-Expose-Headers": "Authorization",
+        },
+    };
 };
 
 export const getUsers = async (
