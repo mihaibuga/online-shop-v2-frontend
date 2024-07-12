@@ -54,7 +54,7 @@ const EmailAuthForm = ({ isLogIn }: Props) => {
             );
         } else {
             if (form.email !== undefined) {
-                registerUser({ email: form.email, userName: form.userName, password: form.password }, setLoggedInUser);
+                registerUser({ email: form.email, userName: form.userName, password: form.password, role: "User" }, setLoggedInUser);
             } else {
                 toast.error("There has been an error registering!");
             }
