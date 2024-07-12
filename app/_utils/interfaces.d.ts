@@ -107,3 +107,14 @@ export interface IProduct {
     price: number;
     isEnabled: boolean;
 }
+
+export interface IFile {
+    rawFileName: string;
+    fileExtension: string;
+    completeFileName: string;
+    fileSourcePath: string;
+    id: string;
+    createdDate: string;
+    modifiedDate: string;
+    isEnabled: boolean;
+}
