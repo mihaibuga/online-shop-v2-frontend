@@ -16,6 +16,7 @@ import { getUsersInit } from "@/app/_hooks/initializers";
 
 import TableActions from "./TableActions";
 import PaginationSection from "./PaginationSection";
+import { URL_PATHS } from "@/app/_utils/constants";
 
 type Props = {};
 
@@ -173,7 +174,7 @@ const UsersTable = (props: Props) => {
                                             <td className="px-6 py-4">{user.email}</td>
                                             <td className="px-6 py-4">
                                                 <a
-                                                    href="#"
+                                                    href={`${URL_PATHS.ADMIN.path}/users/${user.id}`}
                                                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                                 >
                                                     Edit

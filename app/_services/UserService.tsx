@@ -33,6 +33,10 @@ export const getUsers = async (
     );
 };
 
+export const getUserDetails = async (token: string, query: { id: string }) => {
+    return await fetchData<IUser>(`${apiBaseURL}/users/${query.id}`, headers(token));
+};
+
 export const deleteUser = async (id: string, token: string) => {
     try {
         let result = await deleteData<IUser>(`${apiBaseURL}/users/${id}`, headers(token));
