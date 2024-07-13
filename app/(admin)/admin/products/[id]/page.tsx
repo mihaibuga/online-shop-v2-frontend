@@ -4,7 +4,7 @@ import React, { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 
 import { FaBox } from "react-icons/fa";
-import { MdOutlinePersonOff } from "react-icons/md";
+import { BsBoxes } from "react-icons/bs";
 
 import { getProductDetailsInit } from "@/app/_hooks/initializers";
 import { useStoredUser } from "@/app/_hooks/useStoredUser";
@@ -30,11 +30,10 @@ const ProductPage = ({ params }: { params: Params }) => {
 
         getProductDetailsInit(user, query).then((fetchedProductData) => {
             if (fetchedProductData !== undefined) {
-                console.log(fetchedProductData);
                 setProductDetails(fetchedProductData);
-                setIsLoading(false);
                 setIsEnabled(fetchedProductData.isEnabled);
             }
+            setIsLoading(false);
         });
     }, [user, params.id]);
 
@@ -199,14 +198,17 @@ const ProductPage = ({ params }: { params: Params }) => {
                             </h3>
                             <div className="px-6 py-8 space-y-4">
                                 <div>
-                                    <FilesGallery files={getImages(productDetails.productImages)} isLoading={isLoading} />
+                                    <FilesGallery
+                                        files={getImages(productDetails.productImages)}
+                                        isLoading={isLoading}
+                                    />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             ) : (
-                <NoResults text={`No User`} icon={<MdOutlinePersonOff />} />
+                <NoResults text={`No Product`} icon={<BsBoxes />} />
             )}
         </Suspense>
     );
