@@ -28,7 +28,6 @@ const UserPage = ({ params }: { params: Params }) => {
 
         getUserDetailsInit(user, query).then((fetchedUserData) => {
             if (fetchedUserData !== undefined) {
-                console.log(fetchedUserData);
                 setUserDetails(fetchedUserData);
                 setIsLoading(false);
             }

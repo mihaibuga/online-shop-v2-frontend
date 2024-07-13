@@ -32,7 +32,6 @@ const MediaLibraryPage = (props: Props) => {
         const query = { sortBy, isAscending, currentPage, itemsOnPage };
 
         getFilesInit(user, query).then((fetchedFilesData) => {
-            console.log(fetchedFilesData);
             if (fetchedFilesData !== undefined) {
                 setFiles(fetchedFilesData.data);
                 setIsNextPageAvailable(fetchedFilesData.isNextPage);
