@@ -1,53 +1,39 @@
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import axios, { AxiosRequestConfig } from "axios";
 import { apiDomain } from "@/app/_utils/env";
+import { handleError } from "../_helpers/ErrorHandler";
 
 export const apiBaseURL = `${apiDomain}/api`;
 
-const getErrorMessage = (error: any) => {
-    if (axios.isAxiosError(error)) {
-        console.log("Error message: ", error.message);
-        return error.message;
-    } else {
-        console.log("Unexpected error: ", error);
-        return "An unexpected error has occurred.";
-    }
-};
-
-export const fetchData = async <T,>(endpoint: string): Promise<T | any> => {
+export const fetchData = async <T,>(endpoint: string, headers: any): Promise<T | any> => {
     try {
-        const response = await axios.get<T>(endpoint);
+        const response = await axios.get<T>(endpoint, headers);
         return response;
     } catch (error: any) {
-        getErrorMessage(error);
+        handleError(error);
     }
 };
 
-// Users
-export const createOrGetUser = async (response: any, addUser: any) => {
-    let authToken, userInfo;
-
-    if (response.access_token) {
-        authToken = `${response.token_type} ${response.access_token}`;
-
-        userInfo = await axios
-            .get("https://www.googleapis.com/oauth2/v3/userinfo", {
-                headers: { Authorization: authToken },
-            })
-            .then((res) => res.data);
-    } else {
-        authToken = response.credential;
-        const decoded: { name: string; picture: string; sub: string } = jwtDecode(authToken);
-        userInfo = decoded;
+export const postData = async <T,>(
+    endpoint: string,
+    payload: any,
+    config?: AxiosRequestConfig<any> | undefined
+): Promise<T | any> => {
+    try {
+        const data =
+            config !== undefined
+                ? await axios.post<T>(endpoint, payload, config)
+                : await axios.post<T>(endpoint, payload);
+        return data;
+    } catch (error: any) {
+        handleError(error);
     }
+};
 
-    const { name, picture, sub } = userInfo;
-
-    const user = {
-        id: sub,
-        userName: name,
-        profileImage: picture,
-    };
-
-    addUser(user);
+export const deleteData = async <T,>(endpoint: string, headers: any): Promise<T | any> => {
+    try {
+        const data = await axios.delete<T>(endpoint, headers);
+        return data;
+    } catch (error: any) {
+        handleError(error);
+    }
 };
