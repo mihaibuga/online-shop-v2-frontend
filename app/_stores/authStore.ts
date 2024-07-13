@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { IUser } from "../_utils/interfaces";
 
 const authStore = (set: any) => ({
-    userProfile: null,
-    addUser: (user: any) => set({ userProfile: user }),
-    removeUser: () => set({ userProfile: null }),
+    loggedInUserProfile: null,
+    setLoggedInUser: (user: IUser) => set({ loggedInUserProfile: user }),
+    removeLoggedInUserSession: () => set({ loggedInUserProfile: null, token: null }),
 });
 
 const useAuthStore = create(

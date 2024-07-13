@@ -7,32 +7,35 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
 
 import useAuthStore from "@/app/_stores/authStore";
-import { createOrGetUser } from "@/app/_utils/api";
 import { STORE_NAME, URL_PATHS } from "@/app/_utils/constants";
+import { createOrGetUser } from "@/app/_services/AuthService";
+
+import AuthAgreement from "./AuthAgreement";
+import EmailAuthForm from "./EmailAuthForm";
+import { toast } from "react-toastify";
 
 type Props = {
     isLogIn?: boolean;
 };
 
 const AuthForm = ({ isLogIn }: Props) => {
+    const { loggedInUserProfile, setLoggedInUser } = useAuthStore();
     const router = useRouter();
 
-    const { userProfile, addUser } = useAuthStore();
+    useEffect(() => {
+        if (loggedInUserProfile) {
+            router.push("/");
+        }
+    }, [router, loggedInUserProfile]);
+    
 
     const handleGoogleLogin = useGoogleLogin({
         onSuccess: async (response) => {
-            createOrGetUser(response, addUser);
-            // router.push(closeHref);
+            createOrGetUser(response, setLoggedInUser);
         },
-        onError: () => console.log("Login Failed"),
+        onError: () => toast.warning("Google login failed"),
         flow: "implicit",
     });
-
-    useEffect(() => {
-        if (userProfile) {
-            router.push("/");
-        }
-    }, [router, userProfile]);
 
     return (
         <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
@@ -54,33 +57,19 @@ const AuthForm = ({ isLogIn }: Props) => {
                             <div className="left min-w-[30px]">
                                 <FcGoogle size={"1.5rem"} />
                             </div>
-                            <div className="right flex w-full justify-center text-md lg:text-lg whitespace-nowrap text-gray-600 font-bold">Continue with Google</div>
+                            <div className="right flex w-full justify-center text-md lg:text-lg whitespace-nowrap text-gray-600 font-bold">
+                                Continue with Google
+                            </div>
                         </button>
                     </div>
 
-                    <div className="auth-agreement flex items-center justify-center px-2 md:px-10 py-[30px]">
-                        <p className="text-sm w-full text-center text-gray-600">
-                            By continuing, you agree to {STORE_NAME}’s{" "}
-                            <Link
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                href={URL_PATHS.TERMS_OF_SERVICE.path}
-                                className="text-blue-700"
-                            >
-                                {URL_PATHS.TERMS_OF_SERVICE.label}
-                            </Link>{" "}
-                            and confirm that you have read {STORE_NAME}’s{" "}
-                            <Link
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                href={URL_PATHS.PRIVACY_POLICY.path}
-                                className="text-blue-700"
-                            >
-                                {URL_PATHS.PRIVACY_POLICY.label}
-                            </Link>
-                            .
-                        </p>
+                    <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300 dark:before:border-neutral-500 dark:after:border-neutral-500">
+                        <p className="mx-4 mb-0 text-center font-semibold dark:text-white">Or</p>
                     </div>
+
+                    <EmailAuthForm isLogIn={isLogIn} />
+
+                    <AuthAgreement />
 
                     <div className="auth-switch flex border-t gap-1 items-center justify-center h-[64px] text-xs text-gray-500">
                         <div>{isLogIn ? "Don't have any account yet?" : "Already have an account?"}</div>

@@ -4,6 +4,21 @@ export const URL_PATHS = {
     HOME: {
         path:  "/",
     },
+    // AUTH
+    LOGIN: {
+        path:  "/myaccount/auth/login",
+        label:  "Sign In",
+    },
+    SIGNUP: {
+        path:  "/myaccount/auth/register",
+        label:  "Register",
+    },
+    // Admin access
+    ADMIN: {
+        path:  "/admin",
+        label:  "Admin",
+    },
+    // Access to personal user's account
     MY_ACCOUNT: {
         path:  "/myaccount",
         label:  "My Account",
@@ -20,18 +35,12 @@ export const URL_PATHS = {
         path:  "/myaccount/orders",
         label:  "My Orders",
     },
+    // Orders
     CHECKOUT: {
         path:  "/checkout",
         label:  "Checkout",
     },
-    LOGIN: {
-        path:  "/myaccount/auth/login",
-        label:  "Sign In",
-    },
-    SIGNUP: {
-        path:  "/myaccount/auth/register",
-        label:  "Register",
-    },
+    // Helpful links
     TERMS_OF_SERVICE: {
         path:  "/legal/terms-of-use",
         label:  "Terms of Service",
