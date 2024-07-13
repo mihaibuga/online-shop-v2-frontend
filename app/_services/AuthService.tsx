@@ -92,6 +92,7 @@ export const createOrGetUser = async (response: any, setLoggedInUser: any) => {
 
     if (typeof registeredUserWithGoogle === "object" && registeredUserWithGoogle.data) {
         user.token = registeredUserWithGoogle.data.token;
+        user.role = registeredUserWithGoogle.data.role;
         setLoggedInUser(user);
         toast.success("Logged in with Google successfully!");
     } else {

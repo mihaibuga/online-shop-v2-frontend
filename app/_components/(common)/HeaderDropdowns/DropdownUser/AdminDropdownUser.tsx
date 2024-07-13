@@ -12,6 +12,7 @@ import ProfileImage from "../../ProfileImage";
 import SignOutButton from "../../Buttons/SignOutButton";
 import ExpandedArrow from "../../ExpandedArrow/ExpandedArrow";
 import SimpleLink from "./LinkTypes/SimpleLink";
+import { URL_PATHS } from "@/app/_utils/constants";
 
 const AdminDropdownUser = () => {
     const user = useStoredUser();
@@ -40,7 +41,11 @@ const AdminDropdownUser = () => {
                     <span className="block text-sm font-medium text-black dark:text-white">
                         {user !== null && user !== undefined ? user.userName : "Unknown"}
                     </span>
-                    <span className="block text-xs text-black dark:text-white">Admin</span>
+                    {user !== null && user !== undefined && user.role && (
+                        <span className="block text-xs text-black dark:text-white">
+                            {user.role}
+                        </span>
+                    )}
                 </span>
 
                 <span className="h-10 w-10 rounded-full">
@@ -71,7 +76,16 @@ const AdminDropdownUser = () => {
                     </li>
                 </ul>
 
-                {user !== null && user !== undefined && <SignOutButton />}
+                {user !== null && user !== undefined ? (
+                    <SignOutButton />
+                ) : (
+                    <Link
+                        href={URL_PATHS.LOGIN.path}
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-700 dark:text-gray-200 dark:hover:text-white"
+                    >
+                        {URL_PATHS.LOGIN.label}
+                    </Link>
+                )}
             </div>
             {/* <!-- Dropdown End --> */}
         </div>

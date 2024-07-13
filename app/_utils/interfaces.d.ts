@@ -9,6 +9,7 @@ export interface IUser {
     lastName?: string;
     firstName?: string;
     fullName?: string;
+    role?: string;
 }
 
 export interface IRegisterUser {
