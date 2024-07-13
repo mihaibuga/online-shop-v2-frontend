@@ -106,6 +106,8 @@ export interface IProduct {
     description: string;
     price: number;
     isEnabled: boolean;
+    thumbnailImage?: string;
+    productImages?: IFile[];
 }
 
 export interface IFile {

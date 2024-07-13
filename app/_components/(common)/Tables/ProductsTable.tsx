@@ -3,8 +3,8 @@
 import React, { Suspense, useEffect, useState } from "react";
 
 import { toast } from "react-toastify";
-import { MdOutlinePersonOff } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
+import { BsBoxes } from "react-icons/bs";
 
 import { deleteProduct } from "@/app/_services/ProductService";
 import { useStoredUser } from "@/app/_hooks/useStoredUser";
@@ -16,6 +16,7 @@ import PaginationSection from "../../(admin)/UsersTable/PaginationSection";
 import NoResults from "../NoResults/NoResults";
 import Spinner from "../Spinner/Spinner";
 import ExpandedArrow from "../ExpandedArrow/ExpandedArrow";
+import { URL_PATHS } from "@/app/_utils/constants";
 
 type Props = {};
 
@@ -154,7 +155,7 @@ const ProductsTable = (props: Props) => {
                                             </th>
                                             <td className="px-6 py-4">
                                                 <a
-                                                    href="#"
+                                                    href={`${URL_PATHS.ADMIN.path}/products/${product.id}`}
                                                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                                 >
                                                     Edit
@@ -195,7 +196,7 @@ const ProductsTable = (props: Props) => {
                     </div>
                 </div>
             ) : (
-                <NoResults text={`No Products`} icon={<MdOutlinePersonOff />} />
+                <NoResults text={`No Products`} icon={<BsBoxes />} />
             )}
         </Suspense>
     );

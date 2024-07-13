@@ -42,6 +42,10 @@ export const getProducts = async (
     );
 };
 
+export const getProductDetails = async (token: string, query: { id: string }) => {
+    return await fetchData<IProduct>(`${apiBaseURL}/products/${query.id}`, headers(token));
+};
+
 export const deleteProduct = async (id: string, token: string) => {
     try {
         let result = await deleteData<IProduct>(`${apiBaseURL}/products/${id}`, headers(token));
