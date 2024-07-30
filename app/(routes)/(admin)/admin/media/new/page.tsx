@@ -24,7 +24,7 @@ type IFileAsset = {
 };
 
 const NewMediaPage = (props: Props) => {
-    const user = useStoredUser();
+    const loggedInUser = useStoredUser();
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [wrongFileType, setWrongFileType] = useState<boolean>(false);
@@ -91,7 +91,7 @@ const NewMediaPage = (props: Props) => {
     };
 
     const handleFileUpload = async () => {
-        if (user !== null && user !== undefined) {
+        if (loggedInUser !== null && loggedInUser !== undefined) {
             setSavingFile(true);
 
             if (fileAsset !== undefined) {
@@ -99,7 +99,7 @@ const NewMediaPage = (props: Props) => {
 
                 formData.append("file", fileAsset.file);
                 formData.append("fileName", fileAsset.fileName);
-                const uploadFileResponse = await uploadFile(formData, headers(user.token));
+                const uploadFileResponse = await uploadFile(formData, headers(loggedInUser.token));
             } else {
             }
         }

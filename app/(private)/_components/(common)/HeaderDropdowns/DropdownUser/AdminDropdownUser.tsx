@@ -15,7 +15,7 @@ import ExpandedArrow from "@/app/(private)/_components/(common)/ExpandedArrow/Ex
 import SimpleLink from "@/app/(private)/_components/(common)/HeaderDropdowns/DropdownUser/LinkTypes/SimpleLink";
 
 const AdminDropdownUser = () => {
-    const user = useStoredUser();
+    const loggedInUser = useStoredUser();
 
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
     const trigger = useRef<any>(null);
@@ -39,17 +39,17 @@ const AdminDropdownUser = () => {
             >
                 <span className="hidden text-right lg:block">
                     <span className="block text-sm font-medium text-black dark:text-white">
-                        {user !== null && user !== undefined ? user.userName : "Unknown"}
+                        {loggedInUser !== null && loggedInUser !== undefined ? loggedInUser.userName : "Unknown"}
                     </span>
-                    {user !== null && user !== undefined && user.role && (
+                    {loggedInUser !== null && loggedInUser !== undefined && loggedInUser.role && (
                         <span className="block text-xs text-black dark:text-white">
-                            {user.role}
+                            {loggedInUser.role}
                         </span>
                     )}
                 </span>
 
                 <span className="h-10 w-10 rounded-full">
-                    <ProfileImage imgSrc={user?.profileImage} />
+                    <ProfileImage imgSrc={loggedInUser?.profileImage} />
                 </span>
 
                 <div className="hidden sm:block h-4 w-4">
@@ -76,7 +76,7 @@ const AdminDropdownUser = () => {
                     </li>
                 </ul>
 
-                {user !== null && user !== undefined ? (
+                {loggedInUser !== null && loggedInUser !== undefined ? (
                     <SignOutButton />
                 ) : (
                     <Link

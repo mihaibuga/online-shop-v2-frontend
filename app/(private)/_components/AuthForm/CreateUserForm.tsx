@@ -35,7 +35,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const CreateUserForm = (props: Props) => {
-    const user = useStoredUser();
+    const loggedInUser = useStoredUser();
     const [isSubmitSuccessful, setIsSubmitSuccessful] = useState<boolean>(false);
 
     const {
@@ -48,10 +48,10 @@ const CreateUserForm = (props: Props) => {
     });
 
     const handleFormSubmit = async (form: FormInputs) => {
-        if (user?.token) {
+        if (loggedInUser?.token) {
             const newUser = await createUser(
                 { email: form.email, userName: form.userName, password: form.password, role: form.role },
-                headers(user?.token)
+                headers(loggedInUser?.token)
             );
 
             if (newUser !== undefined) {

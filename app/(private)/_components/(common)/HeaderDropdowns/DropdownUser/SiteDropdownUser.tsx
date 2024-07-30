@@ -14,7 +14,7 @@ import SignOutButton from "@/app/(private)/_components/(common)/Buttons/SignOutB
 type Props = {};
 
 const SiteDropdownUser = ({}: Props) => {
-    const user = useStoredUser();
+    const loggedInUser = useStoredUser();
 
     const [isUserMenuOpen, setIsUserMenuOpen] = useState<boolean>(false);
     const trigger = useRef<any>(null);
@@ -41,7 +41,7 @@ const SiteDropdownUser = ({}: Props) => {
                 onClick={() => setIsUserMenuOpen((prev) => !prev)}
             >
                 <span className="sr-only">Open user menu</span>
-                <ProfileImage imgSrc={user?.profileImage} />
+                <ProfileImage imgSrc={loggedInUser?.profileImage} />
             </button>
 
             {/* <!-- Dropdown Start --> */}
@@ -55,10 +55,10 @@ const SiteDropdownUser = ({}: Props) => {
                 } my-4 w-max text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 absolute top-10 right-[-5px] md:right-0 overflow-hidden`}
             >
                 <div className="">
-                    {user !== null && user !== undefined ? (
+                    {loggedInUser !== null && loggedInUser !== undefined ? (
                         <>
                             <span className="block px-4 py-2 text-sm text-gray-900 dark:text-white">
-                                {user.userName}
+                                {loggedInUser.userName}
                             </span>
                         </>
                     ) : (
@@ -106,7 +106,7 @@ const SiteDropdownUser = ({}: Props) => {
                         />
                     </li>
 
-                    <li>{user !== null && user !== undefined && <SignOutButton />}</li>
+                    <li>{loggedInUser !== null && loggedInUser !== undefined && <SignOutButton />}</li>
                 </ul>
             </div>
             {/* <!-- Dropdown End --> */}
