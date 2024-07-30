@@ -1,4 +1,4 @@
-export const getPaginationItems = (currentPage: number, lastPage: number, maxLength: number) => {
+export const handlePagination = (currentPage: number, lastPage: number, maxLength: number) => {
     const res: Array<number> = [];
 
     // handle lastPage less than maxLength

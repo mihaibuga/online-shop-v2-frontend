@@ -1,5 +1,5 @@
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { getPaginationItems } from "@/app/(private)/_helpers/PaginationLogic";
+import { handlePagination } from "@/app/(private)/_helpers/PaginationHandler";
 
 interface IProps {
     currentPage: number;
@@ -24,7 +24,7 @@ const PaginationSection = ({
 }: IProps) => {
     if (totalPages === 1) return null;
 
-    const pages = getPaginationItems(currentPage, totalPages, maxPagesToDisplay);
+    const pages = handlePagination(currentPage, totalPages, maxPagesToDisplay);
 
     return (
         <div className="w-full flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
