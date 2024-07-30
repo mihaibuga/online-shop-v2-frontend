@@ -10,7 +10,7 @@ import { URL_PATHS } from "@/app/(private)/_utils/constants";
 import SidebarCloseButton from "@/app/(private)/_components/(common)/Buttons/SidebarCloseButton";
 import Logo from "@/app/(private)/_components/(common)/Logo/Logo";
 
-const Sidebar = () => {
+const SiteSidebar = () => {
     const { isSidebarOpen, toggleSidebarDisplay, closeSiteSidebar } = useGeneralStore();
 
     const sidebar = useRef<any>(null);
@@ -61,4 +61,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default SiteSidebar;

@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import "@/app/(private)/_ui/styles/globals.scss";
 import MainTheme from "@/app/(private)/_themes/MainTheme/MainTheme";
-import Sidebar from "@/app/(private)/_components/(admin)/Sidebar";
+import Sidebar from "@/app/(private)/_components/Sidebars/AdminSidebar";
 import Header from "@/app/(private)/_components/(admin)/Header";
 
 const inter = Inter({ subsets: ["latin"] });
