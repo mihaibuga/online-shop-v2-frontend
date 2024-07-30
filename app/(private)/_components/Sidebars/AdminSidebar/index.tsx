@@ -14,8 +14,8 @@ import { IoBagCheckOutline } from "react-icons/io5";
 
 import useGeneralStore from "@/app/(private)/_stores/generalStore";
 import { URL_PATHS } from "@/app/(private)/_utils/constants";
-import Logo from "@/app/(private)/_components/(common)/Logo/Logo";
-import SidebarCloseButton from "@/app/(private)/_components/(common)/Buttons/SidebarCloseButton";
+import Logo from "@/app/(private)/_components/Others/Logo";
+import SidebarCloseButton from "@/app/(private)/_components/Buttons/SidebarCloseButton";
 import NavGroupSubLink from "@/app/(private)/_components/Sidebars/LinkTypes/NavGroupSubLink";
 import ExpandableMainNavLink from "@/app/(private)/_components/Sidebars/LinkTypes/ExpandableMainNavLink";
 import MainLinksCategoryGroup from "@/app/(private)/_components/Sidebars/MainLinksCategoryGroup";

@@ -10,7 +10,7 @@ import { createUser, headers } from "@/app/(private)/_services/UserService";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { userRoles } from "@/app/(private)/_utils/MockingData";
 
-import SuccessAlert from "@/app/(private)/_components/(common)/Alerts/SuccessAlert/SuccessAlert";
+import SuccessAlert from "@/app/(private)/_components/Alerts/SuccessAlert/SuccessAlert";
 
 import EmailInput from "@/app/(private)/_components/Forms/FormFields/EmailInput";
 import PasswordInput from "@/app/(private)/_components/Forms/FormFields/PasswordInput";

@@ -10,9 +10,9 @@ import {
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { URL_PATHS } from "@/app/(private)/_utils/constants";
 
-import ProfileImage from "@/app/(private)/_components/(common)/ProfileImage";
+import ProfileImage from "@/app/(private)/_components/Others/ProfileImage";
 import SimpleLink from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownUser/LinkTypes/SimpleLink";
-import SignOutButton from "@/app/(private)/_components/(common)/Buttons/SignOutButton";
+import SignOutButton from "@/app/(private)/_components/Buttons/SignOutButton";
 
 type Props = {};
 

@@ -8,10 +8,10 @@ import useGeneralStore from "@/app/(private)/_stores/generalStore";
 import { URL_PATHS } from "@/app/(private)/_utils/constants";
 import { checkedOutProducts } from "@/app/(private)/_utils/MockingData";
 
-import ThemeToggle from "@/app/(private)/_components/(common)/Toggles/ThemeToggle/ThemeToggle";
-import SearchBar from "@/app/(private)/_components/(common)/SearchBar/SearchBar";
-import Logo from "@/app/(private)/_components/(common)/Logo/Logo";
-import SidebarToggle from "@/app/(private)/_components/(common)/Toggles/SidebarToggle/SidebarToggle";
+import ThemeToggle from "@/app/(private)/_components/Buttons/Toggles/ThemeToggle/ThemeToggle";
+import SearchBar from "@/app/(private)/_components/Others/SearchBar";
+import Logo from "@/app/(private)/_components/Others/Logo";
+import SidebarToggle from "@/app/(private)/_components/Buttons/Toggles/SidebarToggle/SidebarToggle";
 import HeaderActionButtonWrapper from "@/app/(private)/_components/Headers/HeaderActionButtonWrapper/HeaderActionButtonWrapper";
 import ButtonWithDropdown from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown";
 import DropdownTitle from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";

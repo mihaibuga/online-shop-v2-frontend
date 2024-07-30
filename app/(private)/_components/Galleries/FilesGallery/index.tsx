@@ -3,8 +3,8 @@ import Image from "next/image";
 import { TbFilesOff } from "react-icons/tb";
 
 import { IFile } from "@/app/(private)/_utils/interfaces";
-import Spinner from "@/app/(private)/_components/(common)/Spinner/Spinner";
-import NoResults from "@/app/(private)/_components/(common)/NoResults/NoResults";
+import Spinner from "@/app/(private)/_components/Others/Spinner";
+import NoResults from "@/app/(private)/_components/Others/NoResults";
 
 type Props = {
     files: IFile[];

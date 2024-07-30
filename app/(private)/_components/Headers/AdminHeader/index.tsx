@@ -3,13 +3,13 @@
 import { URL_PATHS } from "@/app/(private)/_utils/constants";
 import useGeneralStore from "@/app/(private)/_stores/generalStore";
 
-import SidebarToggle from "@/app/(private)/_components/(common)/Toggles/SidebarToggle/SidebarToggle";
-import ThemeToggle from "@/app/(private)/_components/(common)/Toggles/ThemeToggle/ThemeToggle";
+import SidebarToggle from "@/app/(private)/_components/Buttons/Toggles/SidebarToggle/SidebarToggle";
+import ThemeToggle from "@/app/(private)/_components/Buttons/Toggles/ThemeToggle/ThemeToggle";
 import DropdownMessage from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownMessages/DropdownMessage";
 import DropdownNotification from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownNotifications/DropdownNotification";
 import DropdownUser from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownUser/AdminDropdownUser";
-import SearchBar from "@/app/(private)/_components/(common)/SearchBar/SearchBar";
-import Logo from "@/app/(private)/_components/(common)/Logo/Logo";
+import SearchBar from "@/app/(private)/_components/Others/SearchBar";
+import Logo from "@/app/(private)/_components/Others/Logo";
 import HeaderActionButtonWrapper from "@/app/(private)/_components/Headers/HeaderActionButtonWrapper/HeaderActionButtonWrapper";
 
 const AdminHeader = () => {

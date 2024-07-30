@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
-import ExpandedArrow from "@/app/(private)/_components/(common)/ExpandedArrow/ExpandedArrow";
+import ExpandedArrow from "@/app/(private)/_components/Others/ExpandedArrow";
 
 type Props = {};
 

@@ -5,10 +5,10 @@ import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { uploadFile } from "@/app/(private)/_services/FileService";
 import { headers } from "@/app/(private)/_services/UserService";
 
-import DiscardButton from "@/app/(private)/_components/(common)/Buttons/DiscardButton";
-import SubmitButton from "@/app/(private)/_components/(common)/Buttons/SubmitButton";
+import DiscardButton from "@/app/(private)/_components/Buttons/DiscardButton";
+import SubmitButton from "@/app/(private)/_components/Buttons/SubmitButton";
 
-import ErrorAlert from "@/app/(private)/_components/(common)/Alerts/ErrorAlert/ErrorAlert";
+import ErrorAlert from "@/app/(private)/_components/Alerts/ErrorAlert/ErrorAlert";
 import FileUpload from "@/app/(private)/_components/Forms/FormFields/FileUpload";
 
 type Props = {};

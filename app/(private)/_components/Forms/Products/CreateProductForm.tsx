@@ -10,7 +10,7 @@ import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { headers } from "@/app/(private)/_services/UserService";
 import { createProduct } from "@/app/(private)/_services/ProductService";
 
-import SuccessAlert from "@/app/(private)/_components/(common)/Alerts/SuccessAlert/SuccessAlert";
+import SuccessAlert from "@/app/(private)/_components/Alerts/SuccessAlert/SuccessAlert";
 import TextInput from "@/app/(private)/_components/Forms/FormFields/TextInput";
 
 type Props = {};

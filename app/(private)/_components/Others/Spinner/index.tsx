@@ -1,5 +1,5 @@
 import { ClipLoader } from "react-spinners";
-import "@/app/(private)/_components/(common)/Spinner/Spinner.css";
+import "@/app/(private)/_components/Others/Spinner/Spinner.css";
 
 interface Props {
     isLoading?: boolean;

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { IMessage } from "@/app/(private)/_utils/interfaces";
-import ProfileImage from "@/app/(private)/_components/(common)/ProfileImage";
+import ProfileImage from "@/app/(private)/_components/Others/ProfileImage";
 
 const DropdownMessageLink = ({ authorName, authorImgSrc, messageContent, time }: IMessage) => {
     return (

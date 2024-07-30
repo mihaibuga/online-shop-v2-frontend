@@ -6,17 +6,17 @@ import { MdOutlinePersonOff } from "react-icons/md";
 
 import { URL_PATHS } from "@/app/(private)/_utils/constants";
 
-import Spinner from "@/app/(private)/_components/(common)/Spinner/Spinner";
-import ProfileImage from "@/app/(private)/_components/(common)/ProfileImage";
-import ExpandedArrow from "@/app/(private)/_components/(common)/ExpandedArrow/ExpandedArrow";
-import NoResults from "@/app/(private)/_components/(common)/NoResults/NoResults";
+import Spinner from "@/app/(private)/_components/Others/Spinner";
+import ProfileImage from "@/app/(private)/_components/Others/ProfileImage";
+import ExpandedArrow from "@/app/(private)/_components/Others/ExpandedArrow";
+import NoResults from "@/app/(private)/_components/Others/NoResults";
 
 import { IUser } from "@/app/(private)/_utils/interfaces";
 import { deleteUser, getUsers } from "@/app/(private)/_services/UserService";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 
 import TableActions from "@/app/(private)/_components/Tables/TableActions";
-import PaginationSection from "@/app/(private)/_components/(common)/PaginationSection";
+import PaginationSection from "@/app/(private)/_components/Others/PaginationSection";
 
 type Props = {};
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import SidebarLinkGroup from "@/app/(private)/_components/Sidebars/SidebarLinkGroup";
-import ExpandedArrow from "@/app/(private)/_components/(common)/ExpandedArrow/ExpandedArrow";
+import ExpandedArrow from "@/app/(private)/_components/Others/ExpandedArrow";
 import { IExpandableMainNavLinkProps } from "@/app/(private)/_utils/interfaces";
 
 const ExpandableMainNavLink = ({

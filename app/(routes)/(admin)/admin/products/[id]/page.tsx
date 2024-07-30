@@ -10,8 +10,8 @@ import { getProductDetails } from "@/app/(private)/_services/ProductService";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { IProduct } from "@/app/(private)/_utils/interfaces";
 
-import Spinner from "@/app/(private)/_components/(common)/Spinner/Spinner";
-import NoResults from "@/app/(private)/_components/(common)/NoResults/NoResults";
+import Spinner from "@/app/(private)/_components/Others/Spinner";
+import NoResults from "@/app/(private)/_components/Others/NoResults";
 import FilesGallery from "@/app/(private)/_components/Galleries/FilesGallery";
 
 type Params = {
