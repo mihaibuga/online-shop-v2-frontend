@@ -7,9 +7,9 @@ import * as Yup from "yup";
 import useAuthStore from "@/app/(private)/_stores/authStore";
 import { loginUser, registerUser } from "@/app/(private)/_services/AuthService";
 
-import UsernameInput from "@/app/(private)/_components/AuthForm/FormFields/UsernameInput";
-import EmailInput from "@/app/(private)/_components/AuthForm/FormFields/EmailInput";
-import PasswordInput from "@/app/(private)/_components/AuthForm/FormFields/PasswordInput";
+import UsernameInput from "@/app/(private)/_components/(common)/Forms/FormFields/UsernameInput";
+import EmailInput from "@/app/(private)/_components/(common)/Forms/FormFields/EmailInput";
+import PasswordInput from "@/app/(private)/_components/(common)/Forms/FormFields/PasswordInput";
 
 interface Props {
     isLogIn?: boolean;

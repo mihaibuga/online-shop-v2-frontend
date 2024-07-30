@@ -1,6 +1,6 @@
 import React from "react";
 
-import CreateUserForm from "@/app/(private)/_components/AuthForm/CreateUserForm";
+import CreateUserForm from "@/app/(private)/_components/(common)/Forms/Auth/CreateUserForm";
 
 type Props = {};
 

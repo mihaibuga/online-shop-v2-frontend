@@ -11,7 +11,7 @@ import { headers } from "@/app/(private)/_services/UserService";
 import { createProduct } from "@/app/(private)/_services/ProductService";
 
 import SuccessAlert from "@/app/(private)/_components/(common)/Alerts/SuccessAlert/SuccessAlert";
-import TextInput from "@/app/(private)/_components/AuthForm/FormFields/TextInput";
+import TextInput from "@/app/(private)/_components/(common)/Forms/FormFields/TextInput";
 
 type Props = {};
 
@@ -80,10 +80,7 @@ const CreateProductForm = (props: Props) => {
                 formData.append("productImages", form.productImages[i]);
             }
 
-            const newProduct = await createProduct(
-                formData,
-                headers(user?.token)
-            );
+            const newProduct = await createProduct(formData, headers(user?.token));
 
             if (newProduct !== undefined) {
                 toast.success(`The product has been created successfuly!`);

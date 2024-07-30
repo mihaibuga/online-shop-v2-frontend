@@ -12,11 +12,11 @@ import { userRoles } from "@/app/(private)/_utils/MockingData";
 
 import SuccessAlert from "@/app/(private)/_components/(common)/Alerts/SuccessAlert/SuccessAlert";
 
-import UsernameInput from "@/app/(private)/_components/AuthForm/FormFields/UsernameInput";
-import EmailInput from "@/app/(private)/_components/AuthForm/FormFields/EmailInput";
-import PasswordInput from "@/app/(private)/_components/AuthForm/FormFields/PasswordInput";
-import SelectInput from "@/app/(private)/_components/AuthForm/FormFields/SelectInput";
-import TextInput from "@/app/(private)/_components/AuthForm/FormFields/TextInput";
+import UsernameInput from "@/app/(private)/_components/(common)/Forms/FormFields/UsernameInput";
+import EmailInput from "@/app/(private)/_components/(common)/Forms/FormFields/EmailInput";
+import PasswordInput from "@/app/(private)/_components/(common)/Forms/FormFields/PasswordInput";
+import SelectInput from "@/app/(private)/_components/(common)/Forms/FormFields/SelectInput";
+import TextInput from "@/app/(private)/_components/(common)/Forms/FormFields/TextInput";
 
 type Props = {};
 
