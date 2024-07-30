@@ -1,5 +1,5 @@
-import { getPaginationItems } from "@/app/(private)/_helpers/PaginationLogic";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { getPaginationItems } from "@/app/(private)/_helpers/PaginationLogic";
 
 interface IProps {
     currentPage: number;

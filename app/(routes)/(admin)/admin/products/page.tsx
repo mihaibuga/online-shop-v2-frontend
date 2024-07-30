@@ -1,5 +1,5 @@
 import React from "react";
-import ProductsTable from "@/app/(private)/_components/(common)/Tables/ProductsTable";
+import ProductsTable from "@/app/(private)/_components/Tables/ProductsTable";
 
 type Props = {};
 

@@ -11,7 +11,7 @@ import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { IProduct } from "@/app/(private)/_utils/interfaces";
 import { URL_PATHS } from "@/app/(private)/_utils/constants";
 
-import PaginationSection from "@/app/(private)/_components/(admin)/UsersTable/PaginationSection";
+import PaginationSection from "@/app/(private)/_components/(common)/PaginationSection";
 import NoResults from "@/app/(private)/_components/(common)/NoResults/NoResults";
 import Spinner from "@/app/(private)/_components/(common)/Spinner/Spinner";
 import ExpandedArrow from "@/app/(private)/_components/(common)/ExpandedArrow/ExpandedArrow";

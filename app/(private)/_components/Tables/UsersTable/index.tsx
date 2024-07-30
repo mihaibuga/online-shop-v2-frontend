@@ -15,8 +15,8 @@ import { IUser } from "@/app/(private)/_utils/interfaces";
 import { deleteUser, getUsers } from "@/app/(private)/_services/UserService";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 
-import TableActions from "@/app/(private)/_components/(admin)/UsersTable/TableActions";
-import PaginationSection from "@/app/(private)/_components/(admin)/UsersTable/PaginationSection";
+import TableActions from "@/app/(private)/_components/Tables/TableActions";
+import PaginationSection from "@/app/(private)/_components/(common)/PaginationSection";
 
 type Props = {};
 

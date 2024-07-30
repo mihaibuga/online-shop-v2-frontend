@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import UsersTable from "@/app/(private)/_components/(admin)/UsersTable/UsersTable";
+import UsersTable from "@/app/(private)/_components/Tables/UsersTable";
 
 type Props = {};
 
