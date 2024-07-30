@@ -8,7 +8,7 @@ import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { IProduct } from "@/app/(private)/_utils/interfaces";
 import { devices, heroSlides, sneakers } from "@/app/(private)/_utils/MockingData";
 
-import ProductsGrid from "@/app/(private)/_components/(site)/Products/ProductsGrid";
+import ProductsGrid from "@/app/(private)/_components/Grids/ProductsGrid";
 
 const HeroCarousel = dynamic(() => import("@/app/(private)/_components/(site)/HeroCarousel/HeroCarousel"), {
     ssr: false,
