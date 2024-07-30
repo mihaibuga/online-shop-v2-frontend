@@ -1,4 +1,4 @@
-import CreateProductForm from "@/app/(private)/_components/(common)/Forms/Products/CreateProductForm";
+import CreateProductForm from "@/app/(private)/_components/Forms/Products/CreateProductForm";
 import React from "react";
 
 type Props = {};

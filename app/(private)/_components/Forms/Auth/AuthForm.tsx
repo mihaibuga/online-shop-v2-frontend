@@ -11,8 +11,8 @@ import useAuthStore from "@/app/(private)/_stores/authStore";
 import { STORE_NAME, URL_PATHS } from "@/app/(private)/_utils/constants";
 import { createOrGetUser } from "@/app/(private)/_services/AuthService";
 
-import AuthAgreement from "@/app/(private)/_components/(common)/Forms/Auth/AuthAgreement";
-import EmailAuthForm from "@/app/(private)/_components/(common)/Forms/Auth/EmailAuthForm";
+import AuthAgreement from "@/app/(private)/_components/Forms/Auth/AuthAgreement";
+import EmailAuthForm from "@/app/(private)/_components/Forms/Auth/EmailAuthForm";
 
 type Props = {
     isLogIn?: boolean;

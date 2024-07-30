@@ -9,7 +9,7 @@ interface IProps {
     options: string[];
 }
 
-const SelectInput = ({ register, errors, id, labelText, options }: IProps) => {
+const SelectField = ({ register, errors, id, labelText, options }: IProps) => {
     return (
         <div>
             <label htmlFor={id} className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -29,4 +29,4 @@ const SelectInput = ({ register, errors, id, labelText, options }: IProps) => {
     );
 };
 
-export default SelectInput;
+export default SelectField;

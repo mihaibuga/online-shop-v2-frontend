@@ -7,9 +7,9 @@ import * as Yup from "yup";
 import useAuthStore from "@/app/(private)/_stores/authStore";
 import { loginUser, registerUser } from "@/app/(private)/_services/AuthService";
 
-import UsernameInput from "@/app/(private)/_components/(common)/Forms/FormFields/UsernameInput";
-import EmailInput from "@/app/(private)/_components/(common)/Forms/FormFields/EmailInput";
-import PasswordInput from "@/app/(private)/_components/(common)/Forms/FormFields/PasswordInput";
+import EmailInput from "@/app/(private)/_components/Forms/FormFields/EmailInput";
+import PasswordInput from "@/app/(private)/_components/Forms/FormFields/PasswordInput";
+import TextInput from "../FormFields/TextInput";
 
 interface Props {
     isLogIn?: boolean;
@@ -67,7 +67,13 @@ const EmailAuthForm = ({ isLogIn }: Props) => {
     return (
         <div className="px-6 space-y-2 md:space-y-4 sm:px-8">
             <form className="space-y-2 md:space-y-4" onSubmit={handleSubmit(handleFormSubmit)}>
-                <UsernameInput register={register} errors={errors} />
+                <TextInput
+                    id={"username"}
+                    labelText={"Username"}
+                    placeholder={"Username"}
+                    register={register}
+                    errors={errors}
+                />
 
                 {isLogIn !== true && <EmailInput register={register} errors={errors} />}
 

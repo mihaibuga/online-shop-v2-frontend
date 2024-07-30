@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import NewFileForm from "@/app/(private)/_components/(common)/Forms/Files/NewFileForm";
+import NewFileForm from "@/app/(private)/_components/Forms/Files/NewFileForm";
 
 type Props = {};
 

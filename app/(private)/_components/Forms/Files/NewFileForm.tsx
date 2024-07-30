@@ -5,11 +5,11 @@ import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { uploadFile } from "@/app/(private)/_services/FileService";
 import { headers } from "@/app/(private)/_services/UserService";
 
-import DiscardButton from "@/app/(private)/_components/(common)/NewMedia/DiscardButton";
+import DiscardButton from "@/app/(private)/_components/(common)/Buttons/DiscardButton";
+import SubmitButton from "@/app/(private)/_components/(common)/Buttons/SubmitButton";
+
 import ErrorAlert from "@/app/(private)/_components/(common)/Alerts/ErrorAlert/ErrorAlert";
-import FileUpload from "@/app/(private)/_components/(common)/NewMedia/FileUpload";
-import InputField from "@/app/(private)/_components/(common)/NewMedia/InputField";
-import SubmitButton from "@/app/(private)/_components/(common)/NewMedia/SubmitButton";
+import FileUpload from "@/app/(private)/_components/Forms/FormFields/FileUpload";
 
 type Props = {};
 
@@ -175,12 +175,15 @@ const NewFileForm = (props: Props) => {
                 </div>
 
                 <div className="flex flex-col gap-3 pb-10">
-                    <InputField
-                        labelText={"Custom file name"}
-                        inputValue={customFileName}
-                        inputType={"text"}
-                        changeHandler={(event) => setCustomFileName(event.target.value)}
-                    />
+                    <>
+                        <label className="text-md font-medium ">Custom file name</label>
+                        <input
+                            type="text"
+                            value={customFileName}
+                            onChange={(event) => setCustomFileName(event.target.value)}
+                            className="rounded outline-none text-md border-2 border-gray-200 p-2 bg-gray-50 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600"
+                        />
+                    </>
 
                     <div className="flex gap-6 mt-10">
                         <DiscardButton handleDiscard={handleDiscard} />

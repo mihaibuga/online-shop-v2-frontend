@@ -12,11 +12,10 @@ import { userRoles } from "@/app/(private)/_utils/MockingData";
 
 import SuccessAlert from "@/app/(private)/_components/(common)/Alerts/SuccessAlert/SuccessAlert";
 
-import UsernameInput from "@/app/(private)/_components/(common)/Forms/FormFields/UsernameInput";
-import EmailInput from "@/app/(private)/_components/(common)/Forms/FormFields/EmailInput";
-import PasswordInput from "@/app/(private)/_components/(common)/Forms/FormFields/PasswordInput";
-import SelectInput from "@/app/(private)/_components/(common)/Forms/FormFields/SelectInput";
-import TextInput from "@/app/(private)/_components/(common)/Forms/FormFields/TextInput";
+import EmailInput from "@/app/(private)/_components/Forms/FormFields/EmailInput";
+import PasswordInput from "@/app/(private)/_components/Forms/FormFields/PasswordInput";
+import SelectInput from "@/app/(private)/_components/Forms/FormFields/SelectField";
+import TextInput from "@/app/(private)/_components/Forms/FormFields/TextInput";
 
 type Props = {};
 
@@ -77,7 +76,13 @@ const CreateUserForm = (props: Props) => {
                 )}
             </div>
             <form onSubmit={handleSubmit(handleFormSubmit)}>
-                <UsernameInput register={register} errors={errors} />
+                <TextInput
+                    id={"username"}
+                    labelText={"Username"}
+                    placeholder={"Username"}
+                    register={register}
+                    errors={errors}
+                />
                 <EmailInput register={register} errors={errors} />
                 <PasswordInput register={register} errors={errors} />
 

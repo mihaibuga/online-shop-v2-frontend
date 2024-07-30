@@ -11,7 +11,7 @@ import { headers } from "@/app/(private)/_services/UserService";
 import { createProduct } from "@/app/(private)/_services/ProductService";
 
 import SuccessAlert from "@/app/(private)/_components/(common)/Alerts/SuccessAlert/SuccessAlert";
-import TextInput from "@/app/(private)/_components/(common)/Forms/FormFields/TextInput";
+import TextInput from "@/app/(private)/_components/Forms/FormFields/TextInput";
 
 type Props = {};
 
@@ -134,14 +134,6 @@ const CreateProductForm = (props: Props) => {
                     />
                     {errors.price ? <p className="text-red-500">{errors.price.message}</p> : ""}
                 </div>
-
-                {/* <SelectInput
-                    id={"isEnabled"}
-                    labelText={"Is the product enabled?"}
-                    options={["Yes", "No"]}
-                    register={register}
-                    errors={errors}
-                /> */}
 
                 <div>
                     <label htmlFor="isEnabled" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

@@ -1,6 +1,6 @@
-import { STORE_NAME, URL_PATHS } from "@/app/(private)/_utils/constants";
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
+import { STORE_NAME, URL_PATHS } from "@/app/(private)/_utils/constants";
 
 type Props = {};
 
