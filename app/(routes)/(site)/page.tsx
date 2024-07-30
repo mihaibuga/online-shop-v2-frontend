@@ -10,7 +10,7 @@ import { devices, heroSlides, sneakers } from "@/app/(private)/_utils/MockingDat
 
 import ProductsGrid from "@/app/(private)/_components/Grids/ProductsGrid";
 
-const HeroCarousel = dynamic(() => import("@/app/(private)/_components/(site)/HeroCarousel/HeroCarousel"), {
+const HeroCarousel = dynamic(() => import("@/app/(private)/_components/Carousels/HeroCarousel"), {
     ssr: false,
 });
 
