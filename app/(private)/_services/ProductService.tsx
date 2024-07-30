@@ -1,8 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { toast } from "react-toastify";
-import { apiBaseURL, deleteData, fetchData, postData } from "@/app/(private)/_utils/api";
+import { apiBaseURL, deleteData, fetchData, headers, postData } from "@/app/(private)/_utils/api";
 import { IProduct } from "@/app/(private)/_utils/interfaces";
-import { headers } from "@/app/(private)/_services/UserService";
 
 export const createProduct = async (
     newProductDetails: FormData,
@@ -45,7 +44,7 @@ export const getProducts = async (
         }`,
         headers(token)
     );
-    
+
     if (result !== undefined) {
         if (result.data && Array.isArray(result.data.data)) {
             return result.data;

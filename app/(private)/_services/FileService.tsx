@@ -1,13 +1,8 @@
 import { toast } from "react-toastify";
 import { AxiosRequestConfig } from "axios";
 
-import { apiBaseURL, fetchData, postData } from "@/app/(private)/_utils/api";
+import { apiBaseURL, fetchData, headers, postData } from "@/app/(private)/_utils/api";
 import { IFile } from "@/app/(private)/_utils/interfaces";
-import { headers } from "@/app/(private)/_services/UserService";
-
-export const fileUploadHeaders = (token: string | undefined) => {
-    return { headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" } };
-};
 
 export const uploadFile = async (formData: any, fetchConfigs?: AxiosRequestConfig<any> | undefined) => {
     try {

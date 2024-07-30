@@ -4,6 +4,21 @@ import { handleError } from "@/app/(private)/_helpers/ErrorHandler";
 
 export const apiBaseURL = `${apiDomain}/api`;
 
+export const headers = (token: string | undefined) => {
+    return {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+            "Access-Control-Allow-Headers":
+                "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
+            "Access-Control-Allow-Credentials": "true",
+            "Access-Control-Expose-Headers": "Authorization",
+        },
+    };
+};
+
 export const fetchData = async <T,>(endpoint: string, headers: any): Promise<T | any> => {
     try {
         const response = await axios.get<T>(endpoint, headers);

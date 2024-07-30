@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
-import { headers } from "@/app/(private)/_services/UserService";
+import { headers } from "@/app/(private)/_utils/api";
 import { createProduct } from "@/app/(private)/_services/ProductService";
 
 import SuccessAlert from "@/app/(private)/_components/Alerts/SuccessAlert/SuccessAlert";

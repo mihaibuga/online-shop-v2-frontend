@@ -2,21 +2,28 @@ import { AxiosRequestConfig } from "axios";
 import { toast } from "react-toastify";
 
 import { IRegisterUser, IUser } from "@/app/(private)/_utils/interfaces";
-import { apiBaseURL, deleteData, fetchData, postData } from "@/app/(private)/_utils/api";
+import { apiBaseURL, deleteData, fetchData, headers, postData } from "@/app/(private)/_utils/api";
 
-export const headers = (token: string | undefined) => {
-    return {
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-            "Access-Control-Allow-Headers":
-                "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
-            "Access-Control-Allow-Credentials": "true",
-            "Access-Control-Expose-Headers": "Authorization",
-        },
-    };
+export const createUser = async (
+    registeringUserDetails: IRegisterUser,
+    fetchConfigs?: AxiosRequestConfig<any> | undefined
+) => {
+    try {
+        let result =
+            fetchConfigs !== undefined
+                ? await postData<IUser>(apiBaseURL + "/users", registeringUserDetails, fetchConfigs)
+                : await postData<IUser>(apiBaseURL + "/users", registeringUserDetails);
+        if (result) {
+            const user: IUser = {
+                userName: result?.data.userName,
+                email: result?.data.email,
+            };
+            return user;
+        }
+        return result;
+    } catch (e: any) {
+        toast.warning("Server error occurred");
+    }
 };
 
 export const getUsers = async (
@@ -76,27 +83,5 @@ export const deleteUser = async (id: string, token: string | undefined) => {
         return result;
     } catch (e: any) {
         toast.error("Server error occurred");
-    }
-};
-
-export const createUser = async (
-    registeringUserDetails: IRegisterUser,
-    fetchConfigs?: AxiosRequestConfig<any> | undefined
-) => {
-    try {
-        let result =
-            fetchConfigs !== undefined
-                ? await postData<IUser>(apiBaseURL + "/users", registeringUserDetails, fetchConfigs)
-                : await postData<IUser>(apiBaseURL + "/users", registeringUserDetails);
-        if (result) {
-            const user: IUser = {
-                userName: result?.data.userName,
-                email: result?.data.email,
-            };
-            return user;
-        }
-        return result;
-    } catch (e: any) {
-        toast.warning("Server error occurred");
     }
 };

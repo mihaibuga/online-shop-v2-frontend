@@ -6,7 +6,8 @@ import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
-import { createUser, headers } from "@/app/(private)/_services/UserService";
+import { createUser } from "@/app/(private)/_services/UserService";
+import { headers } from "@/app/(private)/_utils/api";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { userRoles } from "@/app/(private)/_utils/MockingData";
 

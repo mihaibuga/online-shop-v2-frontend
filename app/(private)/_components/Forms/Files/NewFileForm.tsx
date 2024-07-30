@@ -3,7 +3,7 @@ import { AiOutlineLoading } from "react-icons/ai";
 
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { uploadFile } from "@/app/(private)/_services/FileService";
-import { headers } from "@/app/(private)/_services/UserService";
+import { headers } from "@/app/(private)/_utils/api";
 
 import DiscardButton from "@/app/(private)/_components/Buttons/DiscardButton";
 import SubmitButton from "@/app/(private)/_components/Buttons/SubmitButton";

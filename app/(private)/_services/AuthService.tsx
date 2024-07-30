@@ -1,17 +1,9 @@
-import { IRegisterUser, ILoginUser, IUser } from "@/app/(private)/_utils/interfaces";
-import { apiBaseURL, postData } from "@/app/(private)/_utils/api";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-interface IDecoded {
-    sub: string;
-    name: string;
-    family_name: string;
-    given_name: string;
-    picture: string;
-    email: string;
-}
+import { IRegisterUser, ILoginUser, IUser, IDecoded } from "@/app/(private)/_utils/interfaces";
+import { apiBaseURL, postData } from "@/app/(private)/_utils/api";
 
 // Email Auth
 export const registerAPI = async (registeringUserDetails: IRegisterUser) => {
