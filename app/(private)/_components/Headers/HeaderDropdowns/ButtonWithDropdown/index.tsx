@@ -1,6 +1,9 @@
 import React, { useRef, useState } from "react";
-import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/(private)/_hooks/useExpandedElementsHandlers";
-import HeaderExpandingLink from "@/app/(private)/_components/(common)/HeaderDropdowns/ButtonWithDropdown//HeaderExpandingLink";
+import {
+    useExpandedElementClickHandler,
+    useExpandedElementKeyHandler,
+} from "@/app/(private)/_hooks/useExpandedElementsHandlers";
+import HeaderExpandingLink from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown/HeaderExpandingLink";
 import { IButtonWithDropdown } from "@/app/(private)/_utils/interfaces";
 
 const ButtonWithDropdown = ({ icon, children }: IButtonWithDropdown) => {

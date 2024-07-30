@@ -3,9 +3,9 @@
 import { PiBellLight } from "react-icons/pi";
 import { notifications } from "@/app/(private)/_utils/MockingData";
 
-import ButtonWithDropdown from "@/app/(private)/_components/(common)/HeaderDropdowns/ButtonWithDropdown/index";
-import DropdownTitle from "@/app/(private)/_components/(common)/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";
-import DropdownNotificationLink from "@/app/(private)/_components/(common)/HeaderDropdowns/DropdownNotifications/DropdownNotificationLink";
+import ButtonWithDropdown from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown/index";
+import DropdownTitle from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";
+import DropdownNotificationLink from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownNotifications/DropdownNotificationLink";
 
 const DropdownNotification = () => {
     return (

@@ -7,7 +7,7 @@ import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import "@/app/(private)/_ui/styles/globals.scss";
 import MainTheme from "@/app/(private)/_themes/MainTheme/MainTheme";
 
-import Navbar from "@/app/(private)/_components/(site)/Navbar/Navbar";
+import Navbar from "@/app/(private)/_components/Headers/SiteHeader";
 import Sidebar from "@/app/(private)/_components/Sidebars/SiteSidebar";
 
 const inter = Inter({ subsets: ["latin"] });

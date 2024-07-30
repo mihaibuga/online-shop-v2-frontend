@@ -12,14 +12,14 @@ import ThemeToggle from "@/app/(private)/_components/(common)/Toggles/ThemeToggl
 import SearchBar from "@/app/(private)/_components/(common)/SearchBar/SearchBar";
 import Logo from "@/app/(private)/_components/(common)/Logo/Logo";
 import SidebarToggle from "@/app/(private)/_components/(common)/Toggles/SidebarToggle/SidebarToggle";
-import HeaderActionButtonWrapper from "@/app/(private)/_components/(common)/HeaderActionButtonWrapper/HeaderActionButtonWrapper";
-import ButtonWithDropdown from "@/app/(private)/_components/(common)/HeaderDropdowns/ButtonWithDropdown";
-import DropdownTitle from "@/app/(private)/_components/(common)/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";
-import SiteDropdownUser from "@/app/(private)/_components/(common)/HeaderDropdowns/DropdownUser/SiteDropdownUser";
+import HeaderActionButtonWrapper from "@/app/(private)/_components/Headers/HeaderActionButtonWrapper/HeaderActionButtonWrapper";
+import ButtonWithDropdown from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown";
+import DropdownTitle from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";
+import SiteDropdownUser from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownUser/SiteDropdownUser";
 
 type Props = {};
 
-const Navbar = (props: Props) => {
+const SiteHeader = (props: Props) => {
     const { isSidebarOpen, toggleSidebarDisplay } = useGeneralStore();
 
     return (
@@ -68,4 +68,4 @@ const Navbar = (props: Props) => {
     );
 };
 
-export default Navbar;
+export default SiteHeader;

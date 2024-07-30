@@ -5,14 +5,14 @@ import useGeneralStore from "@/app/(private)/_stores/generalStore";
 
 import SidebarToggle from "@/app/(private)/_components/(common)/Toggles/SidebarToggle/SidebarToggle";
 import ThemeToggle from "@/app/(private)/_components/(common)/Toggles/ThemeToggle/ThemeToggle";
-import DropdownMessage from "@/app/(private)/_components/(common)/HeaderDropdowns/DropdownMessages/DropdownMessage";
-import DropdownNotification from "@/app/(private)/_components/(common)/HeaderDropdowns/DropdownNotifications/DropdownNotification";
-import DropdownUser from "@/app/(private)/_components/(common)/HeaderDropdowns/DropdownUser/AdminDropdownUser";
+import DropdownMessage from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownMessages/DropdownMessage";
+import DropdownNotification from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownNotifications/DropdownNotification";
+import DropdownUser from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownUser/AdminDropdownUser";
 import SearchBar from "@/app/(private)/_components/(common)/SearchBar/SearchBar";
 import Logo from "@/app/(private)/_components/(common)/Logo/Logo";
-import HeaderActionButtonWrapper from "@/app/(private)/_components/(common)/HeaderActionButtonWrapper/HeaderActionButtonWrapper";
+import HeaderActionButtonWrapper from "@/app/(private)/_components/Headers/HeaderActionButtonWrapper/HeaderActionButtonWrapper";
 
-const Header = () => {
+const AdminHeader = () => {
     const { isAdminSidebarOpen, toggleAdminSidebarDisplay } = useGeneralStore();
 
     return (
@@ -61,4 +61,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default AdminHeader;

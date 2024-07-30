@@ -3,12 +3,15 @@ import Link from "next/link";
 import { MdFavorite, MdOutlinePersonOutline } from "react-icons/md";
 import { IoMdCart } from "react-icons/io";
 
-import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/(private)/_hooks/useExpandedElementsHandlers";
+import {
+    useExpandedElementClickHandler,
+    useExpandedElementKeyHandler,
+} from "@/app/(private)/_hooks/useExpandedElementsHandlers";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { URL_PATHS } from "@/app/(private)/_utils/constants";
 
 import ProfileImage from "@/app/(private)/_components/(common)/ProfileImage";
-import SimpleLink from "@/app/(private)/_components/(common)/HeaderDropdowns/DropdownUser/LinkTypes/SimpleLink";
+import SimpleLink from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownUser/LinkTypes/SimpleLink";
 import SignOutButton from "@/app/(private)/_components/(common)/Buttons/SignOutButton";
 
 type Props = {};

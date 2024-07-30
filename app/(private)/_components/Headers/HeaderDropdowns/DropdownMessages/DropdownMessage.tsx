@@ -1,9 +1,9 @@
 "use client";
 
 import { AiOutlineMessage } from "react-icons/ai";
-import ButtonWithDropdown from "@/app/(private)/_components/(common)/HeaderDropdowns/ButtonWithDropdown/index";
-import DropdownTitle from "@/app/(private)/_components/(common)/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";
-import DropdownMessageLink from "@/app/(private)/_components/(common)/HeaderDropdowns/DropdownMessages/DropdownMessageLink";
+import ButtonWithDropdown from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown/index";
+import DropdownTitle from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";
+import DropdownMessageLink from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownMessages/DropdownMessageLink";
 import { messages } from "@/app/(private)/_utils/MockingData";
 
 const DropdownMessage = () => {

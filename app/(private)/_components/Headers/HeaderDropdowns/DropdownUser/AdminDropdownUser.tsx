@@ -5,14 +5,17 @@ import Link from "next/link";
 
 import { MdOutlinePersonOutline } from "react-icons/md";
 
-import { useExpandedElementClickHandler, useExpandedElementKeyHandler } from "@/app/(private)/_hooks/useExpandedElementsHandlers";
+import {
+    useExpandedElementClickHandler,
+    useExpandedElementKeyHandler,
+} from "@/app/(private)/_hooks/useExpandedElementsHandlers";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { URL_PATHS } from "@/app/(private)/_utils/constants";
 
 import ProfileImage from "@/app/(private)/_components/(common)/ProfileImage";
 import SignOutButton from "@/app/(private)/_components/(common)/Buttons/SignOutButton";
 import ExpandedArrow from "@/app/(private)/_components/(common)/ExpandedArrow/ExpandedArrow";
-import SimpleLink from "@/app/(private)/_components/(common)/HeaderDropdowns/DropdownUser/LinkTypes/SimpleLink";
+import SimpleLink from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownUser/LinkTypes/SimpleLink";
 
 const AdminDropdownUser = () => {
     const loggedInUser = useStoredUser();
@@ -42,9 +45,7 @@ const AdminDropdownUser = () => {
                         {loggedInUser !== null && loggedInUser !== undefined ? loggedInUser.userName : "Unknown"}
                     </span>
                     {loggedInUser !== null && loggedInUser !== undefined && loggedInUser.role && (
-                        <span className="block text-xs text-black dark:text-white">
-                            {loggedInUser.role}
-                        </span>
+                        <span className="block text-xs text-black dark:text-white">{loggedInUser.role}</span>
                     )}
                 </span>
 
