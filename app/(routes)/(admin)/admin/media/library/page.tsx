@@ -8,7 +8,7 @@ import { IFile } from "@/app/(private)/_utils/interfaces";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { getFiles } from "@/app/(private)/_services/FileService";
 
-import FilesGallery from "@/app/(private)/_components/(admin)/FilesGallery/FilesGallery";
+import FilesGallery from "@/app/(private)/_components/Galleries/FilesGallery";
 
 type Props = {};
 

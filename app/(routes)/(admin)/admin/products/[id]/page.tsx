@@ -12,7 +12,7 @@ import { IProduct } from "@/app/(private)/_utils/interfaces";
 
 import Spinner from "@/app/(private)/_components/(common)/Spinner/Spinner";
 import NoResults from "@/app/(private)/_components/(common)/NoResults/NoResults";
-import FilesGallery from "@/app/(private)/_components/(admin)/FilesGallery/FilesGallery";
+import FilesGallery from "@/app/(private)/_components/Galleries/FilesGallery";
 
 type Params = {
     id: string;
