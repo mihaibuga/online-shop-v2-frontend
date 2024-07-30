@@ -6,11 +6,11 @@ export const URL_PATHS = {
     },
     // AUTH
     LOGIN: {
-        path:  "/myaccount/auth/login",
+        path:  "/user/login",
         label:  "Sign In",
     },
     SIGNUP: {
-        path:  "/myaccount/auth/register",
+        path:  "/user/register",
         label:  "Register",
     },
     // Admin access
@@ -20,19 +20,19 @@ export const URL_PATHS = {
     },
     // Access to personal user's account
     MY_ACCOUNT: {
-        path:  "/myaccount",
+        path:  "/user",
         label:  "My Account",
     },
     PROFILE: {
-        path:  "/myaccount/profile",
+        path:  "/user/profile",
         label:  "My Profile",
     },
     WISHLIST: {
-        path:  "/myaccount/wishlist",
+        path:  "/user/wishlist",
         label:  "My Wishlist",
     },
     ORDERS: {
-        path:  "/myaccount/orders",
+        path:  "/user/orders",
         label:  "My Orders",
     },
     // Orders

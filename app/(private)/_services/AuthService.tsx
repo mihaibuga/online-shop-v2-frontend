@@ -11,7 +11,7 @@ export const registerAPI = async (registeringUserDetails: IRegisterUser) => {
 };
 
 export const loginAPI = async (loginUserDetails: ILoginUser) => {
-    return await postData<IUser>(apiBaseURL + "/auth/login", loginUserDetails);
+    return await postData<IUser>(apiBaseURL + "/login", loginUserDetails);
 };
 
 export const registerUser = async (registeringUserDetails: IRegisterUser, setLoggedInUser: any) => {
