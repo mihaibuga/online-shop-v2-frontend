@@ -1,8 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { apiDomain } from "@/app/(private)/_utils/env";
 import { handleError } from "@/app/(private)/_helpers/ErrorHandler";
-
-export const apiBaseURL = `${apiDomain}/api`;
 
 export const headers = (token: string | undefined) => {
     return {

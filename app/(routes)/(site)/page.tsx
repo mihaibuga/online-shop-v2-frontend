@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { getProducts } from "@/app/(private)/_services/ProductService";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { IProduct } from "@/app/(private)/_utils/interfaces";
-import { devices, heroSlides, sneakers } from "@/app/(private)/_utils/MockingData";
+import { devices, heroSlides, sneakers } from "@/app/(private)/_utils/DummyData";
 
 import ProductsGrid from "@/app/(private)/_components/Grids/ProductsGrid";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
 import useGeneralStore from "@/app/(private)/_stores/generalStore";
 
 import SidebarToggle from "@/app/(private)/_components/Buttons/Toggles/SidebarToggle/SidebarToggle";

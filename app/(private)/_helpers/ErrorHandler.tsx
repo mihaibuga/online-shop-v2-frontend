@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { toast } from "react-toastify";
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
 
 export const handleError = (error: any) => {
     if (axios.isAxiosError(error)) {

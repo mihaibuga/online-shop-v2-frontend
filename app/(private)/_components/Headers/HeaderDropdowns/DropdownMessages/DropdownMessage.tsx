@@ -4,7 +4,7 @@ import { AiOutlineMessage } from "react-icons/ai";
 import ButtonWithDropdown from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown/index";
 import DropdownTitle from "@/app/(private)/_components/Headers/HeaderDropdowns/ButtonWithDropdown/DropdownTitle";
 import DropdownMessageLink from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownMessages/DropdownMessageLink";
-import { messages } from "@/app/(private)/_utils/MockingData";
+import { messages } from "@/app/(private)/_utils/DummyData";
 
 const DropdownMessage = () => {
     return (

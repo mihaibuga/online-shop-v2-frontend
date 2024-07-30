@@ -1,5 +1,5 @@
 import React from "react";
-import { brands } from "@/app/(private)/_utils/MockingData";
+import { brands } from "@/app/(private)/_utils/DummyData";
 
 type Props = {};
 

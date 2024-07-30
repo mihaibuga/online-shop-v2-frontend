@@ -1,4 +1,20 @@
+import { apiDomain } from "@/app/(private)/_config/env";
+
 export const STORE_NAME = "Storify";
+
+export const apiBaseURL = `${apiDomain}/api`;
+export const googleUserInfoURL = "https://www.googleapis.com/oauth2/v3/userinfo";
+
+export const API_ENDPOINTS = {
+    AUTH: {
+        REGISTER: apiBaseURL + "/auth/register",
+        LOGIN: apiBaseURL + "/auth/login",
+        GOOGLE: apiBaseURL + "/auth/google",
+    },
+    FILES: apiBaseURL + "/files",
+    PRODUCTS: apiBaseURL + "/products",
+    USERS: apiBaseURL + "/users"
+}
 
 export const URL_PATHS = {
     HOME: {

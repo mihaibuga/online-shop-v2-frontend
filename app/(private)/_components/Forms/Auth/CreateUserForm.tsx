@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import { createUser } from "@/app/(private)/_services/UserService";
 import { headers } from "@/app/(private)/_utils/api";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
-import { userRoles } from "@/app/(private)/_utils/MockingData";
+import { userRoles } from "@/app/(private)/_utils/DummyData";
 
 import SuccessAlert from "@/app/(private)/_components/Alerts/SuccessAlert/SuccessAlert";
 

@@ -2,7 +2,8 @@ import { AxiosRequestConfig } from "axios";
 import { toast } from "react-toastify";
 
 import { IRegisterUser, IUser } from "@/app/(private)/_utils/interfaces";
-import { apiBaseURL, deleteData, fetchData, headers, postData } from "@/app/(private)/_utils/api";
+import { API_ENDPOINTS } from "@/app/(private)/_config/constants";
+import { deleteData, fetchData, headers, postData } from "@/app/(private)/_utils/api";
 
 export const createUser = async (
     registeringUserDetails: IRegisterUser,
@@ -11,8 +12,8 @@ export const createUser = async (
     try {
         let result =
             fetchConfigs !== undefined
-                ? await postData<IUser>(apiBaseURL + "/users", registeringUserDetails, fetchConfigs)
-                : await postData<IUser>(apiBaseURL + "/users", registeringUserDetails);
+                ? await postData<IUser>(API_ENDPOINTS.USERS, registeringUserDetails, fetchConfigs)
+                : await postData<IUser>(API_ENDPOINTS.USERS, registeringUserDetails);
         if (result) {
             const user: IUser = {
                 userName: result?.data.userName,
@@ -36,7 +37,7 @@ export const getUsers = async (
     }
 
     const result: any = await fetchData<IUser[]>(
-        `${apiBaseURL}/users?IsAscending=${query.isAscending}${
+        `${API_ENDPOINTS.USERS}?IsAscending=${query.isAscending}${
             query.sortBy !== undefined ? `&SortBy=${query.sortBy}` : ""
         }${query.currentPage !== undefined ? `&PageNumber=${query.currentPage}` : ""}${
             query.itemsOnPage !== undefined ? `&PageSize=${query.itemsOnPage}` : ""
@@ -60,7 +61,7 @@ export const getUserDetails = async (token: string | undefined, query: { id: str
         return;
     }
 
-    const result: any = await fetchData<IUser>(`${apiBaseURL}/users/${query.id}`, headers(token));
+    const result: any = await fetchData<IUser>(`${API_ENDPOINTS.USERS}/${query.id}`, headers(token));
 
     if (result !== undefined) {
         if (result.data) {
@@ -74,7 +75,7 @@ export const getUserDetails = async (token: string | undefined, query: { id: str
 
 export const deleteUser = async (id: string, token: string | undefined) => {
     try {
-        let result = await deleteData<IUser>(`${apiBaseURL}/users/${id}`, headers(token));
+        let result = await deleteData<IUser>(`${API_ENDPOINTS.USERS}/${id}`, headers(token));
         if (result) {
             toast.success("The user has been deleted successfully!");
         } else {

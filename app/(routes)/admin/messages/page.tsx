@@ -1,4 +1,4 @@
-import { messages } from "@/app/(private)/_utils/MockingData";
+import { messages } from "@/app/(private)/_utils/DummyData";
 import React from "react";
 
 type Props = {};

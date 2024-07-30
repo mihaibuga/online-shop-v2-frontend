@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import "@/app/(private)/_ui/styles/globals.scss";
-import { googleClientId } from "@/app/(private)/_utils/env";
+import { googleClientId } from "@/app/(private)/_config/env";
 
 const inter = Inter({ subsets: ["latin"] });
 

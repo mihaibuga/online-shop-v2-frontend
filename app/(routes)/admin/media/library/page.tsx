@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
 import { IFile } from "@/app/(private)/_utils/interfaces";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { getFiles } from "@/app/(private)/_services/FileService";

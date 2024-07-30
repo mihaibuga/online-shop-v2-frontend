@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { BsShop } from "react-icons/bs";
-import { STORE_NAME, URL_PATHS } from "@/app/(private)/_utils/constants";
+import { STORE_NAME, URL_PATHS } from "@/app/(private)/_config/constants";
 
 interface IProps {
     linkPath: string;

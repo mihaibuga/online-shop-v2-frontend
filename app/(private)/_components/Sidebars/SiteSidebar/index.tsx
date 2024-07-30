@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
 
 import useGeneralStore from "@/app/(private)/_stores/generalStore";
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
 
 import SidebarCloseButton from "@/app/(private)/_components/Buttons/SidebarCloseButton";
 import Logo from "@/app/(private)/_components/Others/Logo";

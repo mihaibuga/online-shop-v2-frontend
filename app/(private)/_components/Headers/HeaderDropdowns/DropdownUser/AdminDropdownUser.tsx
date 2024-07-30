@@ -10,7 +10,7 @@ import {
     useExpandedElementKeyHandler,
 } from "@/app/(private)/_hooks/useExpandedElementsHandlers";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
 
 import ProfileImage from "@/app/(private)/_components/Others/ProfileImage";
 import SignOutButton from "@/app/(private)/_components/Buttons/SignOutButton";

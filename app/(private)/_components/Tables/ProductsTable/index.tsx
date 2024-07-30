@@ -9,7 +9,7 @@ import { BsBoxes } from "react-icons/bs";
 import { deleteProduct, getProducts } from "@/app/(private)/_services/ProductService";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { IProduct } from "@/app/(private)/_utils/interfaces";
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
 
 import PaginationSection from "@/app/(private)/_components/Others/PaginationSection";
 import NoResults from "@/app/(private)/_components/Others/NoResults";

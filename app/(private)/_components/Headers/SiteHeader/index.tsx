@@ -5,8 +5,8 @@ import React from "react";
 import { IoMdCart } from "react-icons/io";
 
 import useGeneralStore from "@/app/(private)/_stores/generalStore";
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
-import { checkedOutProducts } from "@/app/(private)/_utils/MockingData";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
+import { checkedOutProducts } from "@/app/(private)/_utils/DummyData";
 
 import ThemeToggle from "@/app/(private)/_components/Buttons/Toggles/ThemeToggle/ThemeToggle";
 import SearchBar from "@/app/(private)/_components/Others/SearchBar";

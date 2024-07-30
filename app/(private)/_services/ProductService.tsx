@@ -1,6 +1,8 @@
 import { AxiosRequestConfig } from "axios";
 import { toast } from "react-toastify";
-import { apiBaseURL, deleteData, fetchData, headers, postData } from "@/app/(private)/_utils/api";
+
+import { API_ENDPOINTS } from "@/app/(private)/_config/constants";
+import { deleteData, fetchData, headers, postData } from "@/app/(private)/_utils/api";
 import { IProduct } from "@/app/(private)/_utils/interfaces";
 
 export const createProduct = async (
@@ -10,8 +12,8 @@ export const createProduct = async (
     try {
         let result =
             fetchConfigs !== undefined
-                ? await postData<IProduct>(apiBaseURL + "/products", newProductDetails, fetchConfigs)
-                : await postData<IProduct>(apiBaseURL + "/products", newProductDetails);
+                ? await postData<IProduct>(API_ENDPOINTS.PRODUCTS, newProductDetails, fetchConfigs)
+                : await postData<IProduct>(API_ENDPOINTS.PRODUCTS, newProductDetails);
         if (result) {
             const product: IProduct = {
                 name: result?.data.name,
@@ -37,7 +39,7 @@ export const getProducts = async (
     }
 
     const result: any = await fetchData<IProduct[]>(
-        `${apiBaseURL}/products?IsAscending=${query.isAscending}${
+        `${API_ENDPOINTS.PRODUCTS}?IsAscending=${query.isAscending}${
             query.sortBy !== undefined ? `&SortBy=${query.sortBy}` : ""
         }${query.currentPage !== undefined ? `&PageNumber=${query.currentPage}` : ""}${
             query.itemsOnPage !== undefined ? `&PageSize=${query.itemsOnPage}` : ""
@@ -61,7 +63,7 @@ export const getProductDetails = async (token: string | undefined, query: { id: 
         return;
     }
 
-    const result: any = await fetchData<IProduct>(`${apiBaseURL}/products/${query.id}`, headers(token));
+    const result: any = await fetchData<IProduct>(`${API_ENDPOINTS.PRODUCTS}/${query.id}`, headers(token));
 
     if (result !== undefined) {
         if (result.data) {
@@ -75,7 +77,7 @@ export const getProductDetails = async (token: string | undefined, query: { id: 
 
 export const deleteProduct = async (id: string, token: string | undefined) => {
     try {
-        let result = await deleteData<IProduct>(`${apiBaseURL}/products/${id}`, headers(token));
+        let result = await deleteData<IProduct>(`${API_ENDPOINTS.PRODUCTS}/${id}`, headers(token));
         if (result) {
             toast.success("The product has been deleted successfully!");
         } else {

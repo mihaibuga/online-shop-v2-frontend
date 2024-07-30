@@ -8,7 +8,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
 
 import useAuthStore from "@/app/(private)/_stores/authStore";
-import { STORE_NAME, URL_PATHS } from "@/app/(private)/_utils/constants";
+import { STORE_NAME, URL_PATHS } from "@/app/(private)/_config/constants";
 import { createOrGetUser } from "@/app/(private)/_services/AuthService";
 
 import AuthAgreement from "@/app/(private)/_components/Forms/Auth/AuthAgreement";

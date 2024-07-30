@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { IoMdSend } from "react-icons/io";
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
 import "@/app/(private)/_ui/styles/globals.scss";
 
 const NotFound = async () => {

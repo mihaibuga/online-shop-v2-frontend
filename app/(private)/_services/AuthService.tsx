@@ -3,15 +3,16 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
 import { IRegisterUser, ILoginUser, IUser, IDecoded } from "@/app/(private)/_utils/interfaces";
-import { apiBaseURL, postData } from "@/app/(private)/_utils/api";
+import { API_ENDPOINTS, googleUserInfoURL } from "@/app/(private)/_config/constants";
+import { postData } from "@/app/(private)/_utils/api";
 
 // Email Auth
 export const registerAPI = async (registeringUserDetails: IRegisterUser) => {
-    return await postData<IUser>(apiBaseURL + "/auth/register", registeringUserDetails);
+    return await postData<IUser>(API_ENDPOINTS.AUTH.REGISTER, registeringUserDetails);
 };
 
 export const loginAPI = async (loginUserDetails: ILoginUser) => {
-    return await postData<IUser>(apiBaseURL + "/login", loginUserDetails);
+    return await postData<IUser>(API_ENDPOINTS.AUTH.LOGIN, loginUserDetails);
 };
 
 export const registerUser = async (registeringUserDetails: IRegisterUser, setLoggedInUser: any) => {
@@ -50,42 +51,48 @@ export const loginUser = async (loginUserDetails: ILoginUser, setLoggedInUser: a
     }
 };
 
-// Google Auth
-export const createOrGetUser = async (response: any, setLoggedInUser: any) => {
-    let authToken, userInfo;
+const getAuthToken = (response: any) => {
+    return response.access_token ? `${response.token_type} ${response.access_token}` : response.credential;
+};
+
+const getGoogleUserInfo = async (response: any, authToken: any) => {
+    let userInfo;
 
     if (response.access_token) {
-        authToken = `${response.token_type} ${response.access_token}`;
-
         userInfo = await axios
-            .get("https://www.googleapis.com/oauth2/v3/userinfo", {
+            .get(API_ENDPOINTS.AUTH.GOOGLE, {
                 headers: { Authorization: authToken },
             })
             .then((res) => res.data);
     } else {
-        authToken = response.credential;
         const decoded: IDecoded = jwtDecode(authToken);
         userInfo = decoded;
     }
 
-    const { name, picture, sub, family_name, given_name, email } = userInfo;
+    return userInfo;
+};
 
-    const user: IUser = {
-        googleId: sub,
-        userName: email,
-        email: email,
-        profileImage: picture,
-        lastName: family_name,
-        firstName: given_name,
-        fullName: name,
+// Google Auth
+export const createOrGetUser = async (response: any, setLoggedInUser: any) => {
+    let authToken = getAuthToken(response);
+    let userInfo = await getGoogleUserInfo(response, authToken);
+
+    const googleUser: IUser = {
+        googleId: userInfo.sub,
+        userName: userInfo.email,
+        email: userInfo.email,
+        profileImage: userInfo.picture,
+        lastName: userInfo.family_name,
+        firstName: userInfo.given_name,
+        fullName: userInfo.name,
     };
 
-    const registeredUserWithGoogle = await postData<IUser>(apiBaseURL + "/auth/google", user);
+    const registeredUserWithGoogle = await postData<IUser>(googleUserInfoURL, googleUser);
 
     if (typeof registeredUserWithGoogle === "object" && registeredUserWithGoogle.data) {
-        user.token = registeredUserWithGoogle.data.token;
-        user.role = registeredUserWithGoogle.data.role;
-        setLoggedInUser(user);
+        googleUser.token = registeredUserWithGoogle.data.token;
+        googleUser.role = registeredUserWithGoogle.data.role;
+        setLoggedInUser(googleUser);
         toast.success("Logged in with Google successfully!");
     } else {
         toast.warning("Google authentication failed! Please try again later.");

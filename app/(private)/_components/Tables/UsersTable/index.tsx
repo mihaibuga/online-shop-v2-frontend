@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlinePersonOff } from "react-icons/md";
 
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
 
 import Spinner from "@/app/(private)/_components/Others/Spinner";
 import ProfileImage from "@/app/(private)/_components/Others/ProfileImage";

@@ -1,6 +1,6 @@
 "use client";
 
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
 import Link from "next/link";
 import { useEffect } from "react";
 
