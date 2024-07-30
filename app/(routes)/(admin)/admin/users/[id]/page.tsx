@@ -6,9 +6,9 @@ import Image from "next/image";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlinePersonOff } from "react-icons/md";
 
-import { getUserDetailsInit } from "@/app/(private)/_hooks/initializers";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { IUser } from "@/app/(private)/_utils/interfaces";
+import { getUserDetails } from "@/app/(private)/_services/UserService";
 
 import Spinner from "@/app/(private)/_components/(common)/Spinner/Spinner";
 import NoResults from "@/app/(private)/_components/(common)/NoResults/NoResults";
@@ -18,7 +18,7 @@ type Params = {
 };
 
 const UserPage = ({ params }: { params: Params }) => {
-    const user = useStoredUser();
+    const loggedInUser = useStoredUser();
 
     const [userDetails, setUserDetails] = useState<IUser>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -26,13 +26,13 @@ const UserPage = ({ params }: { params: Params }) => {
     useEffect(() => {
         const query = { id: params.id };
 
-        getUserDetailsInit(user, query).then((fetchedUserData) => {
+        getUserDetails(loggedInUser?.token, query).then((fetchedUserData) => {
             if (fetchedUserData !== undefined) {
                 setUserDetails(fetchedUserData);
                 setIsLoading(false);
             }
         });
-    }, [user, params.id]);
+    }, [loggedInUser, params.id]);
 
     return (
         <Suspense fallback={<p>Loading user details...</p>}>

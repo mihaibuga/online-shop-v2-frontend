@@ -6,9 +6,8 @@ import { toast } from "react-toastify";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsBoxes } from "react-icons/bs";
 
-import { deleteProduct } from "@/app/(private)/_services/ProductService";
+import { deleteProduct, getProducts } from "@/app/(private)/_services/ProductService";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
-import { getProductsInit } from "@/app/(private)/_hooks/initializers";
 import { IProduct } from "@/app/(private)/_utils/interfaces";
 import { URL_PATHS } from "@/app/(private)/_utils/constants";
 
@@ -20,7 +19,7 @@ import ExpandedArrow from "@/app/(private)/_components/(common)/ExpandedArrow/Ex
 type Props = {};
 
 const ProductsTable = (props: Props) => {
-    const user = useStoredUser();
+    const loggedInUser = useStoredUser();
 
     const [products, setProducts] = useState<IProduct[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -45,8 +44,8 @@ const ProductsTable = (props: Props) => {
 
     useEffect(() => {
         const query = { sortBy, isAscending, currentPage, itemsOnPage };
-        
-        getProductsInit(user, query).then((fetchedProductsData) => {
+
+        getProducts(loggedInUser?.token, query).then((fetchedProductsData) => {
             if (fetchedProductsData !== undefined) {
                 setProducts(fetchedProductsData.data);
                 setIsNextPageAvailable(fetchedProductsData.isNextPage);
@@ -56,11 +55,11 @@ const ProductsTable = (props: Props) => {
                 setIsLoading(false);
             }
         });
-    }, [user, isAscending, sortBy, currentPage, itemsOnPage]);
+    }, [loggedInUser, isAscending, sortBy, currentPage, itemsOnPage]);
 
     const handleProductDelete = async (id: string | undefined) => {
-        if (id !== undefined && user?.token) {
-            const deletionResult = await deleteProduct(id, user.token);
+        if (id !== undefined && loggedInUser?.token) {
+            const deletionResult = await deleteProduct(id, loggedInUser?.token);
 
             if (deletionResult.status && deletionResult.status === 204) {
                 onProductDelete(id);

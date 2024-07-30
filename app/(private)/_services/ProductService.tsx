@@ -29,10 +29,15 @@ export const createProduct = async (
 };
 
 export const getProducts = async (
-    token: string,
+    token: string | undefined,
     query: { isAscending: boolean; sortBy: string | undefined; currentPage: number; itemsOnPage: number }
 ) => {
-    return await fetchData<IProduct[]>(
+    if (token === undefined) {
+        toast.warning("A server error has occurred!");
+        return;
+    }
+
+    const result: any = await fetchData<IProduct[]>(
         `${apiBaseURL}/products?IsAscending=${query.isAscending}${
             query.sortBy !== undefined ? `&SortBy=${query.sortBy}` : ""
         }${query.currentPage !== undefined ? `&PageNumber=${query.currentPage}` : ""}${
@@ -40,13 +45,36 @@ export const getProducts = async (
         }`,
         headers(token)
     );
+    
+    if (result !== undefined) {
+        if (result.data && Array.isArray(result.data.data)) {
+            return result.data;
+        } else {
+            toast.warning("A server error has occurred!");
+            return result;
+        }
+    }
 };
 
-export const getProductDetails = async (token: string, query: { id: string }) => {
-    return await fetchData<IProduct>(`${apiBaseURL}/products/${query.id}`, headers(token));
+export const getProductDetails = async (token: string | undefined, query: { id: string }) => {
+    if (token === undefined) {
+        toast.warning("A server error has occurred!");
+        return;
+    }
+
+    const result: any = await fetchData<IProduct>(`${apiBaseURL}/products/${query.id}`, headers(token));
+
+    if (result !== undefined) {
+        if (result.data) {
+            return result.data;
+        } else {
+            toast.warning("A server error has occurred!");
+            return result;
+        }
+    }
 };
 
-export const deleteProduct = async (id: string, token: string) => {
+export const deleteProduct = async (id: string, token: string | undefined) => {
     try {
         let result = await deleteData<IProduct>(`${apiBaseURL}/products/${id}`, headers(token));
         if (result) {

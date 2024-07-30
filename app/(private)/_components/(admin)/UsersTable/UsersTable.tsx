@@ -4,24 +4,24 @@ import { toast } from "react-toastify";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlinePersonOff } from "react-icons/md";
 
+import { URL_PATHS } from "@/app/(private)/_utils/constants";
+
 import Spinner from "@/app/(private)/_components/(common)/Spinner/Spinner";
 import ProfileImage from "@/app/(private)/_components/(common)/ProfileImage";
 import ExpandedArrow from "@/app/(private)/_components/(common)/ExpandedArrow/ExpandedArrow";
 import NoResults from "@/app/(private)/_components/(common)/NoResults/NoResults";
 
 import { IUser } from "@/app/(private)/_utils/interfaces";
-import { deleteUser } from "@/app/(private)/_services/UserService";
+import { deleteUser, getUsers } from "@/app/(private)/_services/UserService";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
-import { getUsersInit } from "@/app/(private)/_hooks/initializers";
 
 import TableActions from "@/app/(private)/_components/(admin)/UsersTable/TableActions";
 import PaginationSection from "@/app/(private)/_components/(admin)/UsersTable/PaginationSection";
-import { URL_PATHS } from "@/app/(private)/_utils/constants";
 
 type Props = {};
 
 const UsersTable = (props: Props) => {
-    const user = useStoredUser();
+    const loggedInUser = useStoredUser();
 
     const [users, setUsers] = useState<IUser[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -47,7 +47,7 @@ const UsersTable = (props: Props) => {
     useEffect(() => {
         const query = { sortBy, isAscending, currentPage, itemsOnPage };
 
-        getUsersInit(user, query).then((fetchedUsersData) => {
+        getUsers(loggedInUser?.token, query).then((fetchedUsersData) => {
             if (fetchedUsersData !== undefined) {
                 setUsers(fetchedUsersData.data);
                 setIsNextPageAvailable(fetchedUsersData.isNextPage);
@@ -57,11 +57,11 @@ const UsersTable = (props: Props) => {
                 setIsLoading(false);
             }
         });
-    }, [user, isAscending, sortBy, currentPage, itemsOnPage]);
+    }, [loggedInUser, isAscending, sortBy, currentPage, itemsOnPage]);
 
     const handleUserDelete = async (id: string | undefined) => {
-        if (id !== undefined && user?.token) {
-            const deletionResult = await deleteUser(id, user.token);
+        if (id !== undefined && loggedInUser?.token) {
+            const deletionResult = await deleteUser(id, loggedInUser?.token);
 
             if (deletionResult.status && deletionResult.status === 204) {
                 onUserDelete(id);

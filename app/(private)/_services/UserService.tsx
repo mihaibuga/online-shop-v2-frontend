@@ -20,10 +20,15 @@ export const headers = (token: string | undefined) => {
 };
 
 export const getUsers = async (
-    token: string,
+    token: string | undefined,
     query: { isAscending: boolean; sortBy: string | undefined; currentPage: number; itemsOnPage: number }
 ) => {
-    return await fetchData<IUser[]>(
+    if (token === undefined) {
+        toast.warning("A server error has occurred!");
+        return;
+    }
+
+    const result: any = await fetchData<IUser[]>(
         `${apiBaseURL}/users?IsAscending=${query.isAscending}${
             query.sortBy !== undefined ? `&SortBy=${query.sortBy}` : ""
         }${query.currentPage !== undefined ? `&PageNumber=${query.currentPage}` : ""}${
@@ -31,13 +36,36 @@ export const getUsers = async (
         }`,
         headers(token)
     );
+
+    if (result !== undefined) {
+        if (result.data && Array.isArray(result.data.data)) {
+            return result.data;
+        } else {
+            toast.warning("A server error has occurred!");
+            return result;
+        }
+    }
 };
 
-export const getUserDetails = async (token: string, query: { id: string }) => {
-    return await fetchData<IUser>(`${apiBaseURL}/users/${query.id}`, headers(token));
+export const getUserDetails = async (token: string | undefined, query: { id: string }) => {
+    if (token === undefined) {
+        toast.warning("A server error has occurred!");
+        return;
+    }
+
+    const result: any = await fetchData<IUser>(`${apiBaseURL}/users/${query.id}`, headers(token));
+
+    if (result !== undefined) {
+        if (result.data) {
+            return result.data;
+        } else {
+            toast.warning("A server error has occurred!");
+            return result;
+        }
+    }
 };
 
-export const deleteUser = async (id: string, token: string) => {
+export const deleteUser = async (id: string, token: string | undefined) => {
     try {
         let result = await deleteData<IUser>(`${apiBaseURL}/users/${id}`, headers(token));
         if (result) {

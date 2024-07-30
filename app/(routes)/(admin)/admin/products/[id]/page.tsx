@@ -6,7 +6,7 @@ import Image from "next/image";
 import { FaBox } from "react-icons/fa";
 import { BsBoxes } from "react-icons/bs";
 
-import { getProductDetailsInit } from "@/app/(private)/_hooks/initializers";
+import { getProductDetails } from "@/app/(private)/_services/ProductService";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { IProduct } from "@/app/(private)/_utils/interfaces";
 
@@ -19,7 +19,7 @@ type Params = {
 };
 
 const ProductPage = ({ params }: { params: Params }) => {
-    const user = useStoredUser();
+    const loggedInUser = useStoredUser();
 
     const [productDetails, setProductDetails] = useState<IProduct>();
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -28,14 +28,14 @@ const ProductPage = ({ params }: { params: Params }) => {
     useEffect(() => {
         const query = { id: params.id };
 
-        getProductDetailsInit(user, query).then((fetchedProductData) => {
+        getProductDetails(loggedInUser?.token, query).then((fetchedProductData) => {
             if (fetchedProductData !== undefined) {
                 setProductDetails(fetchedProductData);
                 setIsEnabled(fetchedProductData.isEnabled);
             }
             setIsLoading(false);
         });
-    }, [user, params.id]);
+    }, [loggedInUser, params.id]);
 
     const getImages = (productImages: any) => productImages.map((productImage: any) => productImage.image);
 

@@ -6,14 +6,14 @@ import Link from "next/link";
 import { URL_PATHS } from "@/app/(private)/_utils/constants";
 import { IFile } from "@/app/(private)/_utils/interfaces";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
-import { getFilesInit } from "@/app/(private)/_hooks/initializers";
+import { getFiles } from "@/app/(private)/_services/FileService";
 
 import FilesGallery from "@/app/(private)/_components/(admin)/FilesGallery/FilesGallery";
 
 type Props = {};
 
 const MediaLibraryPage = (props: Props) => {
-    const user = useStoredUser();
+    const loggedInUser = useStoredUser();
 
     const [files, setFiles] = useState<IFile[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -31,7 +31,7 @@ const MediaLibraryPage = (props: Props) => {
     useEffect(() => {
         const query = { sortBy, isAscending, currentPage, itemsOnPage };
 
-        getFilesInit(user, query).then((fetchedFilesData) => {
+        getFiles(loggedInUser?.token, query).then((fetchedFilesData) => {
             if (fetchedFilesData !== undefined) {
                 setFiles(fetchedFilesData.data);
                 setIsNextPageAvailable(fetchedFilesData.isNextPage);
@@ -41,7 +41,7 @@ const MediaLibraryPage = (props: Props) => {
             }
             setIsLoading(false);
         });
-    }, [user, isAscending, sortBy, currentPage, itemsOnPage]);
+    }, [loggedInUser, isAscending, sortBy, currentPage, itemsOnPage]);
 
     return (
         <div>

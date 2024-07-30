@@ -3,12 +3,13 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
+import { getProducts } from "@/app/(private)/_services/ProductService";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
-import { getProductsInit } from "@/app/(private)/_hooks/initializers";
 import { IProduct } from "@/app/(private)/_utils/interfaces";
 import { devices, heroSlides, sneakers } from "@/app/(private)/_utils/MockingData";
 
 import ProductsGrid from "@/app/(private)/_components/(site)/Products/ProductsGrid";
+
 const HeroCarousel = dynamic(() => import("@/app/(private)/_components/(site)/HeroCarousel/HeroCarousel"), {
     ssr: false,
 });
@@ -16,7 +17,7 @@ const HeroCarousel = dynamic(() => import("@/app/(private)/_components/(site)/He
 type Props = {};
 
 const Home = (props: Props) => {
-    const user = useStoredUser();
+    const loggedInUser = useStoredUser();
 
     const [products, setProducts] = useState<IProduct[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -31,13 +32,13 @@ const Home = (props: Props) => {
     useEffect(() => {
         const query = { sortBy, isAscending, currentPage, itemsOnPage };
 
-        getProductsInit(user, query).then((fetchedProducts) => {
+        getProducts(loggedInUser?.token, query).then((fetchedProducts) => {
             if (fetchedProducts !== undefined) {
                 setProducts(fetchedProducts.data);
                 setIsLoading(false);
             }
         });
-    }, [user, isAscending, sortBy, currentPage, itemsOnPage]);
+    }, [loggedInUser, isAscending, sortBy, currentPage, itemsOnPage]);
 
     return (
         <div className="flex flex-col h-full">

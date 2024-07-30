@@ -20,10 +20,15 @@ export const uploadFile = async (formData: any, fetchConfigs?: AxiosRequestConfi
 };
 
 export const getFiles = async (
-    token: string,
+    token: string | undefined,
     query: { isAscending: boolean; sortBy: string | undefined; currentPage: number; itemsOnPage: number }
 ) => {
-    return await fetchData<IFile[]>(
+    if (token === undefined) {
+        toast.warning("A server error has occurred!");
+        return;
+    }
+
+    const result: any = await fetchData<IFile[]>(
         `${apiBaseURL}/files?IsAscending=${query.isAscending}${
             query.sortBy !== undefined ? `&SortBy=${query.sortBy}` : ""
         }${query.currentPage !== undefined ? `&PageNumber=${query.currentPage}` : ""}${
@@ -31,4 +36,13 @@ export const getFiles = async (
         }`,
         headers(token)
     );
+
+    if (result !== undefined) {
+        if (result.data && Array.isArray(result.data.data)) {
+            return result.data;
+        } else {
+            toast.warning("A server error has occurred!");
+            return result;
+        }
+    }
 };
