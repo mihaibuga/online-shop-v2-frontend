@@ -12,7 +12,10 @@ import Header from "@/app/(private)/_components/Headers/AdminHeader";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Admin  | Storify",
+    title: {
+        template: "%s | Storify",
+        default: "Admin | Storify",
+    },
     description: "Your new online shopping experience by Storify",
 };
 

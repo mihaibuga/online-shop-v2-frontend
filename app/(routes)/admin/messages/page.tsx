@@ -1,13 +1,21 @@
 import React from "react";
+import { Metadata } from "next";
+
 import { messages } from "@/app/(private)/_utils/DummyData";
 import AdminPageTitle from "@/app/(private)/_components/Headings/AdminPageTitle";
 
 type Props = {};
 
+const PAGE_TITLE = "Messages";
+
+export const metadata: Metadata = {
+    title: PAGE_TITLE,
+};
+
 const MessagesPage = (props: Props) => {
     return (
         <div>
-            <AdminPageTitle titleText={"Messages"} />
+            <AdminPageTitle titleText={PAGE_TITLE} />
             <hr />
             <table>
                 <thead>

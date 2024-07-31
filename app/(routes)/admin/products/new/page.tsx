@@ -1,14 +1,21 @@
 import React from "react";
+import { Metadata } from "next";
 
 import AdminPageTitle from "@/app/(private)/_components/Headings/AdminPageTitle";
 import CreateProductForm from "@/app/(private)/_components/Forms/Products/CreateProductForm";
 
 type Props = {};
 
+const PAGE_TITLE = "Add New Product";
+
+export const metadata: Metadata = {
+    title: PAGE_TITLE,
+};
+
 const NewProductPage = (props: Props) => {
     return (
         <div>
-            <AdminPageTitle titleText={"Add New Product"} />
+            <AdminPageTitle titleText={PAGE_TITLE} />
             <div className="mb-4">
                 <p>Create a brand new product and add it to this site.</p>
             </div>
