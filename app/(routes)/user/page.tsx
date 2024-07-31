@@ -1,9 +1,10 @@
 import React from "react";
+import AuthForm from "@/app/(private)/_components/Forms/Auth/AuthForm";
 
 type Props = {};
 
-const MyAccountPage = (props: Props) => {
-    return <div>My account</div>;
+const UserPage = (props: Props) => {
+    return <AuthForm isLogIn />;
 };
 
-export default MyAccountPage;
+export default UserPage;
