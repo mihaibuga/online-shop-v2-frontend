@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import GeneralSettingsForm from "@/app/(private)/_components/Forms/GeneralSettingsForm";
 
 type Props = {};
 
@@ -8,18 +11,10 @@ const GeneralSettingsPage = (props: Props) => {
             <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
                 General Settings
             </h2>
-            <div>
-                <label>Site Title</label>
-                <br />
-                <input type="text" />
+            <hr className="mb-4" />
+            <div className="max-w-full sm:max-w-sm">
+                <GeneralSettingsForm />
             </div>
-            <div>
-                <label>Administration Email Address</label>
-                <br />
-                <input type="text" />
-            </div>
-
-            <button type="submit">Save Changes</button>
         </div>
     );
 };
