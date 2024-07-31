@@ -4,10 +4,13 @@ import { googleLogout } from "@react-oauth/google";
 import { AiOutlineLogout } from "react-icons/ai";
 
 import useAuthStore from "@/app/(private)/_stores/authStore";
+import { useRouter } from "next/navigation";
+import { URL_PATHS } from "../../_config/constants";
 
 type Props = {};
 
 const SignOutButton = (props: Props) => {
+    const router = useRouter();
     const { removeLoggedInUserSession } = useAuthStore();
 
     return (
@@ -17,6 +20,7 @@ const SignOutButton = (props: Props) => {
             onClick={() => {
                 googleLogout();
                 removeLoggedInUserSession();
+                router.push(URL_PATHS.HOME.path);
             }}
         >
             <div className="w-6 h-6 group-hover:scale-110">
