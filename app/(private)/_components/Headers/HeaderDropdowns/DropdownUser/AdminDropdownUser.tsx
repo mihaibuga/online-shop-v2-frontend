@@ -70,8 +70,8 @@ const AdminDropdownUser = () => {
                 <ul className="flex flex-col border-b border-stroke dark:border-strokedark">
                     <li>
                         <SimpleLink
-                            path={"/profile"}
-                            label={"My Profile"}
+                            path={URL_PATHS.ADMIN_PROFILE.path}
+                            label={URL_PATHS.ADMIN_PROFILE.label}
                             icon={<MdOutlinePersonOutline size={"100%"} />}
                         />
                     </li>

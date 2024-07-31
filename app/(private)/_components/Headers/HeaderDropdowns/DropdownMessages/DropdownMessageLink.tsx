@@ -1,13 +1,15 @@
 import React from "react";
 import Link from "next/link";
+
 import { IMessage } from "@/app/(private)/_utils/interfaces";
+import { URL_PATHS } from "@/app/(private)/_config/constants";
 import ProfileImage from "@/app/(private)/_components/Others/ProfileImage";
 
 const DropdownMessageLink = ({ authorName, authorImgSrc, messageContent, time }: IMessage) => {
     return (
         <Link
             className="flex gap-4 border-t border-stroke px-4 py-3 hover:bg-gray-200 dark:border-strokedark dark:hover:bg-meta-4 text-black dark:text-white"
-            href="/messages"
+            href={URL_PATHS.ADMIN_MESSAGES.path}
         >
             <div className="h-12 w-12 rounded-full">
                 <ProfileImage imgSrc={authorImgSrc} />
