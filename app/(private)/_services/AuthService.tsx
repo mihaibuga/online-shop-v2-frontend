@@ -51,20 +51,19 @@ export const loginUser = async (loginUserDetails: ILoginUser, setLoggedInUser: a
     }
 };
 
-const getAuthToken = (response: any) => {
-    return response.access_token ? `${response.token_type} ${response.access_token}` : response.credential;
-};
-
-const getGoogleUserInfo = async (response: any, authToken: any) => {
-    let userInfo;
+// Google Auth
+const getGoogleUserInfo = async (response: any) => {
+    let authToken, userInfo;
 
     if (response.access_token) {
+        authToken = `${response.token_type} ${response.access_token}`;
         userInfo = await axios
-            .get(API_ENDPOINTS.AUTH.GOOGLE, {
+            .get(googleUserInfoURL, {
                 headers: { Authorization: authToken },
             })
             .then((res) => res.data);
     } else {
+        authToken = response.credential;
         const decoded: IDecoded = jwtDecode(authToken);
         userInfo = decoded;
     }
@@ -72,10 +71,8 @@ const getGoogleUserInfo = async (response: any, authToken: any) => {
     return userInfo;
 };
 
-// Google Auth
 export const createOrGetUser = async (response: any, setLoggedInUser: any) => {
-    let authToken = getAuthToken(response);
-    let userInfo = await getGoogleUserInfo(response, authToken);
+    let userInfo = await getGoogleUserInfo(response);
 
     const googleUser: IUser = {
         googleId: userInfo.sub,
@@ -87,7 +84,7 @@ export const createOrGetUser = async (response: any, setLoggedInUser: any) => {
         fullName: userInfo.name,
     };
 
-    const registeredUserWithGoogle = await postData<IUser>(googleUserInfoURL, googleUser);
+    const registeredUserWithGoogle = await postData<IUser>(API_ENDPOINTS.AUTH.GOOGLE, googleUser);
 
     if (typeof registeredUserWithGoogle === "object" && registeredUserWithGoogle.data) {
         googleUser.token = registeredUserWithGoogle.data.token;
