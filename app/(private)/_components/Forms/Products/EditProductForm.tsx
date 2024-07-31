@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaBox } from "react-icons/fa";
@@ -12,7 +14,7 @@ type Props = {
     isLoading: boolean;
 };
 
-const EditProductForm = ({initialProductDetails, isLoading}: Props) => {
+const EditProductForm = ({ initialProductDetails, isLoading }: Props) => {
     const [isEnabled, setIsEnabled] = useState<boolean>(true);
 
     useEffect(() => {
