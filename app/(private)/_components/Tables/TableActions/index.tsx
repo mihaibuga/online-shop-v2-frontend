@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 
-import ExpandedArrow from "@/app/(private)/_components/Others/ExpandedArrow";
+import TableActionDropdownToggle from "@/app/(private)/_components/Buttons/Toggles/TableActionDropdownToggle";
 
 type Props = {};
 
@@ -18,17 +18,10 @@ const TableActions = (props: Props) => {
             <div className="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 p-4 bg-white dark:bg-gray-900 w-full">
                 {/* Action on selected item(s) */}
                 <div>
-                    <button
-                        id="dropdownActionButton"
-                        data-dropdown-toggle="dropdownAction"
-                        className="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                        type="button"
-                        onClick={handleActionItemsDisplay}
-                    >
-                        <span className="sr-only">Action button</span>
-                        <span>Action</span>
-                        <ExpandedArrow isOpen={isActionItemsDropdownVisible} additionalClasses="w-2.5 h-2.5 ms-2.5" />
-                    </button>
+                    <TableActionDropdownToggle
+                        clickHandler={handleActionItemsDisplay}
+                        isActionItemsDropdownVisible={isActionItemsDropdownVisible}
+                    />
 
                     <div
                         id="dropdownAction"

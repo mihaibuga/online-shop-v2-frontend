@@ -1,5 +1,9 @@
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { handlePagination } from "@/app/(private)/_helpers/PaginationHandler";
+
+import GoToFirstPageButton from "@/app/(private)/_components/Buttons/GoToFirstPageButton";
+import GoToPreviousPageButton from "@/app/(private)/_components/Buttons/GoToPreviousPageButton";
+import GoToNextPageButton from "@/app/(private)/_components/Buttons/GoToNextPageButton";
+import GoToLastPageButton from "@/app/(private)/_components/Buttons/GoToLastPageButton";
 
 interface IProps {
     currentPage: number;
@@ -26,6 +30,22 @@ const PaginationSection = ({
 
     const pages = handlePagination(currentPage, totalPages, maxPagesToDisplay);
 
+    const handleFirstButtonClick = () => {
+        if (currentPage > 1) onPageChange(1);
+    };
+
+    const handlePrevButtonClick = () => {
+        if (isPrevEnabled) onPageChange(currentPage - 1);
+    };
+
+    const handleNextButtonClick = () => {
+        if (isNextEnabled) onPageChange(currentPage + 1);
+    };
+
+    const handleLastButtonClick = () => {
+        if (currentPage < totalPages) onPageChange(totalPages);
+    };
+
     return (
         <div className="w-full flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
             <div className="w-full flex-column space-y-4 sm:space-y-0 sm:flex sm:flex-1 sm:items-center justify-center sm:justify-between">
@@ -41,31 +61,14 @@ const PaginationSection = ({
                 <div>
                     <nav className="isolate inline-flex space-x-2 rounded-md shadow-sm" aria-label="Pagination">
                         {currentPage >= 3 && (
-                            <button
-                                className={`relative inline-flex items-center rounded-md px-2 py-2 text-gray-500 ring-1 ring-inset ring-gray-300 ${
-                                    currentPage !== 1 ? "hover:bg-gray-50 " : "cursor-not-allowed opacity-50 "
-                                }focus:z-20 focus:outline-offset-0`}
-                                disabled={currentPage === 1}
-                                onClick={() => {
-                                    if (currentPage > 1) onPageChange(1);
-                                }}
-                            >
-                                First
-                            </button>
+                            <GoToFirstPageButton currentPage={currentPage} clickHandler={handleFirstButtonClick} />
                         )}
+
                         <div className="isolate inline-flex -space-x-px rounded-md shadow-sm">
-                            <button
-                                className={`relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 ${
-                                    isPrevEnabled ? "hover:bg-gray-50 " : "cursor-not-allowed opacity-50 "
-                                }focus:z-20 focus:outline-offset-0`}
-                                disabled={isPrevEnabled === false}
-                                onClick={() => {
-                                    if (isPrevEnabled) onPageChange(currentPage - 1);
-                                }}
-                            >
-                                <span className="sr-only">Previous</span>
-                                <IoIosArrowBack className="w-2.5 h-2.5" />
-                            </button>
+                            <GoToPreviousPageButton
+                                isPrevEnabled={isPrevEnabled}
+                                clickHandler={handlePrevButtonClick}
+                            />
 
                             {pages.map((page) => (
                                 <a
@@ -89,31 +92,14 @@ const PaginationSection = ({
                                 </a>
                             ))}
 
-                            <button
-                                className={`relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 ${
-                                    isNextEnabled ? "hover:bg-gray-50 " : "cursor-not-allowed opacity-50 "
-                                }focus:z-20 focus:outline-offset-0`}
-                                disabled={isNextEnabled === false}
-                                onClick={() => {
-                                    if (isNextEnabled) onPageChange(currentPage + 1);
-                                }}
-                            >
-                                <span className="sr-only">Next</span>
-                                <IoIosArrowForward className="w-2.5 h-2.5" />
-                            </button>
+                            <GoToNextPageButton isNextEnabled={isNextEnabled} clickHandler={handleNextButtonClick} />
                         </div>
                         {currentPage <= totalPages && totalPages >= 5 && (
-                            <button
-                                className={`relative inline-flex items-center rounded-md px-2 py-2 text-gray-500 ring-1 ring-inset ring-gray-300 ${
-                                    currentPage < totalPages ? "hover:bg-gray-50 " : "cursor-not-allowed opacity-50 "
-                                }focus:z-20 focus:outline-offset-0`}
-                                disabled={currentPage === totalPages}
-                                onClick={() => {
-                                    if (currentPage < totalPages) onPageChange(totalPages);
-                                }}
-                            >
-                                Last
-                            </button>
+                            <GoToLastPageButton
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                clickHandler={handleLastButtonClick}
+                            />
                         )}
                     </nav>
                 </div>
