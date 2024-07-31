@@ -1,14 +1,13 @@
 import React from "react";
 import { brands } from "@/app/(private)/_utils/DummyData";
+import AdminPageTitle from "@/app/(private)/_components/Headings/AdminPageTitle";
 
 type Props = {};
 
 const BrandsPage = (props: Props) => {
     return (
         <div>
-            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
-                Brands
-            </h2>
+            <AdminPageTitle titleText={"Brands"} />
 
             <table>
                 <thead>

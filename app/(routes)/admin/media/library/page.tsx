@@ -8,6 +8,7 @@ import { IFile } from "@/app/(private)/_utils/interfaces";
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { getFiles } from "@/app/(private)/_services/FileService";
 
+import AdminPageTitle from "@/app/(private)/_components/Headings/AdminPageTitle";
 import FilesGallery from "@/app/(private)/_components/Galleries/FilesGallery";
 
 type Props = {};
@@ -45,9 +46,7 @@ const MediaLibraryPage = (props: Props) => {
 
     return (
         <div>
-            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
-                Media Library
-            </h2>
+            <AdminPageTitle titleText={"Media Library"} />
 
             <Link href={`${URL_PATHS.ADMIN.path}/media/new`}>Add new</Link>
             <div>Media files will be displayed here</div>

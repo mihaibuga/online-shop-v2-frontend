@@ -1,5 +1,6 @@
 import React from "react";
 
+import AdminPageTitle from "@/app/(private)/_components/Headings/AdminPageTitle";
 import CreateUserForm from "@/app/(private)/_components/Forms/Auth/CreateUserForm";
 
 type Props = {};
@@ -7,9 +8,7 @@ type Props = {};
 const NewUserPage = (props: Props) => {
     return (
         <div>
-            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
-                Add New User
-            </h2>
+            <AdminPageTitle titleText={"Add New User"} />
             <div className="mb-4">
                 <p>Create a brand new user and add them to this site.</p>
             </div>

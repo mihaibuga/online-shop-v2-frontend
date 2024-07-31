@@ -2,15 +2,14 @@
 
 import React from "react";
 import UpdateProfileForm from "@/app/(private)/_components/Forms/UpdateProfileForm";
+import AdminPageTitle from "@/app/(private)/_components/Headings/AdminPageTitle";
 
 type Props = {};
 
 const ProfilePage = (props: Props) => {
     return (
         <div>
-            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
-                Profile
-            </h2>
+            <AdminPageTitle titleText={"Profile"} />
             <hr className="mb-4" />
             <div className="max-w-full sm:max-w-sm">
                 <UpdateProfileForm />

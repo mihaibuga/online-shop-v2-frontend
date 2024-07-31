@@ -8,6 +8,7 @@ import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { IUser } from "@/app/(private)/_utils/interfaces";
 import { getUserDetails } from "@/app/(private)/_services/UserService";
 
+import AdminPageTitle from "@/app/(private)/_components/Headings/AdminPageTitle";
 import Spinner from "@/app/(private)/_components/Others/Spinner";
 import NoResults from "@/app/(private)/_components/Others/NoResults";
 import EditUserForm from "@/app/(private)/_components/Forms/EditUserForm";
@@ -35,9 +36,7 @@ const UserPage = ({ params }: { params: Params }) => {
 
     return (
         <div>
-            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
-                User
-            </h2>
+            <AdminPageTitle titleText={"User Details"} />
             <div className="p-2 md:p-4">
                 <div className="w-full px-6 pb-8 mt-8 sm:max-w-xl sm:rounded-lg">
                     <Suspense fallback={<p>Loading user details...</p>}>

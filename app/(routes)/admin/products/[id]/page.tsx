@@ -12,6 +12,7 @@ import Spinner from "@/app/(private)/_components/Others/Spinner";
 import NoResults from "@/app/(private)/_components/Others/NoResults";
 
 import EditProductForm from "@/app/(private)/_components/Forms/Products/EditProductForm";
+import AdminPageTitle from "@/app/(private)/_components/Headings/AdminPageTitle";
 
 type Params = {
     id: string;
@@ -36,9 +37,7 @@ const ProductPage = ({ params }: { params: Params }) => {
 
     return (
         <div>
-            <h2 className="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">
-                Product Details
-            </h2>
+            <AdminPageTitle titleText={"Product Details"} />
 
             <Suspense fallback={<p>Loading product details...</p>}>
                 {isLoading ? (
