@@ -9,6 +9,7 @@ import ProtectedRoute from "@/app/(private)/_components/Others/ProtectedRoute";
 import MainTheme from "@/app/(private)/_themes/MainTheme/MainTheme";
 import Sidebar from "@/app/(private)/_components/Sidebars/AdminSidebar";
 import Header from "@/app/(private)/_components/Headers/AdminHeader";
+import AdminNavigation from "@/app/(private)/_components/Headers/AdminNavigation.tsx";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
             <body className={`${inter.className} non-scrollable`}>
                 <ProtectedRoute>
                     <MainTheme>
+                        <AdminNavigation />
                         <div className="flex h-screen overflow-hidden bg-[#EEEEEE] dark:bg-[#222831]">
                             <Sidebar />
 

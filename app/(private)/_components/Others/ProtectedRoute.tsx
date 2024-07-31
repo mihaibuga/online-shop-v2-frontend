@@ -26,7 +26,7 @@ const ProtectedRoute = ({ children }: PrivateRouteProps) => {
 
     if (!loggedInUser && isLoading === false) {
         return (
-            <div className="flex flex-col items-center justify-center w-screen h-screen gap-12 py-8 ">
+            <div className="flex flex-col items-center justify-center w-screen h-screen gap-12 py-8 dark:text-white">
                 <div className="flex flex-col items-center gap-4">
                     <h1 className="text-3xl font-medium text-center">You are not authorized</h1>
                     <p className="text-xl text-center ">

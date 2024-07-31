@@ -7,6 +7,7 @@ import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import "@/app/(private)/_ui/styles/globals.scss";
 import MainTheme from "@/app/(private)/_themes/MainTheme/MainTheme";
 
+import AdminNavigation from "@/app/(private)/_components/Headers/AdminNavigation.tsx";
 import Navbar from "@/app/(private)/_components/Headers/SiteHeader";
 import Sidebar from "@/app/(private)/_components/Sidebars/SiteSidebar";
 
@@ -26,6 +27,7 @@ const SiteLayout = ({
         <html lang="en">
             <body className={`${inter.className} non-scrollable`}>
                 <MainTheme>
+                <AdminNavigation />
                     <Navbar />
                     <div className="h-full block xl:flex duration-100 relative">
                         <Sidebar />
