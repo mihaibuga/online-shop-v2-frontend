@@ -34,12 +34,40 @@ export const URL_PATHS = {
         path:  "/admin",
         label:  "Admin",
     },
+    ADMIN_MESSAGES: {
+        path:  "/admin/messages",
+        label:  "Admin Messages",
+    },
+    ADMIN_NOTIFICATIONS: {
+        path:  "/admin/notifications",
+        label:  "Admin Notifications",
+    },
+    ADMIN_BRANDS: {
+        path:  "/admin/brands",
+        label:  "Admin Brands",
+    },
+    ADMIN_CATEGORIES: {
+        path:  "/admin/categories",
+        label:  "Admin Categories",
+    },
+    ADMIN_MEDIA: {
+        path:  "/admin/media",
+        label:  "Admin Media",
+    },
+    ADMIN_PRODUCTS: {
+        path:  "/admin/products",
+        label:  "Admin Products",
+    },
+    ADMIN_PROFILE: {
+        path:  "/admin/profile",
+        label:  "Admin Profile",
+    },
     // Access to personal user's account
     MY_ACCOUNT: {
         path:  "/user",
         label:  "My Account",
     },
-    PROFILE: {
+    USER_PROFILE: {
         path:  "/user/profile",
         label:  "My Profile",
     },
