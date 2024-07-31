@@ -1,22 +1,20 @@
 import React, { Suspense, useEffect, useState } from "react";
 
 import { toast } from "react-toastify";
-import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlinePersonOff } from "react-icons/md";
 
 import { URL_PATHS } from "@/app/(private)/_config/constants";
+import { IUser } from "@/app/(private)/_utils/interfaces";
+import { deleteUser, getUsers } from "@/app/(private)/_services/UserService";
+import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 
 import Spinner from "@/app/(private)/_components/Others/Spinner";
 import ProfileImage from "@/app/(private)/_components/Others/ProfileImage";
 import ExpandedArrow from "@/app/(private)/_components/Others/ExpandedArrow";
 import NoResults from "@/app/(private)/_components/Others/NoResults";
-
-import { IUser } from "@/app/(private)/_utils/interfaces";
-import { deleteUser, getUsers } from "@/app/(private)/_services/UserService";
-import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
-
 import TableActions from "@/app/(private)/_components/Tables/TableActions";
 import PaginationSection from "@/app/(private)/_components/Others/PaginationSection";
+import DeleteButton from "@/app/(private)/_components/Buttons/DeleteButton";
 
 type Props = {};
 
@@ -181,20 +179,11 @@ const UsersTable = (props: Props) => {
                                                 </a>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <button
-                                                    type="button"
-                                                    className="group flex items-center px-4 py-2 cursor-pointer outline-none text-sm text-black dark:text-white"
-                                                    onClick={() => {
+                                                <DeleteButton
+                                                    clickHandler={() => {
                                                         handleUserDelete(user.id);
                                                     }}
-                                                >
-                                                    <div className="w-5 h-5 group-hover:scale-110 text-red-600 dark:text-red-500">
-                                                        <AiOutlineDelete size={"100%"} />
-                                                    </div>
-                                                    <label htmlFor="checkbox-all-search" className="sr-only">
-                                                        Delete
-                                                    </label>
-                                                </button>
+                                                />
                                             </td>
                                         </tr>
                                     ))}

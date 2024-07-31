@@ -1,6 +1,7 @@
-import Image from "next/image";
 import React from "react";
-import { IoMdCart } from "react-icons/io";
+import Image from "next/image";
+
+import AddToCart from "@/app/(private)/_components/Buttons/AddToCartButton";
 
 type ProductType = {
     src?: string;
@@ -64,13 +65,7 @@ const ProductsGrid = ({ sectionTitle, products }: IProps) => {
                                 <h4 className="text-lg text-gray-800 font-bold mt-4">${product.price}</h4>
                             </div>
 
-                            <button
-                                type="button"
-                                className="w-full flex items-center mt-auto justify-center gap-3 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 font-semibold text-white rounded-xl duration-200"
-                            >
-                                <IoMdCart size={"100%"} className="w-[20px] h-[20px]" />
-                                Add to cart
-                            </button>
+                            <AddToCart />
                         </div>
                     ))}
                 </div>

@@ -9,7 +9,8 @@ import { loginUser, registerUser } from "@/app/(private)/_services/AuthService";
 
 import EmailInput from "@/app/(private)/_components/Forms/FormFields/EmailInput";
 import PasswordInput from "@/app/(private)/_components/Forms/FormFields/PasswordInput";
-import TextInput from "../FormFields/TextInput";
+import TextInput from "@/app/(private)/_components/Forms/FormFields/TextInput";
+import LogInSignUpButton from "@/app/(private)/_components/Buttons/LogInSignUpButton";
 
 interface Props {
     isLogIn?: boolean;
@@ -79,12 +80,7 @@ const EmailAuthForm = ({ isLogIn }: Props) => {
 
                 <PasswordInput register={register} errors={errors} />
 
-                <button
-                    type="submit"
-                    className="w-full py-2 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-100 hover:bg-blue-200 dark:hover:bg-blue-900 text-blue-800 dark:text-blue-400 text-center disabled:opacity-50 disabled:pointer-events-none shadow-md transition duration-300"
-                >
-                    {isLogIn ? "Log in" : "Sign up"}
-                </button>
+                <LogInSignUpButton isLogIn={isLogIn} />
             </form>
         </div>
     );

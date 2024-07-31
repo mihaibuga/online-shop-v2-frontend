@@ -13,6 +13,7 @@ import { createOrGetUser } from "@/app/(private)/_services/AuthService";
 
 import AuthAgreement from "@/app/(private)/_components/Forms/Auth/AuthAgreement";
 import EmailAuthForm from "@/app/(private)/_components/Forms/Auth/EmailAuthForm";
+import ServiceAuthButton from "@/app/(private)/_components/Buttons/ServiceAuthButton";
 
 type Props = {
     isLogIn?: boolean;
@@ -48,18 +49,11 @@ const AuthForm = ({ isLogIn }: Props) => {
                     </h2>
 
                     <div className="flex flex-col items-center gap-2 min-h-[70px] max-h-[250px] overflow-y-auto">
-                        <button
-                            type="button"
-                            onClick={() => handleGoogleLogin()}
-                            className="w-full px-4 py-2 border flex gap-2 hover:bg-gray-100 rounded-lg text-slate-700 hover:text-slate-900 shadow-md transition duration-300"
-                        >
-                            <div className="left min-w-[30px]">
-                                <FcGoogle size={"1.5rem"} />
-                            </div>
-                            <div className="right flex w-full justify-center text-md lg:text-lg whitespace-nowrap text-gray-600 font-bold">
-                                Continue with Google
-                            </div>
-                        </button>
+                        <ServiceAuthButton
+                            handleLogin={handleGoogleLogin}
+                            icon={<FcGoogle size={"1.5rem"} />}
+                            serviceName={"Google"}
+                        />
                     </div>
 
                     <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300 dark:before:border-neutral-500 dark:after:border-neutral-500">

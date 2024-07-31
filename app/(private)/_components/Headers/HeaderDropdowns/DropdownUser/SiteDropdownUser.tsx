@@ -10,9 +10,9 @@ import {
 import { useStoredUser } from "@/app/(private)/_hooks/useStoredUser";
 import { URL_PATHS } from "@/app/(private)/_config/constants";
 
-import ProfileImage from "@/app/(private)/_components/Others/ProfileImage";
 import SimpleLink from "@/app/(private)/_components/Headers/HeaderDropdowns/DropdownUser/LinkTypes/SimpleLink";
 import SignOutButton from "@/app/(private)/_components/Buttons/SignOutButton";
+import UserMenuToggleButton from "@/app/(private)/_components/Buttons/Toggles/UserMenuToggleButton";
 
 type Props = {};
 
@@ -33,19 +33,11 @@ const SiteDropdownUser = ({}: Props) => {
 
     return (
         <div className="relative">
-            <button
-                type="button"
-                className="flex h-6 w-6 text-sm dark:text-[#FFFFFF] dark:bg-gray-800 bg-white rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 relative hover:scale-110 duration-200"
-                id="user-menu-button"
-                aria-expanded="false"
-                data-dropdown-toggle="user-dropdown"
-                data-dropdown-placement="bottom"
-                ref={trigger}
-                onClick={() => setIsUserMenuOpen((prev) => !prev)}
-            >
-                <span className="sr-only">Open user menu</span>
-                <ProfileImage imgSrc={loggedInUser?.profileImage} />
-            </button>
+            <UserMenuToggleButton
+                trigger={trigger}
+                clickHandler={() => setIsUserMenuOpen((prev) => !prev)}
+                profileImageSrc={loggedInUser?.profileImage}
+            />
 
             {/* <!-- Dropdown Start --> */}
             <div
